@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace BinhDinhFood.Domain.Entities;
+namespace BinhDinhFood.Domain.Entities.Auth;
 
 public class ApplicationUser : IdentityUser<Guid>
 {

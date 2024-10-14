@@ -2,6 +2,7 @@ using BinhDinhFood.Application;
 using BinhDinhFood.Application.Common;
 using BinhDinhFood.Application.Repositories;
 using BinhDinhFood.Domain.Authorization;
+using BinhDinhFood.Domain.Entities.Auth;
 using BinhDinhFood.Infrastructure.Data;
 using BinhDinhFood.Infrastructure.Interface;
 using Microsoft.AspNetCore.Authorization;

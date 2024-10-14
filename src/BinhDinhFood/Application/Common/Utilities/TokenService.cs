@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using BinhDinhFood.Application.Common.Interfaces;
 using BinhDinhFood.Application.Common.Models.AuthIdentity.UsersIdentity;
+using BinhDinhFood.Domain.Entities.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;

@@ -10,6 +10,7 @@ using static Google.Apis.Auth.GoogleJsonWebSignature;
 using Payload = Google.Apis.Auth.GoogleJsonWebSignature.Payload;
 using BinhDinhFood.Application.Common.Models.AuthIdentity.UsersIdentity;
 using BinhDinhFood.Application.Common;
+using BinhDinhFood.Domain.Entities.Auth;
 
 namespace BinhDinhFood.Application.Services;
 public class AuthIdentityService(ApplicationDbContext context,

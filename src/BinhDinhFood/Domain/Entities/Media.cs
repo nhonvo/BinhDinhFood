@@ -1,4 +1,5 @@
 using BinhDinhFood.Application.Common.Models;
+using BinhDinhFood.Domain.Entities.Auth;
 
 namespace BinhDinhFood.Domain.Entities;
 

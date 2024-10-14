@@ -1,3 +1,4 @@
+using BinhDinhFood.Domain.Entities.Auth;
 using BinhDinhFood.Infrastructure.Data;
 using BinhDinhFood.Infrastructure.Interface;
 

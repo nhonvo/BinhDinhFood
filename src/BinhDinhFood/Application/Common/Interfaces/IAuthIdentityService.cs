@@ -1,4 +1,5 @@
 using BinhDinhFood.Application.Common.Models.AuthIdentity.UsersIdentity;
+using BinhDinhFood.Domain.Entities.Auth;
 
 namespace BinhDinhFood.Application.Common.Interfaces;
 public interface IAuthIdentityService

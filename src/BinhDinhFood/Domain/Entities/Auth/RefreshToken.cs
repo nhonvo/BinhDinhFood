@@ -1,6 +1,6 @@
 using BinhDinhFood.Application.Common.Models;
 
-namespace BinhDinhFood.Domain.Entities;
+namespace BinhDinhFood.Domain.Entities.Auth;
 public class RefreshToken : BaseModel
 {
     public string Token { get; set; }

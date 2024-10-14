@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using BinhDinhFood.Application.Common.Models.AuthIdentity.UsersIdentity;
 using BinhDinhFood.Application.Common.Models.AuthIdentity.File;
 using System.Security.Claims;
+using BinhDinhFood.Domain.Entities.Auth;
 
 namespace BinhDinhFood.Application.Services;
 

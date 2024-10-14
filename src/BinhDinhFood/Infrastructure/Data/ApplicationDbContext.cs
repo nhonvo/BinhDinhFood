@@ -1,4 +1,5 @@
 using System.Reflection;
+using BinhDinhFood.Domain.Entities.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

@@ -4,6 +4,7 @@ using BinhDinhFood.Application.Common.Interfaces;
 using BinhDinhFood.Application.Common.Models.User;
 using BinhDinhFood.Application.Common.Utilities;
 using BinhDinhFood.Domain.Constants;
+using BinhDinhFood.Domain.Entities.Auth;
 using BinhDinhFood.Infrastructure.Interface;
 
 namespace BinhDinhFood.Application.Services;

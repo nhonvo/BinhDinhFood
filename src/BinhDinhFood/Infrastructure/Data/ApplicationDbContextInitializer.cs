@@ -1,4 +1,5 @@
 using BinhDinhFood.Application.Common.Utilities;
+using BinhDinhFood.Domain.Entities.Auth;
 using Microsoft.EntityFrameworkCore;
 
 namespace BinhDinhFood.Infrastructure.Data;

@@ -1,4 +1,5 @@
 using BinhDinhFood.Domain.Constants;
+using BinhDinhFood.Domain.Entities.Auth;
 
 namespace BinhDinhFood.Application.Common.Exceptions;
 

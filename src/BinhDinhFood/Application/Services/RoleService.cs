@@ -1,5 +1,6 @@
 using BinhDinhFood.Application.Common.Interfaces;
 using BinhDinhFood.Application.Common.Models.AuthIdentity.Roles;
+using BinhDinhFood.Domain.Entities.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
