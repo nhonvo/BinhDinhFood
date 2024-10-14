@@ -1,0 +1,6 @@
+@BinhDinhFood_HostAddress = http://localhost:5240
+
+GET {{BinhDinhFood_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

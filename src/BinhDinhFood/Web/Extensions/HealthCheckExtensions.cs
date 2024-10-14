@@ -1,0 +1,41 @@
+using BinhDinhFood.Application.Common;
+using BinhDinhFood.Infrastructure.Data;
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+
+namespace BinhDinhFood.Web.Extensions;
+public static class HealthCheckExtensions
+{
+    public static void SetupHealthCheck(this IServiceCollection services, AppSettings configuration)
+    {
+        services.AddHealthChecks()
+           .AddDbContextCheck<ApplicationDbContext>(name: nameof(ApplicationDbContext), failureStatus: HealthStatus.Degraded)
+           .AddUrlGroup(new Uri(configuration.ApplicationDetail.ContactWebsite),
+                           name: configuration.ApplicationDetail.ApplicationName,
+                           failureStatus: HealthStatus.Degraded)
+           .AddSqlServer(configuration.ConnectionStrings.DefaultConnection);
+
+        services.AddHealthChecksUI(setup => setup.AddHealthCheckEndpoint("Basic Health Check", $"/healthz"))
+                         .AddInMemoryStorage();
+    }
+    public static void ConfigureHealthCheck(this WebApplication app)
+    {
+        app.UseHealthChecks("/healthz", new HealthCheckOptions
+        {
+            Predicate = _ => true,
+            ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+            ResultStatusCodes =
+                {
+                    [HealthStatus.Healthy] = StatusCodes.Status200OK,
+                    [HealthStatus.Degraded] = StatusCodes.Status500InternalServerError,
+                    [HealthStatus.Unhealthy] = StatusCodes.Status503ServiceUnavailable,
+                },
+        }).UseHealthChecksUI(setup =>
+        {
+            setup.ApiPath = "/healthcheck";
+            setup.UIPath = "/healthcheck-ui";
+            // setup.AddCustomStylesheet("Customization\\custom.css");
+        });
+    }
+}
