@@ -8,6 +8,7 @@ public static class ModelBuilderExtension
 {
     public static void Seed(this ModelBuilder modelBuilder)
     {
+
         // Step 1: Seeding Roles
         var adminRoleId = new Guid("A3314BE5-4C77-4FB6-82AD-302014682A73");
         var userRoleId = new Guid("B4314BE5-4C77-4FB6-82AD-302014682B13");
@@ -17,68 +18,83 @@ public static class ModelBuilderExtension
         new RoleIdentity
         {
             Id = adminRoleId,
-            Name = "Admin",
+            Name = Role.Admin.ToString(),
             NormalizedName = "ADMIN"
         },
         new RoleIdentity
         {
             Id = userRoleId,
-            Name = "User",
+            Name = Role.Admin.ToString(),
             NormalizedName = "USER"
         }
     };
         modelBuilder.Entity<RoleIdentity>().HasData(roles);
 
-        // Step 2: Seeding Users
+        // Step 2: Seeding Media (Avatars)
+        var avatar1Id = 1;
+        var avatar2Id = 2;
+        var avatar3Id = 3;
+
+        modelBuilder.Entity<Media>().HasData(new List<Media>
+        {
+            new Media { Id = avatar1Id, PathMedia = "https://example.com/avatar1.png", Type = MediaType.Image },
+            new Media { Id = avatar2Id, PathMedia = "https://example.com/avatar2.png", Type = MediaType.Image },
+            new Media { Id = avatar3Id, PathMedia = "https://example.com/avatar3.png", Type = MediaType.Image },
+        });
+
+        // Step 3: Seeding Users with AvatarId
         var hashed = new PasswordHasher<ApplicationUser>();
 
         var normalUsers = new List<ApplicationUser>
+    {
+        new ApplicationUser
         {
-            new ApplicationUser
-            {
-                Id = Guid.NewGuid(),
-                Name = "Võ Thương Trường Nhơn",
-                UserName = "truongnhon",
-                PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-                Email = "truongnhon@example.com",
-                Address = "Quy Nhơn, Bình Định",
-                PhoneNumber = "0905726748",
-                SecurityStamp = Guid.NewGuid().ToString()
-            },
-            new ApplicationUser
-            {
-                Id = Guid.NewGuid(),
-                Name = "Nguyễn Hồng Thái",
-                UserName = "thai",
-                PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-                Email = "hongthai@example.com",
-                Address = "Tây Ninh",
-                PhoneNumber = "0905726748",
-                SecurityStamp = Guid.NewGuid().ToString()
-            },
-            new ApplicationUser
-            {
-                Id = Guid.NewGuid(),
-                Name = "Phạm Đức Tài",
-                UserName = "tai",
-                PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-                Email = "taiphamduc@example.com",
-                Address = "Nam Định",
-                PhoneNumber = "0905726748",
-                SecurityStamp = Guid.NewGuid().ToString()
-            },
-            new ApplicationUser
-            {
-                Id = Guid.NewGuid(),
-                Name = "dotnet evil",
-                UserName = "nhondeptrai",
-                PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-                Email = "nhondeptrai@example.com",
-                Address = "Saigon",
-                PhoneNumber = "0905726748",
-                SecurityStamp = Guid.NewGuid().ToString()
-            }
-        };
+            Id = Guid.NewGuid(),
+            Name = "Võ Thương Trường Nhơn",
+            UserName = "truongnhon",
+            PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
+            Email = "truongnhon@example.com",
+            Address = "Quy Nhơn, Bình Định",
+            PhoneNumber = "0905726748",
+            AvatarId = avatar1Id, // Assign Avatar
+            SecurityStamp = Guid.NewGuid().ToString()
+        },
+        new ApplicationUser
+        {
+            Id = Guid.NewGuid(),
+            Name = "Nguyễn Hồng Thái",
+            UserName = "thai",
+            PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
+            Email = "hongthai@example.com",
+            Address = "Tây Ninh",
+            PhoneNumber = "0905726748",
+            AvatarId = avatar2Id, // Assign Avatar
+            SecurityStamp = Guid.NewGuid().ToString()
+        },
+        new ApplicationUser
+        {
+            Id = Guid.NewGuid(),
+            Name = "Phạm Đức Tài",
+            UserName = "tai",
+            PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
+            Email = "taiphamduc@example.com",
+            Address = "Nam Định",
+            PhoneNumber = "0905726748",
+            AvatarId = avatar3Id, // Assign Avatar
+            SecurityStamp = Guid.NewGuid().ToString()
+        },
+        new ApplicationUser
+        {
+            Id = Guid.NewGuid(),
+            Name = "dotnet evil",
+            UserName = "nhondeptrai",
+            PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
+            Email = "nhondeptrai@example.com",
+            Address = "Saigon",
+            PhoneNumber = "0905726748",
+            SecurityStamp = Guid.NewGuid().ToString()
+        }
+    };
 
         var adminUserId = Guid.NewGuid();
         normalUsers.Add(new ApplicationUser
@@ -95,36 +111,35 @@ public static class ModelBuilderExtension
 
         modelBuilder.Entity<ApplicationUser>().HasData(normalUsers);
 
-        // Step 3: Seeding UserRoles (Mapping Users to Roles)
+        // Step 4: Seeding UserRoles (Mapping Users to Roles)
         var userRoles = new List<UserRoles>
+    {
+        new UserRoles
         {
-            new UserRoles
-            {
-                RoleId = adminRoleId,
-                UserId = adminUserId
-            },
-            new UserRoles
-            {
-                RoleId = userRoleId,
-                UserId = normalUsers.First(u => u.UserName == "truongnhon").Id
-            },
-            new UserRoles
-            {
-                RoleId = userRoleId,
-                UserId = normalUsers.First(u => u.UserName == "thai").Id
-            },
-            new UserRoles
-            {
-                RoleId = userRoleId,
-                UserId = normalUsers.First(u => u.UserName == "tai").Id
-            },
-            new UserRoles
-            {
-                RoleId = userRoleId,
-                UserId = normalUsers.First(u => u.UserName == "nhondeptrai").Id
-            }
-        };
-
+            RoleId = adminRoleId,
+            UserId = adminUserId
+        },
+        new UserRoles
+        {
+            RoleId = userRoleId,
+            UserId = normalUsers.First(u => u.UserName == "truongnhon").Id
+        },
+        new UserRoles
+        {
+            RoleId = userRoleId,
+            UserId = normalUsers.First(u => u.UserName == "thai").Id
+        },
+        new UserRoles
+        {
+            RoleId = userRoleId,
+            UserId = normalUsers.First(u => u.UserName == "tai").Id
+        },
+        new UserRoles
+        {
+            RoleId = userRoleId,
+            UserId = normalUsers.First(u => u.UserName == "nhondeptrai").Id
+        }
+    };
         modelBuilder.Entity<UserRoles>().HasData(userRoles);
 
         modelBuilder.Entity<Book>().HasData(
@@ -537,105 +552,6 @@ public static class ModelBuilderExtension
             CategoryDateCreated = DateTime.Parse("2022-08-19")
         });
 
-        //modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
-        //{
-        //    Id = Guid.NewGuid(),
-        //    Name = "Võ Thương Trường Nhơn",
-        //    UserName = "truongnhon",
-        //    PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-        //    Email = "vothuongtruongnhon2002@gmail.com",
-        //    Address = "Quy Nhơn, Bình Định",
-        //    PhoneNumber = "0905726748",
-        //});
-
-        //modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
-        //{
-        //    Id = Guid.NewGuid(),
-        //    Name = "Nguyễn Hồng Thái",
-        //    UserName = "thai",
-        //    PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-        //    Email = "phamhongthai@gmail.com",
-        //    Address = "Tây Ninh",
-        //    PhoneNumber = "0905726748",
-        //});
-
-        //modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
-        //{
-        //    Id = Guid.NewGuid(),
-        //    Name = "Phạm Đức Tài",
-        //    UserName = "tai",
-        //    PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-        //    Email = "taiphamduc@gmail.com",
-        //    Address = "Nam Định",
-        //    PhoneNumber = "0905726748",
-        //});
-
-        //modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
-        //{
-        //    Id = Guid.NewGuid(),
-        //    Name = "dotnet evil",
-        //    UserName = "nhondeptrai",
-        //    PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-        //    Email = "vothuongtruongnhon2002@gmail.com",
-        //    Address = "Saigon",
-        //    PhoneNumber = "0905726748",
-        //});
-
-        //modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
-        //{
-        //    Id = Guid.NewGuid(),
-        //    Name = "Jeff Bezos",
-        //    UserName = "acc1",
-        //    PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-        //    Email = "vothuongtruongnhon2002@gmail.com",
-        //    Address = "America",
-        //    PhoneNumber = "0905726748",
-        //});
-
-        //modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
-        //{
-        //    Id = Guid.NewGuid(),
-        //    Name = "Bill Gate",
-        //    UserName = "acc2",
-        //    PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-        //    Email = "vothuongtruongnhon2002@gmail.com",
-        //    Address = "NewYork",
-        //    PhoneNumber = "0905726748",
-        //});
-
-        //modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
-        //{
-        //    Id = Guid.NewGuid(),
-        //    Name = "Edward NewGate",
-        //    UserName = "acc3",
-        //    PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-        //    Email = "vothuongtruongnhon2002@gmail.com",
-        //    Address = "NewWorld",
-        //    PhoneNumber = "0905726748",
-        //});
-
-        //modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
-        //{
-        //    Id = Guid.NewGuid(),
-        //    Name = "Monkey D Luffy",
-        //    UserName = "acc4",
-        //    PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-        //    Email = "vothuongtruongnhon2002@gmail.com",
-        //    Address = "East Sea",
-        //    PhoneNumber = "0905726748",
-        //});
-
-        //modelBuilder.Entity<ApplicationUser>().HasData(new ApplicationUser
-        //{
-        //    Id = Guid.NewGuid(),
-        //    Name = "Ái Quyên President",
-        //    UserName = "acc5",
-        //    PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-        //    Email = "vothuongtruongnhon2002@gmail.com",
-        //    Address = "Bình Định",
-        //    PhoneNumber = "0905726748",
-        //});
-
         modelBuilder.Entity<Blog>().HasData(new Blog
         {
             Id = 1,
@@ -735,6 +651,20 @@ public static class ModelBuilderExtension
             DateCreated = DateTime.Parse("2022-09-03")
         });
 
+        
+        var bannerImage1 = 4;
+        var bannerImage2 = 5;
+        var bannerImage3 = 6;
+        var bannerImage4 = 7;
+
+        modelBuilder.Entity<Media>().HasData(new List<Media>
+        {
+            new Media { Id = bannerImage1, PathMedia = "slide_home_1.jpg", Type = MediaType.Image },
+            new Media { Id = bannerImage2, PathMedia = "slide_home_1.jpg", Type = MediaType.Image },
+            new Media { Id = bannerImage3, PathMedia = "slide_home_1.jpg", Type = MediaType.Image },
+            new Media { Id = bannerImage4, PathMedia = "slide_home_1.jpg", Type = MediaType.Image },
+        });
+
         modelBuilder.Entity<Banner>().HasData(new Banner
         {
             Id = 6,
@@ -742,7 +672,7 @@ public static class ModelBuilderExtension
             Discount = 0,
             Price = 100000,
             Description = "banner1sss",
-            Image = "slide_home_1.jpg",
+            ImageId = bannerImage1,
             DateCreated = DateTime.Parse("2022-08-19")
         });
 
@@ -753,7 +683,7 @@ public static class ModelBuilderExtension
             Discount = 0,
             Price = 200000,
             Description = "banner2",
-            Image = "slide_home_2.jpg",
+            ImageId = bannerImage2,
             DateCreated = DateTime.Parse("2022-08-19")
         });
 
@@ -764,7 +694,7 @@ public static class ModelBuilderExtension
             Discount = 0,
             Price = 150000,
             Description = "banner3",
-            Image = "slide_home_3.jpg",
+            ImageId = bannerImage3,
             DateCreated = DateTime.Parse("2022-08-19")
         });
 
@@ -775,7 +705,7 @@ public static class ModelBuilderExtension
             Discount = 0,
             Price = 150000,
             Description = "banner4",
-            Image = "slide_home_4.jpg",
+            ImageId = bannerImage4,
             DateCreated = DateTime.Parse("2022-08-19")
         });
     }

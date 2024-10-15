@@ -15,6 +15,15 @@ public class UnitOfWork : IUnitOfWork
     public IRefreshTokenRepository RefreshTokenRepository { get; }
     public IMediaRepository MediaRepository { get; }
     public IForgotPasswordRepository ForgotPasswordRepository { get; }
+    public IOrderRepository OrderRepository { get; }
+    public IOrderDetailRepository OrderDetailRepository { get; }
+    public IProductRepository ProductRepository { get; }
+    public ICategoryRepository CategoryRepository { get; }
+    public IProductRatingRepository ProductRatingRepository { get; }
+    public IBannerRepository BannerRepository { get; }
+    public IFavoriteRepository FavoriteRepository { get; }
+    public IBlogRepository BlogRepository { get; }
+
 
     public UnitOfWork(ApplicationDbContext dbContext)
     {
@@ -24,6 +33,14 @@ public class UnitOfWork : IUnitOfWork
         RefreshTokenRepository = new RefreshTokenRepository(_context);
         MediaRepository = new MediaRepository(_context);
         ForgotPasswordRepository = new ForgotPasswordRepository(_context);
+        OrderRepository = new OrderRepository(_context);
+        OrderDetailRepository = new OrderDetailRepository(_context);
+        ProductRepository = new ProductRepository(_context);
+        CategoryRepository = new CategoryRepository(_context);
+        ProductRatingRepository = new ProductRatingRepository(_context);
+        BannerRepository = new BannerRepository(_context);
+        FavoriteRepository = new FavoriteRepository(_context);
+        BlogRepository = new BlogRepository(_context);
     }
     public async Task SaveChangesAsync(CancellationToken token)
         => await _context.SaveChangesAsync(token);
