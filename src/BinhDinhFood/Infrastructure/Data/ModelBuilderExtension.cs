@@ -8,7 +8,7 @@ public static class ModelBuilderExtension
 {
     public static void Seed(this ModelBuilder modelBuilder)
     {
-
+        // Authentication seeding data
         // Step 1: Seeding Roles
         var adminRoleId = new Guid("A3314BE5-4C77-4FB6-82AD-302014682A73");
         var userRoleId = new Guid("B4314BE5-4C77-4FB6-82AD-302014682B13");
@@ -113,35 +113,36 @@ public static class ModelBuilderExtension
 
         // Step 4: Seeding UserRoles (Mapping Users to Roles)
         var userRoles = new List<UserRoles>
-    {
-        new UserRoles
         {
-            RoleId = adminRoleId,
-            UserId = adminUserId
-        },
-        new UserRoles
-        {
-            RoleId = userRoleId,
-            UserId = normalUsers.First(u => u.UserName == "truongnhon").Id
-        },
-        new UserRoles
-        {
-            RoleId = userRoleId,
-            UserId = normalUsers.First(u => u.UserName == "thai").Id
-        },
-        new UserRoles
-        {
-            RoleId = userRoleId,
-            UserId = normalUsers.First(u => u.UserName == "tai").Id
-        },
-        new UserRoles
-        {
-            RoleId = userRoleId,
-            UserId = normalUsers.First(u => u.UserName == "nhondeptrai").Id
-        }
-    };
+            new UserRoles
+            {
+                RoleId = adminRoleId,
+                UserId = adminUserId
+            },
+            new UserRoles
+            {
+                RoleId = userRoleId,
+                UserId = normalUsers.First(u => u.UserName == "truongnhon").Id
+            },
+            new UserRoles
+            {
+                RoleId = userRoleId,
+                UserId = normalUsers.First(u => u.UserName == "thai").Id
+            },
+            new UserRoles
+            {
+                RoleId = userRoleId,
+                UserId = normalUsers.First(u => u.UserName == "tai").Id
+            },
+            new UserRoles
+            {
+                RoleId = userRoleId,
+                UserId = normalUsers.First(u => u.UserName == "nhondeptrai").Id
+            }
+        };
         modelBuilder.Entity<UserRoles>().HasData(userRoles);
 
+        // book seeding data
         modelBuilder.Entity<Book>().HasData(
             new Book
             {
@@ -180,9 +181,33 @@ public static class ModelBuilderExtension
             }
         );
 
+        // category seeding data
+        modelBuilder.Entity<Category>().HasData(new List<Category>
+        {
+            new ()
+            {
+                Id = 1,
+                Name = "Đồ khô",
+                DateCreated = DateTime.Parse("2022-08-19")
+            },
+            new ()
+            {
+                Id = 2,
+                Name = "Bánh truyền thống",
+                DateCreated = DateTime.Parse("2022-08-19")
+            },
+            new ()
+            {
+                Id = 3,
+                Name = "Đồ đặc sản",
+                DateCreated = DateTime.Parse("2022-08-19")
+            }
+        });
+
+        // Product seeding data
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 3,
+            Id = 1,
             Name = "Chả cá Quy Nhơn",
             Price = 120000,
             Description = "Mặc dù chả cá có thể là đặc sản và có mặt ở nhiều nơi nhưng không phải hương vị chả cá nào cũng như nhau. Sở dĩ chả cá Quy Nhơn là một trong các đặc sản Bình Định nổi tiếng vì vị ngon và lạ đặc trưng. Với nguyên liệu được tuyển chọn từ những con cá biển tươi ngon nhất và công thức chế biến độc quyền của người dân đã tạo nên sự khác biệt cho chả cá Quy Nhơn.\n Chả cá Quy Nhơn phổ biến có 2 loại là chả hấp và chả chiên. Ngoài việc thưởng thức thực tiếp miếng chả dai, giòn, thơm ngon đặc biệt, các bạn có thể dùng chả cá này để làm “topping” cho các món ăn khác như cơm, bún, phở. Đây cũng là một lựa chọn thích hợp để bạn mua về làm quà cho người thân và bạn bè nữa đó.",
@@ -191,12 +216,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "chaca.png",
             DateCreated = DateTime.Parse("2022-08-19"),
-            CategoryId = 1
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 6,
+            Id = 2,
             Name = "Tôm khô",
             Price = 84000,
             Description = "Tôm khô còn gọi là tôm nõn khô là một trong các loại thực phẩm giàu dinh dưỡng rất tốt cho sức khỏe. Chúng được làm từ tôm tươi tự nhiên và phơi khô dưới ánh nắng mặt trời hoặc sấy khô thủ công. 1kg tôm tươi làm được khoảng 2 lạng tôm khô, thành phẩm tôm có kích thước nhỏ hơn, có vị ngọt thanh đậm đà rất thơm.\nGiá trị dinh dưỡng của tôm vẫn giữ gần như nguyên vẹn, trong 100g tôm khô có: 347 kcal, 75,6g đạm, 235mg canxi, 4,6mg sắt, vitamin B1, B2, PP và 3,8g chất béo chưa bảo hòa.",
@@ -205,12 +229,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "tom-kho-gia-bao-nhieu-1kg.jpg",
             DateCreated = DateTime.Parse("2022-08-19"),
-            CategoryId = 1
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 7,
+            Id = 3,
             Name = "Mắm Nhum Mỹ An Bình Định",
             Price = 20000,
             Description = "Nhum có rất nhiều loại khác nhau, nhưng mắm nhum tại Bình Định đặc biệt được làm từ con nhum ta, tạo hương vị ngon đến nỗi “ăn với món gì cũng ngon”. Đồng thời mắm Nhum tại Mỹ An cũng từng là đặc sản Bình Định được tiến vua, và hiện nay là một món ăn mà du khách không thể bỏ lỡ khi đến Bình Định du lịch.\nNhum vốn là động vật với bê ngoài gai góc có thể làm đau người dân nếu đạp phải, và người dân nơi đây đã biến chúng thành một món ngon tuyệt vời. Mắm nhum còn có thể là món quà hảo hạng giúp bạn dùng làm quà tặng sau khi đến Bình Định du lịch, nếu được thì bạn nên đến Mỹ An để mua mắm nhum nhé.",
@@ -219,12 +242,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "mamnhum.png",
             DateCreated = DateTime.Parse("2022-08-19"),
-            CategoryId = 7
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 16,
+            Id = 4,
             Name = "Cá cơm khô",
             Price = 18000,
             Description = "cá cơm giàu vitamin A, nhiều axit béo, vitamin E, canxi, Vitamin A, giúp mắt sáng, ngăn ngừa các bệnh về mắt, duy trì làn da khỏe mạnh. Ăn cá cơm giúp giảm lượng cholesterol trong máu, ngăn ngừa các bệnh về tim mạch.\nCá cơm cung cấp một lượng lớn protein và đạm, nên chúng được sử dụng để làm nước mắm nhĩ",
@@ -233,12 +255,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "cach-lam-ca-kho-tam-gia-vi.jpg",
             DateCreated = DateTime.Parse("2022-08-19"),
-            CategoryId = 1
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 17,
+            Id = 5,
             Name = "Nem chợ huyện",
             Price = 150000,
             Description = "Nem chua là một trong các đặc sản Bình Định được chế biến cầu kỳ và công phu. Với công thức hương vị đặc biệt để ướp những miếng thịt heo tươi ngon nhất và gói bên trong những lớp lá khế non và lớp lá chuối cầu kì, hương vị thơm ngon nổi tiếng của nem chợ huyện cũng từ đó mà vang xa.\nĐến Bình Định ngồi cắn một miếng nem và nhâm nhi một ít rượu Bàu Đá cũng đủ để bạn nhớ về hương vị ấy mỗi khi nhắc đến chuyến du lịch này đó. Ngoài ra, nem cũng là lựa chọn thích hợp để làm quà tặng, với hương vị tuyệt vời ấy ai lại lỡ không thích món quà mà bạn tặng.",
@@ -247,12 +268,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "nem.png",
             DateCreated = DateTime.Parse("2022-08-19"),
-            CategoryId = 6
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 18,
+            Id = 6,
             Name = "Bánh ít lá gai",
             Price = 100000,
             Description = "“Muốn ăn bánh ít lá gai Lấy chồng Bình Định sợ dài đường đi\"Bánh ít lá gai là một trong các đặc sản Bình Định nổi tiếng. Để làm nên những chiếc bánh ít thơm ngon nức tiếng, người làm bánh phải lựa chọn và chuẩn bị những chiếc lá gai rất cầu kỳ vì đây là yếu tố quan trong quyết định đến hương vị của bánh. Kế đến là nếp và nhân cũng được lựa chọn và chế biến từ những nguyên liệu ngon nhất.\n Sau một quá trình xay bột, làm nhân, gói và hấp bánh, những chiếc bánh ít lá gai thơm ngon, dẻo dai với vị ngọt của nhân đậu xanh hoặc nhân dừa đã được ra lò. Với đặc sản này bạn nên thử ít nhất một lần, và đây cũng được xem là một món quà mà chắc chắn người thân của bạn sẽ thích.",
@@ -261,12 +281,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "banhit.png",
             DateCreated = DateTime.Parse("2022-08-19"),
-            CategoryId = 6
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 19,
+            Id = 7,
             Name = "Mực rim Quy Nhơn",
             Price = 150000,
             Description = "Mực rim là món ăn phổ biến khiến du thích yêu thích có mặt ở hầu hết những vùng biển lớn. Tuy nhiên mực rim hay còn gọi là mực ngào Bình Định có một hương vị thơm ngon rất riêng từ vùng biển duyên hải miền Trung. Mực rim Quy Nhơn được người dân làm từ những con mực tươi nhất và hương vị không nơi nào giống được.\n Với hương thơm ngon đặc biệt cùng vị cay cay kích thích vị giác, mực rim trở thành món ăn vặt siêu ngon và được mọi người vô cùng yêu thích. Đồng thời, với những hũ mực rim được làm sẵn giúp bạn có thể dễ dàng lựa chọn đặc sản Bình Định này để làm quà tặng.",
@@ -275,12 +294,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "mucrim.png",
             DateCreated = DateTime.Parse("2022-08-19"),
-            CategoryId = 1
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 20,
+            Id = 8,
             Name = "Chả Tré rơm",
             Price = 35000,
             Description = "Với tên gọi độc và lạ của món Chả Tré, món đặc sản Bình Định này đã gợi nên sự tò mò với nhiều du khách muốn tìm hiểu và được thử món ăn độc đáo này. Mặc dù đã có mặt phổ biến khắp các tỉnh thành Trung Trung bộ, nhưng hương vị thơm ngon nhất vẫn là chả Tré Bình Định với cách làm và công thức chỉ vùng đất Bình Định mới làm nên được.\n Thành phần nguyên liệu làm chả Tré cũng tương tự với các loại nem, bì của miền bắc. Nhưng Tré Bình Định được người dân nơi đây khéo léo thay thế bằng nhiều loại nguyên liệu khác như tai heo, lỗ mũi heo, da heo, thịt ba chỉ,...Tré cũng thích hợp để trở thành món quà mang về khi bạn đến thăm Bình Định.",
@@ -289,12 +307,11 @@ public static class ModelBuilderExtension
             Rating = 3,
             Image = "chatre.png",
             DateCreated = DateTime.Parse("2022-08-19"),
-            CategoryId = 7
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 21,
+            Id = 9,
             Name = "Bánh thuẫn",
             Price = 15000,
             Description = "Nếu như Hà Nội có bánh cốm, Hải Dương có bánh đậu xanh, Vũng Tàu có bánh bông lan trứng muối,...và những loại bánh làm quà đặc trưng của nhiều tỉnh khác thì Quy Nhơn lại bánh thuẫn nổi tiếng để làm quà tặng cho người thân và bạn bè. Đây cũng là loại bánh phổ biến vào ngày Tết của người dân miền Trung.\n Bánh thuẫn có vị thơm ngon từ nguyên liệu như trứng gà, bột năng, bột bình tinh, đường, đâu ăn, vani và đặc biệt là khuôn đúc bánh. Quá trình đúc bánh bằng than đã góp phần tạo nên được mùi thơm đặc trưng của đặc sản Bình Định này.",
@@ -303,12 +320,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "banhthuan.png",
             DateCreated = DateTime.Parse("2022-08-19"),
-            CategoryId = 6
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 22,
+            Id = 10,
             Name = "Rượu Bầu đá",
             Price = 40000,
             Description = "Sở dĩ rượu Bàu đá được biết đến là một trong những đặc sản Bình Định nổi tiếng vì đây là loại rượu không nấu từ gạo thông thường như những loại rượu khác. Rượu Bàu đá Bình Định được nấu từ gạo lứt và chỉ khi sử dụng một nguồn nước trong một làng của tỉnh Bình Định mới đạt được hương vị ngon nhất.\n Từ xưa, rượu Bàu đá đã được tiến cung cho vua nên được xếp vào loại đặc sản thượng hạng của Bình Định. Rượu nổi tiếng dễ say vì có độ cồn rất cao, lên đến 50. Nhưng điều khiến người ta yêu thích hương vị của rượu là vị thanh mát mang lại cảm giác sảng khoái vô cùng. Đây cũng là một món quà thích hợp thể hiện sự kính trọng bạn có thể chọn.",
@@ -317,12 +333,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "ruoubauda.png",
             DateCreated = DateTime.Parse("2022-08-19"),
-            CategoryId = 7
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 23,
+            Id = 11,
             Name = "Mực ngào Bình Định",
             Price = 250000,
             Description = "Một trong những món ăn phải kể đến đầu tiên trong dah sách những món đặc sản Bình Định đó chính là mực ngào. Mực ngào có một hương vị thơm ngon rất riêng thu hút khách du lịch. Để chế biến được món mực ngào người đầu bếp đã phải rất công phu, tài tình tỉ mỉ chăm chút cho món ăn. Mực sau khi đươc thu mua từ những cảng hải sản tươi ngon được đem về sơ chế và chế biến luôn để giữ được độ tươi ngon nguyên vẹn  của mực.\nMực được  ướp cùng tiêu, tỏi, ớt, mắm và một số loại gia vị khác để tạo độ thơm ngon đặc trưng của mực. Món ăn này có vị cay đặc trưng, thơm thơm của các loại gia vị sẽ làm bạn thích thú và muốn ăn ngay từ cái nhìn đầu tiên. Gía của một cân mực ngào giao động từ  200.000 – 400.000 đồng.",
@@ -331,12 +346,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "muc-ngao-ot-dac-san-binh-dinh-lam-qua.jpg",
             DateCreated = DateTime.Parse("2022-09-03"),
-            CategoryId = 1
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 27,
+            Id = 12,
             Name = "Khô cá chỉ vàng",
             Price = 135000,
             Description = "Cá chỉ vàng là loài cá nước mặn (còn gọi là cá ngân chỉ) thức ăn của chúng là những sinh vật nổi. Thân cá dẹp hình thoi, hai bên có một sọc vàng chạy thẳng từ sau mắt đến gần vây đuôi, phần lưng màu xanh xám, bụng trắng bạc, trên mang cá có chấm đen, vây đuôi vàng, đầu cá hơi nhọn, miệng chếch, hàm dưới nhô ra.\n Cá chỉ vàng thịt trắng có vị ngọt thơm, giàu vitamin B, Omega 3 giúp ngăn ngừa bệnh tim mạch, tốt cho não bộ, cải thiện giấc ngủ...",
@@ -345,12 +359,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "cach-lua-ca-chi-vang-kho-ngon.jpg",
             DateCreated = DateTime.Parse("2022-09-03"),
-            CategoryId = 1
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 28,
+            Id = 13,
             Name = "Bánh tráng nước dừa",
             Price = 120000,
             Description = "Khi đến du lịch Bình Định không thể không nhắc tới  món bánh tráng nước dừa. Đây là một món đặc sản nơi xứ dừa. Công đoạn chế biến bánh không quá cầu kì nhưng đòi hỏi sự tỉ mỉ, có kinh nghiệm của người tráng bánh. Nguyên liệu của bánh chủ yếu là Củ Mì ( củ sắn) được sắt nhỏ, xay lấy nước. Cơm dừa được nạo thành sợi nhỏ,  nước dừa và vừng đen. Tất cả đều được đổ chung vào một nồi lớn, trộn đều cho các gia vị hòa quyện cùng với nhau và được đun nóng. Bên cạnh đó có một chảo đang được đun nóng. Khi chảo nóng lên người tráng bánh sẽ dùng một cái gáo làm bằng sọ dừa có cán dài múc từng gáo nước bánh lên chảo và tráng đều. Tráng bánh phải đều tay để cơm dừa và vừng đen được dàn đều mặt bánh. Bánh phải tròn mỏng và không bị chỗ dày, chỗ mỏng thì mới là bánh đạt chuẩn. cứ tráng được mười chiếc  bánh thì đem ra phơi. khi ăn bạn cần nướng lên để bánh có độ phồng và dậy hết mùi thơm của vừng, của nước cốt dừa và cơm dừa. Có thể ăn bánh thay cơm ăn chỉ thấy no mà không thấy chán.",
@@ -359,12 +372,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "Banh-trang-nuoc-dua-am-thuc-binh-dinh.jpg",
             DateCreated = DateTime.Parse("2022-09-03"),
-            CategoryId = 6
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 29,
+            Id = 14,
             Name = "Nước mắm nhĩ Bình Định",
             Price = 95000,
             Description = "Nước mắm nhĩ hay nhỉ còn gọi là nước mắm kéo lù hoặc mắm cốt, là loại nước mắm được hứng từ các giọt nước mắm đầu tiên được “nhỉ” ra. Hay nói cách khác là rò rỉ ra từng giọt, từng giọt từ lỗ van đang đóng kín ở đáy của thùng hay lu vại đang muối cá đã đến thời gian chín có thể lấy nước mắm thành phẩm.",
@@ -373,12 +385,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "nuoc-mam-nhi-nguyen-chat-tam-quan-binh-dinh.jpg",
             DateCreated = DateTime.Parse("2022-09-03"),
-            CategoryId = 1
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 30,
+            Id = 15,
             Name = "Ruốt khô",
             Price = 200000,
             Description = "Con ruốc còn gọi là tép biển, tép moi, ở Việt Nam được coi là đặc sản. Chúng là động vật giáp xác 10 chân sống ở vùng nước mặn ven biển hay nước lợ. Ruốc dạng như tôm nhỏ, chỉ lớn khoảng 10–40 mm Do kích thước của con ruốc biển nhỏ, nên thường được dùng để làm nước mắm ruốc (là một loại mắm đặc sản của miền biển) hoặc phơi khô ruốc để chế biến thành các món ăn dân dã đậm đà hương vị biển.",
@@ -387,12 +398,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "các-món-từ-ruốc-khô.jpg",
             DateCreated = DateTime.Parse("2022-09-03"),
-            CategoryId = 1
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 31,
+            Id = 16,
             Name = "Cá Lao Khô Tẩm Gia Vị",
             Price = 125000,
             Description = "Hải sản Quy Nhơn nổi tiếng khắp cả nước với nhiều loại hải sản phong phú đa dạng, trong đó Cá lao là một loại hải sản khô đặc biệt thơm ngon, chúng là một loại cá biển, sau khi được ngư dân đánh bắt được xẻ thịt, phơi khô tạo nên một loại thực phẩm thơm ngon đúng chất tinh túy từ biển.",
@@ -401,12 +411,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "cá-lao-khô-quy-nhơn.jpg",
             DateCreated = DateTime.Parse("2022-09-03"),
-            CategoryId = 1
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 32,
+            Id = 17,
             Name = "Bánh hồng Tam Quan",
             Price = 200000,
             Description = "Bánh hồng Tam Quan là một trong những món đặc sản của Bình Định, được xem như biểu trưng cho tin vui, thường xuất hiện trong các dịp cưới hỏi của người dân nơi đây.\n Điều đặc biệt bánh hồng Tam Quan là bánh được làm từ gạo nếp Ngự nổi tiếng dẻo thơm. Do hoàn toàn không có chất bảo quản nên bánh chỉ để được 5 ngày thôi bạn nhé.",
@@ -415,12 +424,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "banhhong.jpg",
             DateCreated = DateTime.Parse("2022-09-03"),
-            CategoryId = 6
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 33,
+            Id = 18,
             Name = "Bánh tráng chả cá",
             Price = 400000,
             Description = "Bánh tráng chả cá là một trong những đặc sản nổi tiếng gần xa của Bình Định. Bánh tráng chả cá được làm từ nguyên liệu chính là cá cùng một ít gia vị và bột năng. Để món ăn đúng vị hơn bạn nên ăn kèm với rau răm nhé.",
@@ -429,12 +437,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "banhtrangchaca.jpg",
             DateCreated = DateTime.Parse("2022-09-03"),
-            CategoryId = 6
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 34,
+            Id = 19,
             Name = "Mực ngào vị tỏi",
             Price = 200000,
             Description = "Nếu đã đến với đất Bình Định thì bạn nhất định phải thử qua món mực ngào vị tỏi nhé. Món ăn là sự hòa quyện giữa vị mực vừa tươi vừa giòn cùng vị cay đặc trưng của ớt và tỏi. Bạn nhớ bảo quản món này ở nhiệt độ thoáng mát nha.",
@@ -443,12 +450,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "muc-ngao-ot-dac-san-binh-dinh-lam-qua.jpg",
             DateCreated = DateTime.Parse("2022-09-03"),
-            CategoryId = 1
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 35,
+            Id = 20,
             Name = "Chả ram tôm đất",
             Price = 890000,
             Description = "Chả ram tôm đất là một trong những món ngon đặc sản nổi tiếng của miền đất võ Bình Định, món ăn này phù hợp với mọi lứa tuổi, từ già đến trẻ đều yêu thích và thường xuyên xuất hiện trong các bữa cơm gia đình.\n Miếng chả ram tôm đất Bình Định giòn tan của lớp bánh tráng chiên bên ngoài, bên trong có thịt tôm ngọt tự nhiên, một chút ngầy ngậy của thịt mỡ, tất cả tạo nên hương vị đặc biệt hấp dẫn, gây nghiện cho thực khách khi dùng thử món ăn độc đáo này.",
@@ -457,12 +463,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "chả-ram-tôm-đất-quy-nhơn-ngon-loại-1.jpg",
             DateCreated = DateTime.Parse("2022-09-06"),
-            CategoryId = 1
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 36,
+            Id = 21,
             Name = "Ghẹ sữa rim tỏi ớt, rang me, chiên giòn",
             Price = 90000,
             Description = "Ghẹ sữa là ghẹ còn non có kích thước nhỏ, cỡ ngón chân cái người lớn, nhiều nhất vào tháng 5 đến tháng 11, thời điểm ghẹ sinh sản nhiều.\nGhẹ sữa có hàm lượng dinh dưỡng cao, nhiều canxi, đạm, sắt, các vitamin A, B1, B2, C và đặc biệt là magnesium, calcium và axit béo omega 3, có lợi cho sức khỏe và rất tốt cho người có vấn đề tim mạch và hỗ trợ tăng trưởng chiều cao cho trẻ.",
@@ -471,12 +476,11 @@ public static class ModelBuilderExtension
             Rating = 4,
             Image = "ghe-sua-chien-gion.jpg",
             DateCreated = DateTime.Parse("2022-09-06"),
-            CategoryId = 1
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 37,
+            Id = 22,
             Name = "Mực một nắng",
             Price = 500000,
             Description = "Mực một nắng là loại hải sản đặc biệt, để làm mực 1 nắng được ngon, sau khi xẻ phải rửa mực tươi bằng nước biển, rồi phơi dưới trời nắng gắt. Chỉ được phơi qua một nắng để mực vẫn giữ được độ tươi ngon, bên ngoài ráo nước, bên trong dẻo và giòn. \nNhững vùng biển có nước biển càng mặn thì mực 1 nắng sẽ càng ngon, đặc biệt là các khu vực miền Trung. Mực một nắng có nhiều loại, nhưng mực ngon nhất vẫn là làm từ những con mực ống và mực lá.\nĐây là một trong các đặc sản nổi tiếng của Bình Định được du khách tìm mua làm quà.",
@@ -485,12 +489,11 @@ public static class ModelBuilderExtension
             Rating = 2,
             Image = "muc-mot-nang-gia-bao-nhieu-1kg.jpg",
             DateCreated = DateTime.Parse("2022-09-06"),
-            CategoryId = 1
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 38,
+            Id = 23,
             Name = "Cá đù một nắng",
             Price = 16000,
             Description = "Cá đù hay Cá lù đù là một họ cá thuộc bộ Cá vược (Perciformes) có kích thước lớn, chúng sống ở vùng biển nhiệt đới, cận nhiệt đới. Tại vùng biển Việt Nam, có khoảng 270 loài trong 70 chi, đáng kể nhất là cá lù đù bạc chiếm số lượng lớn trong 20 loài như cá lù đù măng đen, cá lù đù lỗ tai đen, cá lù đù kẽm, cá lù đù sóc, cá lù đù đỏ dạ...\nChúng sống thành từng đàn lớn ở gần bờ, thường núp trong những rạn, hốc đá. Thức ăn của chúng là các loại động vật thủy sinh, côn trùng hay cá nhỏ, giáp xác.\n Vì muốn dự trữ được lâu nên sau khi được đánh bắt, ngư dân chọn cá tươi làm sạch, xẻ lóc bỏ xương, bỏ đầu để ráo. Sau đó, đem phơi khô dưới 1 nắng gắt để cá se lại để thịt dẻo dẻo. Hoặc có thể phơi cho thật khô để dự trữ ăn dần.\n Cá đù 1 nắng phần thân sau của cá có nhiều mỡ, rất béo. Loại cá này có vị ngọt dịu deo dẻo và đặc biệt thịt mềm, hậu bùi, có thể chế biến thành nhiều món ngon hấp dẫn. \nHiện nay, đây là đặc sản được rất nhiều người săn lùng, kể cả người nước ngoài cũng rất thích thú với vị ngon ngọt của nó “đặc biệt là giá cả phải chăng”.",
@@ -499,12 +502,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "cá-đù-một-nắng.jpg",
             DateCreated = DateTime.Parse("2022-09-06"),
-            CategoryId = 1
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 39,
+            Id = 24,
             Name = "Chả Bò (Giò Bò) Bình Định Chính Gốc – Cây 500G",
             Price = 180000,
             Description = "Chả Bò (Giò Bò) Bình Định Chính Gốc – Cây 500G",
@@ -513,12 +515,11 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "cha-bo-binh-dinh-nha-lam.jpg",
             DateCreated = DateTime.Parse("2022-09-06"),
-            CategoryId = 7
         });
 
         modelBuilder.Entity<Product>().HasData(new Product
         {
-            Id = 40,
+            Id = 25,
             Name = "Bánh Tráng Nhúng Giòn Phù Mỹ",
             Price = 45000,
             Description = "Đến với Bình Định, du khách sẽ được thưởng thức những món được làm từ các loại bánh tráng. Nào là bánh tráng mè nướng, bánh tráng nước cốt dừa Tam Quan hay bánh tráng bột mì nhứt nướng, bánh tráng gạo nhúng, … loại bánh nào cũng ngon nhứt nách. Hôm nay, Đặc Sản Bình Định Online xin được giới thiệu đến quý khách một loại bánh tráng độc đáo hơn cả đó là bánh tráng nhúng giòn Phù Mỹ. Hãy cùng khám phá bạn nhé. Nếu có cơ hội đến Bình Định hãy thử một lần thưởng thức loại bánh tráng đặc sản Phù Mỹ để tự cảm nhận hương vị thơm ngon đặc trưng của nó nhé.",
@@ -527,31 +528,39 @@ public static class ModelBuilderExtension
             Rating = 0,
             Image = "banh-trang-nhung-binh-dinh.jpg",
             DateCreated = DateTime.Parse("2022-09-06"),
-            CategoryId = 6
         });
+        // productCategory seeding
 
+        var random = new Random();
+        var productCategorySeed = new List<ProductCategory>();
 
-        modelBuilder.Entity<Category>().HasData(new Category
+        for (int productId = 1; productId <= 25; productId++)
         {
-            Id = 1,
-            Name = "Đồ khô",
-            DateCreated = DateTime.Parse("2022-08-19")
-        });
+            // Assign random categories to each product (1 to 3 categories per product)
+            var assignedCategories = random.Next(1, 4);  // Random number of categories (1 to 3)
+            var categoryIds = new HashSet<int>();
 
-        modelBuilder.Entity<Category>().HasData(new Category
-        {
-            Id = 6,
-            Name = "Bánh truyền thống",
-            DateCreated = DateTime.Parse("2022-08-19")
-        });
+            for (int i = 0; i < assignedCategories; i++)
+            {
+                int categoryId;
 
-        modelBuilder.Entity<Category>().HasData(new Category
-        {
-            Id = 7,
-            Name = "Đồ đặc sản",
-            DateCreated = DateTime.Parse("2022-08-19")
-        });
+                do
+                {
+                    categoryId = random.Next(1, 4);  // Random category ID (1 to 3)
+                }
+                while (!categoryIds.Add(categoryId));  // Ensure no duplicate category for the same product
 
+                productCategorySeed.Add(new ProductCategory
+                {
+                    ProductId = productId,
+                    CategoryId = categoryId
+                });
+            }
+        }
+
+        modelBuilder.Entity<ProductCategory>().HasData(productCategorySeed);
+
+        // Blog seeding data
         modelBuilder.Entity<Blog>().HasData(new Blog
         {
             Id = 1,
@@ -651,7 +660,7 @@ public static class ModelBuilderExtension
             DateCreated = DateTime.Parse("2022-09-03")
         });
 
-
+        // media seeding data
         var bannerImage1 = 4;
         var bannerImage2 = 5;
         var bannerImage3 = 6;
@@ -659,15 +668,15 @@ public static class ModelBuilderExtension
 
         modelBuilder.Entity<Media>().HasData(new List<Media>
         {
-            new Media { Id = bannerImage1, PathMedia = "slide_home_1.jpg", Type = MediaType.Image },
-            new Media { Id = bannerImage2, PathMedia = "slide_home_1.jpg", Type = MediaType.Image },
-            new Media { Id = bannerImage3, PathMedia = "slide_home_1.jpg", Type = MediaType.Image },
-            new Media { Id = bannerImage4, PathMedia = "slide_home_1.jpg", Type = MediaType.Image },
+            new () { Id = bannerImage1, PathMedia = "slide_home_1.jpg", Type = MediaType.Image },
+            new () { Id = bannerImage2, PathMedia = "slide_home_1.jpg", Type = MediaType.Image },
+            new () { Id = bannerImage3, PathMedia = "slide_home_1.jpg", Type = MediaType.Image },
+            new () { Id = bannerImage4, PathMedia = "slide_home_1.jpg", Type = MediaType.Image },
         });
-
+        // Banner seeding data
         modelBuilder.Entity<Banner>().HasData(new Banner
         {
-            Id = 6,
+            Id = 1,
             Name = "Chả cá Quy Nhơn",
             Discount = 0,
             Price = 100000,
@@ -678,7 +687,7 @@ public static class ModelBuilderExtension
 
         modelBuilder.Entity<Banner>().HasData(new Banner
         {
-            Id = 8,
+            Id = 2,
             Name = "Gỏi cá Chình",
             Discount = 0,
             Price = 200000,
@@ -689,23 +698,12 @@ public static class ModelBuilderExtension
 
         modelBuilder.Entity<Banner>().HasData(new Banner
         {
-            Id = 9,
+            Id = 3,
             Name = "Nem chợ huyện",
             Discount = 0,
             Price = 150000,
             Description = "banner3",
             ImageId = bannerImage3,
-            DateCreated = DateTime.Parse("2022-08-19")
-        });
-
-        modelBuilder.Entity<Banner>().HasData(new Banner
-        {
-            Id = 10,
-            Name = "Nem chợ huyện",
-            Discount = 0,
-            Price = 150000,
-            Description = "banner4",
-            ImageId = bannerImage4,
             DateCreated = DateTime.Parse("2022-08-19")
         });
     }

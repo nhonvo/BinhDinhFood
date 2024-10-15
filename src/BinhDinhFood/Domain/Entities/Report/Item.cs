@@ -8,5 +8,5 @@ public class Item
     [DisplayName("Số lượng")]
     public int Quantity { get; set; }
     [DisplayName("Tổng tiền")]
-    public double TotalCost => Product.Price * Quantity;
+    public decimal TotalCost => Product.Price * Quantity;
 }

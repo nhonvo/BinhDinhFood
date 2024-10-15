@@ -23,10 +23,9 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
             .HasMaxLength(1); // Programmatic range can be enforced elsewhere if needed
 
         // Category Relationship
-        builder.HasOne(p => p.Category)
-            .WithMany(c => c.Products)
-            .HasForeignKey(p => p.CategoryId)
-            .OnDelete(DeleteBehavior.Cascade);
+        builder.HasMany(p => p.ProductCategories)
+            .WithOne(c => c.Product)
+            .HasForeignKey(x => x.ProductId);
 
         // Relationships: OrderDetails, Favorites, ProductRatings
         builder.HasMany(p => p.OrderDetails)

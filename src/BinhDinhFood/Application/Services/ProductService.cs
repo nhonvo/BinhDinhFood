@@ -13,7 +13,7 @@ public class ProductService(IUnitOfWork unitOfWork) : IProductService
     {
         var product = await _unitOfWork.ProductRepository.FirstOrDefaultAsync(
             filter: x => x.Id == id,
-            include: x => x.Include(x => x.Category));
+            include: x => x.Include(x => x.ProductCategories));
 
         return MapToProductResponse(product);
     }
@@ -38,7 +38,7 @@ public class ProductService(IUnitOfWork unitOfWork) : IProductService
             pageIndex: pageIndex,
             pageSize: pageSize,
             filter: x => x.Name.Contains(filter, StringComparison.CurrentCultureIgnoreCase),
-            include: x => x.Include(x => x.Category),
+            include: x => x.Include(x => x.ProductCategories).ThenInclude(x => x.Category),
             orderBy: orderByExpression,
             ascending: ascending);
 
@@ -66,10 +66,7 @@ public class ProductService(IUnitOfWork unitOfWork) : IProductService
             Rating = product.Rating,
             Image = product.Image,
             DateCreated = product.DateCreated,
-            CategoryName =
-            [
-                product.Category?.Name ?? "Uncategorized"
-            ]
+            CategoryName = product.ProductCategories.Select(x => x.Category).Select(x => x.Name).ToList()
         };
     }
 

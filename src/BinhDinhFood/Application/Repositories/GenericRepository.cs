@@ -103,7 +103,18 @@ public class GenericRepository<T>(ApplicationDbContext context) : IGenericReposi
         return await query.FirstOrDefaultAsync(filter);
     }
 
+    public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> filter,
+        Expression<Func<T, object>> sort, bool ascending = true)
+    {
+        var query = _dbSet.IgnoreQueryFilters()
+                          .AsNoTracking()
+                          .Where(filter);
 
+        query = ascending ? query.OrderBy(sort) : query.OrderByDescending(sort);
+
+        return await query.FirstOrDefaultAsync();
+    }
+    
     #endregion
     #region Update & delete
 
