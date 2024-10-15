@@ -39,6 +39,15 @@ public static class ConfigureServices
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<ApplicationDbContextInitializer>();
 
+        services.AddScoped<IOrderRepository, OrderRepository>();
+        services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
+        services.AddScoped<IProductRepository, ProductRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<IProductRatingRepository, ProductRatingRepository>();
+        services.AddScoped<IBannerRepository, BannerRepository>();
+        services.AddScoped<IFavoriteRepository, FavoriteRepository>();
+        services.AddScoped<IBlogRepository, BlogRepository>();
+
         services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
         return services;
     }

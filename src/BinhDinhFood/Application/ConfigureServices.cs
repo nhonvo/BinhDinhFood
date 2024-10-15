@@ -35,6 +35,9 @@ public static class ConfigureServices
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<ICookieService, CookieService>();
 
+        services.AddScoped<IProductService, ProductService>();
+
+
         return services;
     }
 }

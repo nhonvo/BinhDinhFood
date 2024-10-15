@@ -50,41 +50,14 @@ public class GenericRepository<T>(ApplicationDbContext context) : IGenericReposi
     public async Task<Pagination<T>> ToPagination(
         int pageIndex,
         int pageSize,
+        Expression<Func<T, bool>>? filter = null,
+        Func<IQueryable<T>, IQueryable<T>>? include = null,
         Expression<Func<T, object>>? orderBy = null,
         bool ascending = true)
     {
         var itemCount = await _dbSet.CountAsync();
 
         IQueryable<T> query = _dbSet.AsNoTracking();
-
-        orderBy ??= x => EF.Property<object>(x, "Id");
-
-        query = ascending ? query.OrderBy(orderBy) : query.OrderByDescending(orderBy);
-
-        var items = await query
-            .Skip(pageIndex * pageSize)
-            .Take(pageSize)
-            .ToListAsync();
-
-        var result = new Pagination<T>()
-        {
-            PageIndex = pageIndex,
-            PageSize = pageSize,
-            TotalItemsCount = itemCount,
-            Items = items,
-        };
-
-        return result;
-    }
-
-
-    public async Task<Pagination<T>> GetAsync(
-       Expression<Func<T, bool>>? filter = null,
-       Func<IQueryable<T>, IQueryable<T>>? include = null,
-       int pageIndex = 0,
-       int pageSize = 10)
-    {
-        var query = _dbSet.AsQueryable();
 
         if (include != null)
         {
@@ -96,33 +69,8 @@ public class GenericRepository<T>(ApplicationDbContext context) : IGenericReposi
             query = query.Where(filter);
         }
 
-        var itemCount = await query.CountAsync();
-
-        var items = await query.Skip(pageIndex * pageSize)
-                                .Take(pageSize)
-                                .ToListAsync();
-
-        var result = new Pagination<T>()
-        {
-            PageIndex = pageIndex,
-            PageSize = pageSize,
-            TotalItemsCount = itemCount,
-            Items = items,
-        };
-
-        return result;
-    }
-    public async Task<Pagination<T>> GetAsync(
-        Expression<Func<T, bool>> filter,
-        int pageIndex = 0,
-        int pageSize = 10,
-        Expression<Func<T, object>>? orderBy = null,
-        bool ascending = true)
-    {
-        var itemCount = await _dbSet.CountAsync();
-
-        IQueryable<T> query = _dbSet.AsNoTracking().Where(filter);
         orderBy ??= x => EF.Property<object>(x, "Id");
+
         query = ascending ? query.OrderBy(orderBy) : query.OrderByDescending(orderBy);
 
         var items = await query
@@ -141,23 +89,18 @@ public class GenericRepository<T>(ApplicationDbContext context) : IGenericReposi
         return result;
     }
 
-    public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> filter)
+    public async Task<T?> FirstOrDefaultAsync(
+    Expression<Func<T, bool>> filter,
+    Func<IQueryable<T>, IQueryable<T>>? include = null)
     {
-        return await _dbSet.IgnoreQueryFilters()
-                            .AsNoTracking()
-                            .FirstOrDefaultAsync(filter);
-    }
+        IQueryable<T> query = _dbSet.IgnoreQueryFilters().AsNoTracking();
 
-    public async Task<T> FirstOrDefaultAsync(Expression<Func<T, bool>> filter,
-        Expression<Func<T, object>> sort, bool ascending = true)
-    {
-        var query = _dbSet.IgnoreQueryFilters()
-                          .AsNoTracking()
-                          .Where(filter);
+        if (include != null)
+        {
+            query = include(query);
+        }
 
-        query = ascending ? query.OrderBy(sort) : query.OrderByDescending(sort);
-
-        return await query.FirstOrDefaultAsync();
+        return await query.FirstOrDefaultAsync(filter);
     }
 
 

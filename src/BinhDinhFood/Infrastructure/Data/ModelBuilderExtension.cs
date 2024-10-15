@@ -535,21 +535,21 @@ public static class ModelBuilderExtension
         {
             Id = 1,
             Name = "Đồ khô",
-            CategoryDateCreated = DateTime.Parse("2022-08-19")
+            DateCreated = DateTime.Parse("2022-08-19")
         });
 
         modelBuilder.Entity<Category>().HasData(new Category
         {
             Id = 6,
             Name = "Bánh truyền thống",
-            CategoryDateCreated = DateTime.Parse("2022-08-19")
+            DateCreated = DateTime.Parse("2022-08-19")
         });
 
         modelBuilder.Entity<Category>().HasData(new Category
         {
             Id = 7,
             Name = "Đồ đặc sản",
-            CategoryDateCreated = DateTime.Parse("2022-08-19")
+            DateCreated = DateTime.Parse("2022-08-19")
         });
 
         modelBuilder.Entity<Blog>().HasData(new Blog
@@ -651,7 +651,7 @@ public static class ModelBuilderExtension
             DateCreated = DateTime.Parse("2022-09-03")
         });
 
-        
+
         var bannerImage1 = 4;
         var bannerImage2 = 5;
         var bannerImage3 = 6;
