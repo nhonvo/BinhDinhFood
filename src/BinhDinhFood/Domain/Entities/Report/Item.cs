@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using BinhDinhFood.Domain.Entities;
 
 namespace BinhDinhFood.Domain.Entities.Report;
 

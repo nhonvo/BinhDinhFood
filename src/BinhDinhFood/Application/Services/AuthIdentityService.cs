@@ -1,16 +1,16 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using BinhDinhFood.Application.Common;
 using BinhDinhFood.Application.Common.Exceptions;
 using BinhDinhFood.Application.Common.Interfaces;
+using BinhDinhFood.Application.Common.Models.AuthIdentity.UsersIdentity;
 using BinhDinhFood.Application.Common.Utilities;
+using BinhDinhFood.Domain.Entities.Auth;
 using BinhDinhFood.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using static Google.Apis.Auth.GoogleJsonWebSignature;
 using Payload = Google.Apis.Auth.GoogleJsonWebSignature.Payload;
-using BinhDinhFood.Application.Common.Models.AuthIdentity.UsersIdentity;
-using BinhDinhFood.Application.Common;
-using BinhDinhFood.Domain.Entities.Auth;
 
 namespace BinhDinhFood.Application.Services;
 public class AuthIdentityService(ApplicationDbContext context,
@@ -96,7 +96,7 @@ public class AuthIdentityService(ApplicationDbContext context,
 
             // Add custom scope claim to the user
             var scopeClaim = new Claim("scope", string.Join(" ", scopes)); // Space-separated scopes
-            
+
             await _userManager.AddClaimAsync(user, scopeClaim);
         }
         else
@@ -221,7 +221,9 @@ public class AuthIdentityService(ApplicationDbContext context,
         var res = await _userManager.ResetPasswordAsync(user, resetPasswordDetails.Token, request.NewPassword);
 
         if (!res.Succeeded)
+        {
             throw AuthIdentityException.ThrowOTPWrong();
+        }
     }
 
     //Đăng nhập bằng Facebook

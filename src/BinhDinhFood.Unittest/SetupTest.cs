@@ -1,13 +1,13 @@
+using System.Diagnostics.CodeAnalysis;
 using AutoFixture;
 using AutoMapper;
-using BinhDinhFood.Application.Common.Interfaces;
 using BinhDinhFood.Application;
+using BinhDinhFood.Application.Common.Interfaces;
+using BinhDinhFood.Application.Common.Mappings;
 using BinhDinhFood.Infrastructure.Data;
 using BinhDinhFood.Infrastructure.Interface;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using BinhDinhFood.Application.Common.Mappings;
-using System.Diagnostics.CodeAnalysis;
 
 namespace BinhDinhFood.Unittest;
 
@@ -26,10 +26,7 @@ public class SetupTest : IDisposable
 
     public SetupTest()
     {
-        var mappingConfig = new MapperConfiguration(mc =>
-        {
-            mc.AddProfile(new MapProfile());
-        });
+        var mappingConfig = new MapperConfiguration(mc => mc.AddProfile(new MapProfile()));
         _mapperConfig = mappingConfig.CreateMapper();
         _fixture = new Fixture();
         _unitOfWorkMock = new Mock<IUnitOfWork>();
@@ -45,5 +42,8 @@ public class SetupTest : IDisposable
 
         _currentTimeMock.Setup(x => x.GetCurrentTime()).Returns(DateTime.UtcNow);
     }
-    public void Dispose() => _dbContext.Dispose();
+    public void Dispose()
+    {
+        _dbContext.Dispose();
+    }
 }

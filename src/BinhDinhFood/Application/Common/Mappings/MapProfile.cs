@@ -1,5 +1,4 @@
 using AutoMapper;
-using BinhDinhFood.Application.Common.Models.AuthIdentity.UsersIdentity;
 using BinhDinhFood.Application.Common.Models.Book;
 using BinhDinhFood.Application.Common.Models.User;
 using BinhDinhFood.Domain.Entities.Auth;

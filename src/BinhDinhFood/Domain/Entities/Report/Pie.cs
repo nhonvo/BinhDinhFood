@@ -1,4 +1,4 @@
-﻿namespace BinhDinhFood.Domain.Entities;
+﻿namespace BinhDinhFood.Domain.Entities.Report;
 
 public class Pie
 {

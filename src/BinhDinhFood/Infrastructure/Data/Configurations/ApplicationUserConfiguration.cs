@@ -15,7 +15,7 @@ public class ApplicationUserConfiguration : IEntityTypeConfiguration<Application
         builder.HasOne(x => x.Avatar).WithOne(x => x.User).HasForeignKey<ApplicationUser>(x => x.AvatarId);
 
 
-         // Table name
+        // Table name
         //builder.ToTable("Customer");
 
         // Relationship configuration for Orders

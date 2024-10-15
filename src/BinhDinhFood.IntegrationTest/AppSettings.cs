@@ -1,4 +1,4 @@
-namespace BinhDinhFood.Unittest;
+namespace BinhDinhFood.IntegrationTest;
 
 public class AppSetting
 {

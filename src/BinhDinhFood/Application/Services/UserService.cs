@@ -1,11 +1,11 @@
+using System.Security.Claims;
 using BinhDinhFood.Application.Common.Exceptions;
 using BinhDinhFood.Application.Common.Interfaces;
+using BinhDinhFood.Application.Common.Models.AuthIdentity.File;
+using BinhDinhFood.Application.Common.Models.AuthIdentity.UsersIdentity;
+using BinhDinhFood.Domain.Entities.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using BinhDinhFood.Application.Common.Models.AuthIdentity.UsersIdentity;
-using BinhDinhFood.Application.Common.Models.AuthIdentity.File;
-using System.Security.Claims;
-using BinhDinhFood.Domain.Entities.Auth;
 
 namespace BinhDinhFood.Application.Services;
 
@@ -89,7 +89,10 @@ public class UserService(
         if (avatar != null)
         {
             if (avatar.PathMedia != null)
+            {
                 await _storageService.DeleteFileAsync(new DeleteFileRequest { FileName = avatar.PathMedia });
+            }
+
             await _unitOfWork.ExecuteTransactionAsync(() => _unitOfWork.MediaRepository.Delete(avatar), cancellationToken);
         }
 

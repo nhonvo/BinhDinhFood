@@ -46,11 +46,15 @@ public class AuthService(IUnitOfWork unitOfWork,
     {
         var isUserNameExist = await _unitOfWork.UserRepository.AnyAsync(x => x.UserName == request.UserName);
         if (isUserNameExist)
+        {
             throw UserException.UserAlreadyExistsException(request.UserName);
+        }
 
         var isEmailExist = await _unitOfWork.UserRepository.AnyAsync(x => x.UserName == request.Email);
         if (isEmailExist)
+        {
             throw UserException.UserAlreadyExistsException(request.Email);
+        }
 
         var user = _mapper.Map<User>(request);
         user.Password = user.Password.Hash();

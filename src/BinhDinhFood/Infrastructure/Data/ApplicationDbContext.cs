@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BinhDinhFood.Infrastructure.Data;
 
-public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : 
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :
             IdentityDbContext<ApplicationUser, RoleIdentity, Guid,
             IdentityUserClaim<Guid>, UserRoles, IdentityUserLogin<Guid>,
             IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>(options)
