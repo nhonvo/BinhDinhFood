@@ -13,7 +13,7 @@ public class ProductService(IUnitOfWork unitOfWork) : IProductService
     {
         var product = await _unitOfWork.ProductRepository.FirstOrDefaultAsync(
             filter: x => x.Id == id,
-            include: x => x.Include(x => x.ProductCategories));
+            include: x => x.Include(x => x.ProductCategories).ThenInclude(x => x.Category));
 
         return MapToProductResponse(product);
     }
@@ -32,12 +32,12 @@ public class ProductService(IUnitOfWork unitOfWork) : IProductService
                 _ => x => x.Id
             };
         }
-
+        var normalizeFilter = filter.ToLower();
         // Fetch paginated product data
         var products = await _unitOfWork.ProductRepository.ToPagination(
             pageIndex: pageIndex,
             pageSize: pageSize,
-            filter: x => x.Name.Contains(filter, StringComparison.CurrentCultureIgnoreCase),
+            filter: x => x.Name.ToLower().Contains(normalizeFilter),
             include: x => x.Include(x => x.ProductCategories).ThenInclude(x => x.Category),
             orderBy: orderByExpression,
             ascending: ascending);
@@ -58,6 +58,7 @@ public class ProductService(IUnitOfWork unitOfWork) : IProductService
     {
         return new ProductResponse
         {
+            Id = product.Id,
             Name = product.Name,
             Price = product.Price,
             Description = product.Description,

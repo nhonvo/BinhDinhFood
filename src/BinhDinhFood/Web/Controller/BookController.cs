@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BinhDinhFood.Web.Controller;
 
-
 public class BookController(IBookService bookService) : BaseController
 {
     private readonly IBookService _bookService = bookService;

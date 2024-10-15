@@ -46,55 +46,55 @@ public static class ModelBuilderExtension
         var hashed = new PasswordHasher<ApplicationUser>();
 
         var normalUsers = new List<ApplicationUser>
-    {
-        new ApplicationUser
         {
-            Id = Guid.NewGuid(),
-            Name = "Võ Thương Trường Nhơn",
-            UserName = "truongnhon",
-            PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-            Email = "truongnhon@example.com",
-            Address = "Quy Nhơn, Bình Định",
-            PhoneNumber = "0905726748",
-            AvatarId = avatar1Id, // Assign Avatar
-            SecurityStamp = Guid.NewGuid().ToString()
-        },
-        new ApplicationUser
-        {
-            Id = Guid.NewGuid(),
-            Name = "Nguyễn Hồng Thái",
-            UserName = "thai",
-            PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-            Email = "hongthai@example.com",
-            Address = "Tây Ninh",
-            PhoneNumber = "0905726748",
-            AvatarId = avatar2Id, // Assign Avatar
-            SecurityStamp = Guid.NewGuid().ToString()
-        },
-        new ApplicationUser
-        {
-            Id = Guid.NewGuid(),
-            Name = "Phạm Đức Tài",
-            UserName = "tai",
-            PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-            Email = "taiphamduc@example.com",
-            Address = "Nam Định",
-            PhoneNumber = "0905726748",
-            AvatarId = avatar3Id, // Assign Avatar
-            SecurityStamp = Guid.NewGuid().ToString()
-        },
-        new ApplicationUser
-        {
-            Id = Guid.NewGuid(),
-            Name = "dotnet evil",
-            UserName = "nhondeptrai",
-            PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
-            Email = "nhondeptrai@example.com",
-            Address = "Saigon",
-            PhoneNumber = "0905726748",
-            SecurityStamp = Guid.NewGuid().ToString()
-        }
-    };
+            new ApplicationUser
+            {
+                Id = Guid.NewGuid(),
+                Name = "Võ Thương Trường Nhơn",
+                UserName = "truongnhon",
+                PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
+                Email = "truongnhon@example.com",
+                Address = "Quy Nhơn, Bình Định",
+                PhoneNumber = "0905726748",
+                AvatarId = avatar1Id, // Assign Avatar
+                SecurityStamp = Guid.NewGuid().ToString()
+            },
+            new ApplicationUser
+            {
+                Id = Guid.NewGuid(),
+                Name = "Nguyễn Hồng Thái",
+                UserName = "thai",
+                PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
+                Email = "hongthai@example.com",
+                Address = "Tây Ninh",
+                PhoneNumber = "0905726748",
+                AvatarId = avatar2Id, // Assign Avatar
+                SecurityStamp = Guid.NewGuid().ToString()
+            },
+            new ApplicationUser
+            {
+                Id = Guid.NewGuid(),
+                Name = "Phạm Đức Tài",
+                UserName = "tai",
+                PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
+                Email = "taiphamduc@example.com",
+                Address = "Nam Định",
+                PhoneNumber = "0905726748",
+                AvatarId = avatar3Id, // Assign Avatar
+                SecurityStamp = Guid.NewGuid().ToString()
+            },
+            new ApplicationUser
+            {
+                Id = Guid.NewGuid(),
+                Name = "dotnet evil",
+                UserName = "nhondeptrai",
+                PasswordHash = hashed.HashPassword(null, "P@ssw0rd"),
+                Email = "nhondeptrai@example.com",
+                Address = "Saigon",
+                PhoneNumber = "0905726748",
+                SecurityStamp = Guid.NewGuid().ToString()
+            }
+        };
 
         var adminUserId = Guid.NewGuid();
         normalUsers.Add(new ApplicationUser
