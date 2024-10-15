@@ -251,7 +251,7 @@ public class AuthIdentityService(ApplicationDbContext context,
         {
             var exist_user = await _userManager.FindByEmailAsync(userInfo.Email);
 
-            var avatar = _context.Media.Where(m => m.MediaId == exist_user.AvatarId).Select(m => m.PathMedia)
+            var avatar = _context.Media.Where(m => m.Id == exist_user.AvatarId).Select(m => m.PathMedia)
                 .FirstOrDefault();
 
 
@@ -279,7 +279,7 @@ public class AuthIdentityService(ApplicationDbContext context,
                 var result = await _userManager.AddLoginAsync(exist_user, info);
                 if (result.Succeeded)
                 {
-                    var avatar = _context.Media.Where(m => m.MediaId == exist_user.AvatarId)
+                    var avatar = _context.Media.Where(m => m.Id == exist_user.AvatarId)
                         .Select(m => m.PathMedia).FirstOrDefault();
 
                     // Retrieve user's claims, including scope claim
@@ -362,7 +362,7 @@ public class AuthIdentityService(ApplicationDbContext context,
         {
             var exist_user = await _userManager.FindByEmailAsync(payload.Email);
 
-            var avatar = _context.Media.Where(m => m.MediaId == exist_user.AvatarId).Select(m => m.PathMedia)
+            var avatar = _context.Media.Where(m => m.Id == exist_user.AvatarId).Select(m => m.PathMedia)
                 .FirstOrDefault();
 
             // Retrieve user's claims, including scope claim
@@ -389,7 +389,7 @@ public class AuthIdentityService(ApplicationDbContext context,
 
                 if (result.Succeeded)
                 {
-                    var avatar = _context.Media.Where(m => m.MediaId == exist_user.AvatarId)
+                    var avatar = _context.Media.Where(m => m.Id == exist_user.AvatarId)
                         .Select(m => m.PathMedia).FirstOrDefault();
 
                     // Retrieve user's claims, including scope claim
@@ -472,7 +472,7 @@ public class AuthIdentityService(ApplicationDbContext context,
         {
             var exist_user = await _userManager.FindByEmailAsync(email);
 
-            var avatar = _context.Media.Where(m => m.MediaId == exist_user.AvatarId).Select(m => m.PathMedia)
+            var avatar = _context.Media.Where(m => m.Id == exist_user.AvatarId).Select(m => m.PathMedia)
                 .FirstOrDefault();
 
             // Retrieve user's claims, including scope claim
@@ -500,7 +500,7 @@ public class AuthIdentityService(ApplicationDbContext context,
 
                 if (result.Succeeded)
                 {
-                    var avatar = _context.Media.Where(m => m.MediaId == exist_user.AvatarId)
+                    var avatar = _context.Media.Where(m => m.Id == exist_user.AvatarId)
                         .Select(m => m.PathMedia).FirstOrDefault();
 
                     // Retrieve user's claims, including scope claim

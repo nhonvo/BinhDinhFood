@@ -54,7 +54,7 @@ public class UserService(
         //Lưu Avatar vào Host
         if (request.MediaFile != null)
         {
-            var thumb = await _unitOfWork.MediaRepository.FirstOrDefaultAsync(i => i.MediaId == user.AvatarId);
+            var thumb = await _unitOfWork.MediaRepository.FirstOrDefaultAsync(i => i.Id == user.AvatarId);
 
             //Cập nhật Avatar
             if (thumb.PathMedia != null)
@@ -84,7 +84,7 @@ public class UserService(
             ?? throw AuthIdentityException.ThrowAccountDoesNotExist();
 
         //Xoá Avatar ra khỏi Source
-        var avatar = await _unitOfWork.MediaRepository.FirstOrDefaultAsync(x => x.MediaId == user.AvatarId);
+        var avatar = await _unitOfWork.MediaRepository.FirstOrDefaultAsync(x => x.Id == user.AvatarId);
 
         if (avatar != null)
         {

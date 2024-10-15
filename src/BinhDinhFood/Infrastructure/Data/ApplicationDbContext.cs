@@ -18,6 +18,16 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<ForgotPassword> ForgotPassword { get; set; }
     public DbSet<Media> Media { get; set; }
 
+    //public DbSet<Customer> Customers { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderDetail> OrderDetails { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<ProductRating> ProductRatings { get; set; }
+    public DbSet<Banner> Banners { get; set; }
+    public DbSet<Favorite> Favorites { get; set; }
+    public DbSet<Blog> Blog { get; set; }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

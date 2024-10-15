@@ -5,7 +5,6 @@ namespace BinhDinhFood.Domain.Entities;
 
 public class Media: BaseModel
 {
-    public int MediaId { get; set; }
     public MediaType Type { get; set; }
     public string PathMedia { get; set; }
     public string Caption { get; set; }

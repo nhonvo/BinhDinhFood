@@ -16,7 +16,7 @@ public class MediaService(
     // Xóa media
     public async Task RemoveMediaAsync(int mediaId, CancellationToken cancellationToken)
     {
-        var media = await _unitOfWork.MediaRepository.FirstOrDefaultAsync(x => x.MediaId == mediaId);
+        var media = await _unitOfWork.MediaRepository.FirstOrDefaultAsync(x => x.Id == mediaId);
         if (media == null)
         {
             _logger.LogWarning($"Cannot find media with id {mediaId}");
@@ -37,7 +37,7 @@ public class MediaService(
     // Cập nhật media
     public async Task UpdateMediaAsync(int mediaId, MediaCreateRequest request, CancellationToken cancellationToken)
     {
-        var media = await _unitOfWork.MediaRepository.FirstOrDefaultAsync(x => x.MediaId == mediaId);
+        var media = await _unitOfWork.MediaRepository.FirstOrDefaultAsync(x => x.Id == mediaId);
         if (media == null)
         {
             _logger.LogWarning($"Cannot find media with id {mediaId}");
