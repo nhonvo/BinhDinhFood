@@ -10,7 +10,7 @@ public class ApplicationUser : IdentityUser<Guid>
     public Media Avatar { get; set; }
     public virtual ICollection<UserRoles> UserRoles { get; set; }
     public ICollection<RefreshToken> RefreshTokens { get; set; }
-    
+
     // add-on fields
     public string? Address { get; set; }
     public ICollection<Order> Orders { get; set; }

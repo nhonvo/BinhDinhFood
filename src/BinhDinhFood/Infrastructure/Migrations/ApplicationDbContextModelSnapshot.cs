@@ -109,90 +109,90 @@ namespace BinhDinhFood.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ac881444-7890-4a7b-bede-782608289a72"),
+                            Id = new Guid("c7c06ac6-36d8-4f36-ba9e-f8ac54de8bc7"),
                             AccessFailedCount = 0,
                             Address = "Quy Nhơn, Bình Định",
-                            ConcurrencyStamp = "3b638aef-7ce5-4959-8bd5-df2f666c3287",
+                            ConcurrencyStamp = "a5c139ed-dafc-4f4b-8a8b-702b1ba3d2f6",
                             Email = "truongnhon@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Võ Thương Trường Nhơn",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBdq1XsWEx1fr/ahXbvRBUDLdyQuFfxrxDgMcY6oY+iw6z4XZSxJQR/K8OhyLYgfiA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDrNt6I6oEdnaN917tpdXQbjg77O3Ei5A5XALPxAHC6XfhRy1LYmpC2lDdGsxI7r2Q==",
                             PhoneNumber = "0905726748",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "66cb51c7-77c4-42c9-9600-82f3a22c2aa7",
+                            SecurityStamp = "e5c7cb93-bd71-42fa-bb45-a26e5db27d07",
                             Status = 0,
                             TwoFactorEnabled = false,
                             UserName = "truongnhon"
                         },
                         new
                         {
-                            Id = new Guid("43f6f16b-2626-4af7-9c74-662b089cd8f1"),
+                            Id = new Guid("38fe3520-3812-4cfe-bf96-27132cd95bfd"),
                             AccessFailedCount = 0,
                             Address = "Tây Ninh",
-                            ConcurrencyStamp = "ef779041-e2a9-4f57-8867-16634b44360c",
+                            ConcurrencyStamp = "ff0e5c17-8621-4991-a5b3-6d22f2c32bc9",
                             Email = "hongthai@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Nguyễn Hồng Thái",
-                            PasswordHash = "AQAAAAIAAYagAAAAEDmEeBC2jrFTlWFe2vM3bvA6l3GqsrFdrOCL8nux9ODqDhuUvLi/ulXrcDoFNBFbPA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENgGoVGVtor9kjFxIiLvIHM+pxoyUPe15pvkx9I/ULX5bFAInCVOn8fN9KpyVUM40g==",
                             PhoneNumber = "0905726748",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "710b90e8-5d5b-40f5-ad5f-bdeae06d0b7f",
+                            SecurityStamp = "81020dfa-add3-4808-baba-e79f0b696ea5",
                             Status = 0,
                             TwoFactorEnabled = false,
                             UserName = "thai"
                         },
                         new
                         {
-                            Id = new Guid("7f15e3d2-6f54-4829-844b-2d15a61a2567"),
+                            Id = new Guid("c900b6a0-8355-4c71-bc55-6b21b28127d3"),
                             AccessFailedCount = 0,
                             Address = "Nam Định",
-                            ConcurrencyStamp = "4f7d767b-3717-4100-8fd4-af78b4906b9d",
+                            ConcurrencyStamp = "ab85c76e-bf11-4c2e-80dc-3b51a9b3e110",
                             Email = "taiphamduc@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Phạm Đức Tài",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJy94+GEYs/oX0sJICb0rG6Q63Tya0BRc9nEjFdI9HUR6ZZQONXy4hI4ggiZTVtpBA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEKfX3ZFy9TCdHYFGSmMTF/SXxdylTn9IAregZN1SgIB6n9ZvV9IDZhPpjSbpfPtH0A==",
                             PhoneNumber = "0905726748",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7dd5ec5c-b6e8-4b6b-a353-5d64d9057c23",
+                            SecurityStamp = "7b66b2bc-406e-40a9-b445-493c967180ad",
                             Status = 0,
                             TwoFactorEnabled = false,
                             UserName = "tai"
                         },
                         new
                         {
-                            Id = new Guid("47880505-65e4-4f02-ad65-0d3a87f1fc5b"),
+                            Id = new Guid("b8dbf035-2522-4533-a257-e1bf0b14f0b1"),
                             AccessFailedCount = 0,
                             Address = "Saigon",
-                            ConcurrencyStamp = "f5135063-0e49-4f3d-ad6a-69899bf64927",
+                            ConcurrencyStamp = "10fa99cf-e690-4abc-97bc-3df99754d7ff",
                             Email = "nhondeptrai@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "dotnet evil",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGq5+TL8RyvJkB4Iet9FWBVZraWKnvP1lOVNUWa0W2RnO3bjdgr6KDcbQDqshG0Ctg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAixAvhlcb2v0wT62oxEBbnPYZEOs/Jk+IJ10EDb4uBdG8EXDe7597Gw/af4v2xyOQ==",
                             PhoneNumber = "0905726748",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "929797c4-45e7-4bca-9579-14b78bca4549",
+                            SecurityStamp = "07bad3dd-0bb8-4205-b783-dd8344efb88a",
                             Status = 0,
                             TwoFactorEnabled = false,
                             UserName = "nhondeptrai"
                         },
                         new
                         {
-                            Id = new Guid("9fb6f661-d918-4afa-b651-0b055db5cd7e"),
+                            Id = new Guid("a94e0a72-8a58-4368-b425-06a834dd7480"),
                             AccessFailedCount = 0,
                             Address = "Admin City",
-                            ConcurrencyStamp = "cb126c36-659f-44e7-a641-a57f15edbe21",
+                            ConcurrencyStamp = "e961f40e-1d06-4e28-afac-17df299ddf38",
                             Email = "admin@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Admin User",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIWJq2YF56sSA05GX3lDsSbTVLpK+Gw54Zt8bDPT+6LBNAFMrpLaAJzT1D8CP9Z/rA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEK2itYSuR3JgX8jRdyEqlzZXbW2L2ljunIpOYcRdP6VbFEY58NNua8FI2n5NAZOCFQ==",
                             PhoneNumber = "123456789",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "52e06f74-19d7-4ef6-bedc-02287c054290",
+                            SecurityStamp = "71b4b255-9ead-4a4a-912f-a24a5750d41c",
                             Status = 0,
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -348,27 +348,27 @@ namespace BinhDinhFood.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("9fb6f661-d918-4afa-b651-0b055db5cd7e"),
+                            UserId = new Guid("a94e0a72-8a58-4368-b425-06a834dd7480"),
                             RoleId = new Guid("a3314be5-4c77-4fb6-82ad-302014682a73")
                         },
                         new
                         {
-                            UserId = new Guid("ac881444-7890-4a7b-bede-782608289a72"),
+                            UserId = new Guid("c7c06ac6-36d8-4f36-ba9e-f8ac54de8bc7"),
                             RoleId = new Guid("b4314be5-4c77-4fb6-82ad-302014682b13")
                         },
                         new
                         {
-                            UserId = new Guid("43f6f16b-2626-4af7-9c74-662b089cd8f1"),
+                            UserId = new Guid("38fe3520-3812-4cfe-bf96-27132cd95bfd"),
                             RoleId = new Guid("b4314be5-4c77-4fb6-82ad-302014682b13")
                         },
                         new
                         {
-                            UserId = new Guid("7f15e3d2-6f54-4829-844b-2d15a61a2567"),
+                            UserId = new Guid("c900b6a0-8355-4c71-bc55-6b21b28127d3"),
                             RoleId = new Guid("b4314be5-4c77-4fb6-82ad-302014682b13")
                         },
                         new
                         {
-                            UserId = new Guid("47880505-65e4-4f02-ad65-0d3a87f1fc5b"),
+                            UserId = new Guid("b8dbf035-2522-4533-a257-e1bf0b14f0b1"),
                             RoleId = new Guid("b4314be5-4c77-4fb6-82ad-302014682b13")
                         });
                 });
@@ -1358,13 +1358,13 @@ namespace BinhDinhFood.Infrastructure.Migrations
                     b.HasOne("BinhDinhFood.Domain.Entities.Order", "Order")
                         .WithMany("OrderDetails")
                         .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("BinhDinhFood.Domain.Entities.Product", null)
                         .WithMany("OrderDetails")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("BinhDinhFood.Domain.Entities.Product", "Product")
