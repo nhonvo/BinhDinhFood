@@ -19,7 +19,7 @@ public class UnitOfWork : IUnitOfWork
     public IOrderDetailRepository OrderDetailRepository { get; }
     public IProductRepository ProductRepository { get; }
     public ICategoryRepository CategoryRepository { get; }
-    public IProductRatingRepository ProductRatingRepository { get; }
+    public IReviewRepository ReviewRepository { get; }
     public IBannerRepository BannerRepository { get; }
     public IFavoriteRepository FavoriteRepository { get; }
     public IBlogRepository BlogRepository { get; }
@@ -37,7 +37,7 @@ public class UnitOfWork : IUnitOfWork
         OrderDetailRepository = new OrderDetailRepository(_context);
         ProductRepository = new ProductRepository(_context);
         CategoryRepository = new CategoryRepository(_context);
-        ProductRatingRepository = new ProductRatingRepository(_context);
+        ReviewRepository = new ReviewRepository(_context);
         BannerRepository = new BannerRepository(_context);
         FavoriteRepository = new FavoriteRepository(_context);
         BlogRepository = new BlogRepository(_context);

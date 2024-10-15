@@ -43,7 +43,7 @@ public static class ConfigureServices
         services.AddScoped<IOrderDetailRepository, OrderDetailRepository>();
         services.AddScoped<IProductRepository, ProductRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
-        services.AddScoped<IProductRatingRepository, ProductRatingRepository>();
+        services.AddScoped<IReviewRepository, ReviewRepository>();
         services.AddScoped<IBannerRepository, BannerRepository>();
         services.AddScoped<IFavoriteRepository, FavoriteRepository>();
         services.AddScoped<IBlogRepository, BlogRepository>();

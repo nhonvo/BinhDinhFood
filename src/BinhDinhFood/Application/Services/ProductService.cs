@@ -6,8 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BinhDinhFood.Application.Services;
 
-public class ProductService(IUnitOfWork unitOfWork) : IProductService
+public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : IProductService
 {
+    private readonly ICurrentUser _currentUser = currentUser;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     public async Task<ProductResponse> Get(int id)
     {
@@ -52,6 +53,18 @@ public class ProductService(IUnitOfWork unitOfWork) : IProductService
         };
 
         return result;
+    }
+
+    public async Task ReviewProduct(ReviewRequest request)
+    {
+        var rateProduct = new Review
+        {
+            Stars = request.Stars ?? 1,
+            Content = request.Content,
+            ProductId = request.ProductId,
+            CustomerId = new Guid(_currentUser.GetCurrentStringUserId())
+        };
+        await _unitOfWork.ReviewRepository.AddAsync(rateProduct);
     }
 
     private ProductResponse MapToProductResponse(Product product)

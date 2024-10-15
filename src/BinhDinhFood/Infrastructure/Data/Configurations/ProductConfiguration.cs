@@ -27,7 +27,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
             .WithOne(c => c.Product)
             .HasForeignKey(x => x.ProductId);
 
-        // Relationships: OrderDetails, Favorites, ProductRatings
+        // Relationships: OrderDetails, Favorites, Reviews
         builder.HasMany(p => p.OrderDetails)
             .WithOne()
             .HasForeignKey(od => od.ProductId);
@@ -36,7 +36,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
             .WithOne()
             .HasForeignKey(f => f.ProductId);
 
-        builder.HasMany(p => p.ProductRatings)
+        builder.HasMany(p => p.Reviews)
             .WithOne()
             .HasForeignKey(pr => pr.ProductId);
     }

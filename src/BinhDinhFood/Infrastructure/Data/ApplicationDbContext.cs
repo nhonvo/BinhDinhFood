@@ -23,7 +23,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     public DbSet<Product> Products { get; set; }
     public DbSet<ProductCategory> ProductCategories { get; set; }
     public DbSet<Category> Categories { get; set; }
-    public DbSet<ProductRating> ProductRatings { get; set; }
+    public DbSet<Review> Reviews { get; set; }
     public DbSet<Banner> Banners { get; set; }
     public DbSet<Favorite> Favorites { get; set; }
     public DbSet<Blog> Blog { get; set; }

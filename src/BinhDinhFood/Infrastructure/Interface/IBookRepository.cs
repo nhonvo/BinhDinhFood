@@ -5,7 +5,7 @@ public interface IOrderRepository : IGenericRepository<Order> { }
 public interface IOrderDetailRepository : IGenericRepository<OrderDetail> { }
 public interface IProductRepository : IGenericRepository<Product> { }
 public interface ICategoryRepository : IGenericRepository<Category> { }
-public interface IProductRatingRepository : IGenericRepository<ProductRating> { }
+public interface IReviewRepository : IGenericRepository<Review> { }
 public interface IBannerRepository : IGenericRepository<Banner> { }
 public interface IFavoriteRepository : IGenericRepository<Favorite> { }
 public interface IBlogRepository : IGenericRepository<Blog> { }

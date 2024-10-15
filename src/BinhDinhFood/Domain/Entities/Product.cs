@@ -4,7 +4,6 @@ namespace BinhDinhFood.Domain.Entities;
 
 public class Product : BaseModel
 {
-    public int Id { get; set; }
     public string Name { get; set; }
     public decimal Price { get; set; }
     public string? Description { get; set; }
@@ -15,6 +14,6 @@ public class Product : BaseModel
     public DateTime DateCreated { get; set; } = DateTime.Now;
     public virtual ICollection<ProductCategory>? ProductCategories { get; set; }
     public virtual ICollection<OrderDetail>? OrderDetails { get; set; }
-    public virtual ICollection<ProductRating>? ProductRatings { get; set; }
+    public virtual ICollection<Review>? Reviews { get; set; }
     public virtual ICollection<Favorite>? Favorites { get; set; }
 }

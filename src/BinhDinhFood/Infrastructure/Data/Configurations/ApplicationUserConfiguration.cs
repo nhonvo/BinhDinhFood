@@ -30,9 +30,9 @@ public class ApplicationUserConfiguration : IEntityTypeConfiguration<Application
             .HasForeignKey(f => f.CustomerId)
             .OnDelete(DeleteBehavior.Cascade); // Cascade delete on Customer deletion
 
-        // Relationship configuration for ProductRatings
-        builder.HasMany(c => c.ProductRatings)
-            .WithOne(pr => pr.Customer) // Each ProductRating belongs to one Customer
+        // Relationship configuration for Reviews
+        builder.HasMany(c => c.Reviews)
+            .WithOne(pr => pr.Customer) // Each Review belongs to one Customer
             .HasForeignKey(pr => pr.CustomerId)
             .OnDelete(DeleteBehavior.Cascade); // Cascade delete on Customer deletion
     }

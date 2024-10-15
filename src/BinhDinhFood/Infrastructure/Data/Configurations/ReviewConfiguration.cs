@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BinhDinhFood.Infrastructure.Data.Configurations;
 
-public class ProductRatingConfiguration : IEntityTypeConfiguration<ProductRating>
+public class ReviewConfiguration : IEntityTypeConfiguration<Review>
 {
-    public void Configure(EntityTypeBuilder<ProductRating> builder)
+    public void Configure(EntityTypeBuilder<Review> builder)
     {
         // Table name
-        builder.ToTable("ProductRating");
+        builder.ToTable("Review");
 
         builder.HasKey(pr => pr.Id);
 
@@ -18,13 +18,13 @@ public class ProductRatingConfiguration : IEntityTypeConfiguration<ProductRating
 
         // Foreign key relationship with Product
         builder.HasOne(pr => pr.Product)
-            .WithMany(p => p.ProductRatings)
+            .WithMany(p => p.Reviews)
             .HasForeignKey(pr => pr.ProductId)
             .OnDelete(DeleteBehavior.Cascade); // Cascade delete behavior if Product is deleted
 
         // Foreign key relationship with Customer
         builder.HasOne(pr => pr.Customer)
-            .WithMany(c => c.ProductRatings)
+            .WithMany(c => c.Reviews)
             .HasForeignKey(pr => pr.CustomerId)
             .OnDelete(DeleteBehavior.Cascade); // Cascade delete behavior if Customer is deleted
     }
