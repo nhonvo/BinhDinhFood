@@ -24,6 +24,14 @@ public class AuthController(IAuthService authService) : BaseController
         return NoContent();
     }
 
+    [HttpGet("logout")]
+    public async Task<IActionResult> Logout()
+    {
+        await _authService.LogOut();
+        RemoveTokenInCookie();
+        return NoContent();
+    }
+
     [HttpGet("refreshToken")]
     [Authorize]
     public async Task<IActionResult> RefreshToken(CancellationToken cancellationToken)
@@ -40,7 +48,7 @@ public class AuthController(IAuthService authService) : BaseController
     [Authorize(Policy = "user_read")]
     [Authorize(Policy = "user_write")]
     public async Task<IActionResult> Profile(CancellationToken cancellationToken)
-        => Ok(await _authService.Get(cancellationToken));
+        => Ok(await _authService.GetProfile(cancellationToken));
 
     [HttpPost("resetPassword")]
     public async Task<IActionResult> ResetPassword(ResetPasswordRequest request, CancellationToken cancellationToken)
@@ -75,5 +83,9 @@ public class AuthController(IAuthService authService) : BaseController
             Expires = DateTime.UtcNow.AddDays(10),
         };
         Response.Cookies.Append("token_key", refreshToken, cookieOptions);
+    }
+    private void RemoveTokenInCookie()
+    {
+        Response.Cookies.Delete("token_key");
     }
 }

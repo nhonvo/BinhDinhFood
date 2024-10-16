@@ -35,6 +35,11 @@ public class AuthService(ApplicationDbContext context,
     private readonly ICurrentUser _currentUser = currentUser;
     private readonly AppSettings _appSettings = appSettings;
 
+    public async Task LogOut()
+    {
+        await _signInManager.SignOutAsync();
+    }
+
     public async Task<TokenResult> Authenticate(LoginRequest request, CancellationToken cancellationToken)
     {
 
@@ -143,7 +148,7 @@ public class AuthService(ApplicationDbContext context,
         return result;
     }
 
-    public async Task<UserViewModel> Get(CancellationToken cancellationToken)
+    public async Task<UserViewModel> GetProfile(CancellationToken cancellationToken)
     {
         var userId = _currentUser.GetCurrentStringUserId();
 

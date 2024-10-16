@@ -7,7 +7,8 @@ public interface IAuthService
     Task<TokenResult> RefreshTokenAsync(string token, CancellationToken cancellationToken);
     Task<TokenResult> Authenticate(LoginRequest request, CancellationToken cancellationToken);
     Task Register(RegisterRequest request, CancellationToken cancellationToken);
-    Task<UserViewModel> Get(CancellationToken cancellationToken);
+    Task LogOut();
+    Task<UserViewModel> GetProfile(CancellationToken cancellationToken);
     Task<TokenResult> SignInFacebook(string accessToken, CancellationToken cancellationToken);
     Task<TokenResult> SignInGoogle(string accessToken, CancellationToken cancellationToken);
     Task<TokenResult> SignInApple(string fullName, string identityToken, CancellationToken cancellationToken);
