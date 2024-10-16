@@ -1,8 +1,8 @@
 using System.Security.Claims;
 using BinhDinhFood.Application.Common.Exceptions;
 using BinhDinhFood.Application.Common.Interfaces;
-using BinhDinhFood.Application.Common.Models.AuthIdentity.File;
-using BinhDinhFood.Application.Common.Models.AuthIdentity.UsersIdentity;
+using BinhDinhFood.Application.Common.Models.Auth.File;
+using BinhDinhFood.Application.Common.Models.Auth.UsersIdentity;
 using BinhDinhFood.Domain.Entities.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -42,7 +42,7 @@ public class UserService(
     {
 
         var user = await _userManager.Users.FirstOrDefaultAsync(x => x.Id == request.UserId, cancellationToken: cancellationToken)
-            ?? throw AuthIdentityException.ThrowUserNotExist();
+            ?? throw AuthException.ThrowUserNotExist();
 
         user.Email = request.Email ?? user.Email;
         user.Name = request.Name ?? user.Name;
@@ -70,14 +70,14 @@ public class UserService(
         {
             List<IdentityError> errorList = result.Errors.ToList();
             var errors = string.Join(", ", errorList.Select(e => e.Description));
-            throw AuthIdentityException.ThrowUpdateUnsuccessful(errors);
+            throw AuthException.ThrowUpdateUnsuccessful(errors);
         }
     }
 
     public async Task Delete(string userId, CancellationToken cancellationToken)
     {
         var user = await _userManager.FindByIdAsync(userId)
-            ?? throw AuthIdentityException.ThrowAccountDoesNotExist();
+            ?? throw AuthException.ThrowAccountDoesNotExist();
 
         //Xoá Avatar ra khỏi Source
         var avatar = await _unitOfWork.MediaRepository.FirstOrDefaultAsync(x => x.Id == user.AvatarId);
@@ -98,14 +98,14 @@ public class UserService(
         {
             List<IdentityError> errorList = result.Errors.ToList();
             var errors = string.Join(", ", errorList.Select(e => e.Description));
-            throw AuthIdentityException.ThrowDeleteUnsuccessful();
+            throw AuthException.ThrowDeleteUnsuccessful();
         }
     }
     // Gán quyền người dùng và cập nhật scope
     public async Task RoleAssign(RoleAssignRequest request, CancellationToken cancellationToken)
     {
         var user = await _userManager.FindByIdAsync(request.UserId)
-            ?? throw AuthIdentityException.ThrowAccountDoesNotExist();
+            ?? throw AuthException.ThrowAccountDoesNotExist();
 
         // Handle Role Removal
         var removedRoles = request.Roles.Where(x => !x.Selected).Select(x => x.Name).ToList();

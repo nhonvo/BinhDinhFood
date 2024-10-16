@@ -1,8 +1,8 @@
 using System.Net.Http.Headers;
 using BinhDinhFood.Application.Common;
 using BinhDinhFood.Application.Common.Interfaces;
-using BinhDinhFood.Application.Common.Models.AuthIdentity.File;
-using BinhDinhFood.Application.Common.Models.AuthIdentity.Media;
+using BinhDinhFood.Application.Common.Models.Auth.File;
+using BinhDinhFood.Application.Common.Models.Auth.Media;
 
 namespace BinhDinhFood.Application.Services;
 public class LocalFileStorageService : IFileStorageService

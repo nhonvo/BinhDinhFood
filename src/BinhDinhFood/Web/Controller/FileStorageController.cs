@@ -1,5 +1,5 @@
 using BinhDinhFood.Application.Common.Interfaces;
-using BinhDinhFood.Application.Common.Models.AuthIdentity.File;
+using BinhDinhFood.Application.Common.Models.Auth.File;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BinhDinhFood.Web.Controller;

@@ -1,5 +1,5 @@
 using System.Security.Claims;
-using BinhDinhFood.Application.Common.Models.AuthIdentity.UsersIdentity;
+using BinhDinhFood.Application.Common.Models.Auth.UsersIdentity;
 using BinhDinhFood.Domain.Entities.Auth;
 
 namespace BinhDinhFood.Application.Common.Interfaces;

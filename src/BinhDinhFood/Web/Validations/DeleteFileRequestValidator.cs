@@ -1,4 +1,4 @@
-using BinhDinhFood.Application.Common.Models.AuthIdentity.File;
+using BinhDinhFood.Application.Common.Models.Auth.File;
 using FluentValidation;
 
 namespace BinhDinhFood.Web.Validations;

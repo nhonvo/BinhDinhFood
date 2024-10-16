@@ -1,4 +1,4 @@
-using BinhDinhFood.Application.Common.Models.AuthIdentity.Media;
+using BinhDinhFood.Application.Common.Models.Auth.Media;
 
 namespace BinhDinhFood.Application.Common.Interfaces;
 

@@ -12,7 +12,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
             IdentityRoleClaim<Guid>, IdentityUserToken<Guid>>(options)
 {
     public DbSet<Book> Books { get; set; }
-    public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+    public DbSet<ApplicationUser> Customers { get; set; }
     public DbSet<RefreshToken> RefreshTokens { get; set; }
     public DbSet<ForgotPassword> ForgotPassword { get; set; }
     public DbSet<Media> Media { get; set; }

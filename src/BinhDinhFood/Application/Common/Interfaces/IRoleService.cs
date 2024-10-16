@@ -1,4 +1,4 @@
-using BinhDinhFood.Application.Common.Models.AuthIdentity.Roles;
+using BinhDinhFood.Application.Common.Models.Auth.Roles;
 
 namespace BinhDinhFood.Application.Common.Interfaces;
 

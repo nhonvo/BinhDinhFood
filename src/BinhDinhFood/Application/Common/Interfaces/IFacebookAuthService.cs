@@ -1,4 +1,4 @@
-using BinhDinhFood.Application.Common.Models.AuthIdentity.LoginSocial;
+using BinhDinhFood.Application.Common.Models.Auth.LoginSocial;
 
 namespace BinhDinhFood.Application.Common.Interfaces;
 

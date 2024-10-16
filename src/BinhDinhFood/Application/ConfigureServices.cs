@@ -15,7 +15,7 @@ public static class ConfigureServices
         services.AddScoped<IFacebookAuthService, FacebookAuthService>();
         services.AddScoped<IMediaService, MediaService>();
         services.AddScoped<IRoleService, RoleService>();
-        services.AddScoped<IAuthIdentityService, AuthIdentityService>();
+        services.AddScoped<IAuthService, AuthService>();
 
         if (appsettings.FileStorageSettings.LocalStorage)
         {

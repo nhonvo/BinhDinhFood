@@ -1,5 +1,5 @@
 using BinhDinhFood.Application.Common.Interfaces;
-using BinhDinhFood.Application.Common.Models.AuthIdentity.LoginSocial;
+using BinhDinhFood.Application.Common.Models.Auth.LoginSocial;
 using Newtonsoft.Json;
 
 namespace BinhDinhFood.Application.Services;
