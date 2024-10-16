@@ -27,7 +27,9 @@ public class AuthController(IAuthService authService) : BaseController
     [HttpGet("logout")]
     public async Task<IActionResult> Logout()
     {
+
         await _authService.LogOut();
+        Request.Headers.Authorization.ToString().Replace("Bearer ", "");
         RemoveTokenInCookie();
         return NoContent();
     }
@@ -45,8 +47,7 @@ public class AuthController(IAuthService authService) : BaseController
 
     [HttpGet("profile")]
     [Authorize]
-    [Authorize(Policy = "user_read")]
-    [Authorize(Policy = "user_write")]
+    // [Authorize(Policy = "user_read")]
     public async Task<IActionResult> Profile(CancellationToken cancellationToken)
         => Ok(await _authService.GetProfile(cancellationToken));
 

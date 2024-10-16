@@ -23,7 +23,7 @@ public class ProductController(IProductService productService) : BaseController
         => Ok(await _productService.Get(pageIndex, pageSize, ascending, orderBy, filter));
 
     [HttpPost("review")]
-    [Authorize(Policy = "user_write")]
+    // [Authorize(Policy = "user_write")]
     public async Task<IActionResult> Review(ReviewRequest request)
     {
         await _productService.ReviewProduct(request);
@@ -31,8 +31,9 @@ public class ProductController(IProductService productService) : BaseController
     }
 
     [HttpPost]
+    [Authorize]
     [Authorize(Roles = "Admin")]
-    [Authorize(Policy = "user_write")]
+    // [Authorize(Policy = "user_write")]
     public async Task<IActionResult> Create(ProductRequest request, CancellationToken cancellationToken)
     {
         await _productService.Create(request, cancellationToken);
@@ -41,7 +42,7 @@ public class ProductController(IProductService productService) : BaseController
 
     [HttpPut]
     [Authorize(Roles = "Admin")]
-    [Authorize(Policy = "user_write")]
+    // [Authorize(Policy = "user_write")]
     public async Task<IActionResult> Update(ProductUpdateRequest request, CancellationToken cancellationToken)
     {
         await _productService.Update(request, cancellationToken);
@@ -50,7 +51,7 @@ public class ProductController(IProductService productService) : BaseController
 
     [HttpDelete]
     [Authorize(Roles = "Admin")]
-    [Authorize(Policy = "user_write")]
+    // [Authorize(Policy = "user_write")]
     public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
     {
         await _productService.Delete(id, cancellationToken);

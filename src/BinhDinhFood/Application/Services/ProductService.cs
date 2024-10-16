@@ -91,6 +91,11 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
                 // If Id is provided, find the existing category
                 category = await _unitOfWork.CategoryRepository.FirstOrDefaultAsync(c => c.Id == categoryDto.Id.Value, null)
                     ?? throw new UserFriendlyException(ErrorCode.NotFound, $"Category with Id {categoryDto.Id.Value} not found.");
+                await _unitOfWork.ProductCategoryRepository.AddAsync(new ProductCategory
+                {
+                    Product = product,
+                    CategoryId = category.Id
+                });
             }
             else if (!string.IsNullOrEmpty(categoryDto.Name))
             {
@@ -108,19 +113,17 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
                     // Add the new category to the context
                     await _unitOfWork.CategoryRepository.AddAsync(category);
                 }
+                // Add the relationship to ProductCategories 
+                await _unitOfWork.ProductCategoryRepository.AddAsync(new ProductCategory
+                {
+                    Product = product,
+                    Category = category
+                });
             }
             else
             {
                 throw new UserFriendlyException(ErrorCode.NotFound, "Either Id or Name must be provided.");
             }
-
-            // Add the relationship to ProductCategories 
-            // due to create so may be id of product or category not exist so we can new by id
-            await _unitOfWork.ProductCategoryRepository.AddAsync(new ProductCategory
-            {
-                Product = product,
-                Category = category
-            });
         }
         // Step3: TODO: Provide list image through media entity
 
@@ -129,6 +132,8 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 
+
+// TODO: BUG update product with category
     public async Task Update(ProductUpdateRequest request, CancellationToken cancellationToken)
     {
         // Step 1: Fetch the existing product
@@ -147,44 +152,36 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
 
         // Step 3: Handle Categories (Update existing categories and add new ones)
         var newProductCategories = new List<ProductCategory>();
-
-        foreach (var categoryDto in request.Categories)
+        if (request.Categories != null)
         {
-            Category category;
+            foreach (var categoryDto in request.Categories)
+            {
+                Category category;
 
-            if (categoryDto.Id != null)
-            {
-                // If CategoryId is provided, find the existing category
-                category = await _unitOfWork.CategoryRepository.FirstOrDefaultAsync(c => c.Id == categoryDto.Id.Value, null)
-                           ?? throw new UserFriendlyException(ErrorCode.NotFound, $"Category with Id {categoryDto.Id.Value} not found.");
-            }
-            else if (!string.IsNullOrEmpty(categoryDto.Name))
-            {
-                // If CategoryName is provided, check if it exists, or create a new one
-                category = await _unitOfWork.CategoryRepository.FirstOrDefaultAsync(c => c.Name == categoryDto.Name);
-                if (category == null)
+                if (!string.IsNullOrEmpty(categoryDto.Name))
                 {
-                    category = new Category
+                    // If CategoryName is provided, check if it exists, or create a new one
+                    category = await _unitOfWork.CategoryRepository.FirstOrDefaultAsync(c => c.Name == categoryDto.Name);
+                    if (category == null)
                     {
-                        Name = categoryDto.Name,
-                        DateCreated = DateTime.Now
-                    };
+                        category = new Category
+                        {
+                            Name = categoryDto.Name,
+                            DateCreated = DateTime.Now
+                        };
 
-                    await _unitOfWork.CategoryRepository.AddAsync(category);
+                        await _unitOfWork.CategoryRepository.AddAsync(category);
+                        // Add the relationship to ProductCategories
+                        newProductCategories.Add(new ProductCategory
+                        {
+                            ProductId = request.Id, // Use the existing product ID
+                            CategoryId = category.Id // newly created category ID
+                        });
+                    }
                 }
             }
-            else
-            {
-                throw new UserFriendlyException(ErrorCode.NotFound, "Either Id or Name must be provided.");
-            }
-
-            // Add the relationship to ProductCategories
-            newProductCategories.Add(new ProductCategory
-            {
-                ProductId = request.Id, // Use the existing product ID
-                CategoryId = category.Id // Use the existing or newly created category ID
-            });
         }
+        existingProduct.ProductCategories = existingProduct.ProductCategories;
 
         // Remove old ProductCategories and add the new ones
         _unitOfWork.ProductCategoryRepository.DeleteRange(existingProduct.ProductCategories);

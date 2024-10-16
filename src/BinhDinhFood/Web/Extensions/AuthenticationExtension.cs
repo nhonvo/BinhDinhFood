@@ -10,7 +10,7 @@ public static class AuthenticationExtensions
     public static void AddAuth(this IServiceCollection services, Jwt identitySettings)
     {
         var authenticationBuilder = services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
-        authenticationBuilder.AddJwtBearer($"{JwtBearerDefaults.AuthenticationScheme}_{identitySettings.Issuer}", async options =>
+        authenticationBuilder.AddJwtBearer($"{JwtBearerDefaults.AuthenticationScheme}_{identitySettings.Issuer}", options =>
         {
             options.TokenValidationParameters = new TokenValidationParameters
             {
@@ -31,6 +31,7 @@ public static class AuthenticationExtensions
         //custom policy scheme using AddPolicyScheme in ASP.NET Core, it allows you to dynamically choose an authentication scheme based on the incoming request. This is useful if you have multiple authentication methods (e.g., JWT Bearer, Cookies, etc.)
         
         // TODO: Research this block code make the response time very long 
+        // => Solution: cache profile 
         //authenticationBuilder.AddPolicyScheme("CustomScheme", "CustomScheme", options =>
         //{
         //    options.ForwardDefaultSelector = context =>
