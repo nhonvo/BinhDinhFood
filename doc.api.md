@@ -47,7 +47,7 @@
 - **POST** `/products/rating/{productId}`
   Add a rating for a product.
 
-## 4. **Category Management**
+## 4. **Category & blog & banner Management**
 
 - **GET** `/categories`
   Get a list of all categories.
@@ -60,7 +60,7 @@
 - **DELETE** `/categories/{id}` (Admin Only)
   Delete a category.
 
-## 5. **Cart & Wishlist**
+## 5. **Cart & Wishlist & favorite**
 
 - **GET** `/cart`
   Get the contents of the user's shopping cart.

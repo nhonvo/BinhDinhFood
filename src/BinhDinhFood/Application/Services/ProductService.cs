@@ -200,7 +200,6 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
 
     public async Task Delete(int id, CancellationToken token)
     {
-
         var product = await _unitOfWork.ProductRepository.FirstOrDefaultAsync(x => x.Id == id);
         await _unitOfWork.ExecuteTransactionAsync(() => _unitOfWork.ProductRepository.Delete(product), token);
     }

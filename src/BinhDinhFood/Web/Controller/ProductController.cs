@@ -33,19 +33,27 @@ public class ProductController(IProductService productService) : BaseController
     [HttpPost]
     [Authorize(Roles = "Admin")]
     [Authorize(Policy = "user_write")]
-    [Authorize(Policy = "user_read")]
     public async Task<IActionResult> Create(ProductRequest request, CancellationToken cancellationToken)
     {
         await _productService.Create(request, cancellationToken);
         return NoContent();
     }
+
     [HttpPut]
     [Authorize(Roles = "Admin")]
     [Authorize(Policy = "user_write")]
-    [Authorize(Policy = "user_read")]
     public async Task<IActionResult> Update(ProductUpdateRequest request, CancellationToken cancellationToken)
     {
         await _productService.Update(request, cancellationToken);
+        return NoContent();
+    }
+
+    [HttpDelete]
+    [Authorize(Roles = "Admin")]
+    [Authorize(Policy = "user_write")]
+    public async Task<IActionResult> Delete(int id, CancellationToken cancellationToken)
+    {
+        await _productService.Delete(id, cancellationToken);
         return NoContent();
     }
 }
