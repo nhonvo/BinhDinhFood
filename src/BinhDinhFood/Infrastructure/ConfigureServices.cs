@@ -1,11 +1,9 @@
 using BinhDinhFood.Application;
 using BinhDinhFood.Application.Common;
 using BinhDinhFood.Application.Repositories;
-using BinhDinhFood.Domain.Authorization;
 using BinhDinhFood.Domain.Entities.Auth;
 using BinhDinhFood.Infrastructure.Data;
 using BinhDinhFood.Infrastructure.Interface;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -48,7 +46,6 @@ public static class ConfigureServices
         services.AddScoped<IFavoriteRepository, FavoriteRepository>();
         services.AddScoped<IBlogRepository, BlogRepository>();
 
-        services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
         return services;
     }
 }

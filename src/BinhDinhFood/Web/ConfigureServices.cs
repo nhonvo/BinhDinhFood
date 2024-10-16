@@ -1,10 +1,12 @@
 using System.Diagnostics;
 using System.Reflection;
 using BinhDinhFood.Application.Common;
+using BinhDinhFood.Domain.Authorization;
 using BinhDinhFood.Web.Extensions;
 using BinhDinhFood.Web.Middlewares;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BinhDinhFood.Web;
 
@@ -18,7 +20,10 @@ public static class ConfigureServices
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         services.AddFluentValidationAutoValidation();
         services.AddFluentValidationClientsideAdapters();
+        services.AddDistributedMemoryCache();
+        services.AddMemoryCache();
         services.AddAuth(appSettings.Jwt);
+        services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
 
         // Middleware
         services.AddSingleton<GlobalExceptionMiddleware>();
@@ -31,7 +36,6 @@ public static class ConfigureServices
         services.AddCorsCustom(appSettings);
         services.AddHttpClient();
         services.AddSwaggerOpenAPI(appSettings);
-        services.AddJWTCustom(appSettings);
         services.SetupHealthCheck(appSettings);
 
         return services;

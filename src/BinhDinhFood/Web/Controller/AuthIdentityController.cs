@@ -9,7 +9,6 @@ public class AuthIdentityController(IAuthIdentityService authIdentityService) : 
     private readonly IAuthIdentityService _authIdentityService = authIdentityService;
 
     [HttpPost("login")]
-    [AllowAnonymous]
     public async Task<IActionResult> Authenticate([FromBody] LoginRequest request, CancellationToken cancellationToken)
     {
         var result = await _authIdentityService.Authenticate(request, cancellationToken);
@@ -19,7 +18,6 @@ public class AuthIdentityController(IAuthIdentityService authIdentityService) : 
     }
 
     [HttpPost("register")]
-    [AllowAnonymous]
     public async Task<IActionResult> Register([FromBody] RegisterRequest request, CancellationToken cancellationToken)
     {
         await _authIdentityService.Register(request, cancellationToken);
@@ -40,7 +38,7 @@ public class AuthIdentityController(IAuthIdentityService authIdentityService) : 
     [HttpGet("profile")]
     [Authorize]
     [Authorize(Policy = "user_read")]
-    [Authorize(Policy ="user_write")]
+    [Authorize(Policy = "user_write")]
     public async Task<IActionResult> Profile(CancellationToken cancellationToken)
         => Ok(await _authIdentityService.Get(cancellationToken));
 
@@ -56,17 +54,14 @@ public class AuthIdentityController(IAuthIdentityService authIdentityService) : 
         => Ok(await _authIdentityService.SendPasswordResetCode(request, cancellationToken));
 
     // [HttpPost("SignInFacebook")]
-    // [AllowAnonymous]
     // public async Task<IActionResult> SignInFacebook([FromBody] LoginSocialRequest request, CancellationToken cancellationToken)
     //     => Ok(await _authIdentityService.SignInFacebook(request.AccessToken, cancellationToken));
 
     // [HttpPost("SignInGoogle")]
-    // [AllowAnonymous]
     // public async Task<IActionResult> SignInGoogle([FromBody] LoginSocialRequest request, CancellationToken cancellationToken)
     //     => Ok(await _authIdentityService.SignInGoogle(request.AccessToken, cancellationToken));
 
     // [HttpPost("SignInApple")]
-    // [AllowAnonymous]
     // public async Task<IActionResult> SignInApple([FromBody] LoginSocialRequest request, CancellationToken cancellationToken)
     //     => Ok(await _authIdentityService.SignInApple(request.FullName, request.AccessToken, cancellationToken));
 

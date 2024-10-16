@@ -22,40 +22,46 @@ public static class AuthenticationExtensions
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(identitySettings.Key)),
                 ValidateIssuerSigningKey = true,
             };
-            options.Authority = identitySettings.Issuer;
+            
+            options.SaveToken = true;  
+            // Cache the token
             options.RequireHttpsMetadata = identitySettings.ValidateHttps;
         });
 
         //custom policy scheme using AddPolicyScheme in ASP.NET Core, it allows you to dynamically choose an authentication scheme based on the incoming request. This is useful if you have multiple authentication methods (e.g., JWT Bearer, Cookies, etc.)
-        authenticationBuilder.AddPolicyScheme("CustomScheme", "CustomScheme", options =>
-        {
-            options.ForwardDefaultSelector = context =>
-            {
-                // Example logic to select authentication scheme
-                if (context.Request.Headers.ContainsKey("Authorization"))
-                {
-                    return "Bearer"; // Use JWT Bearer if there's an Authorization header
-                }
+        
+        // TODO: Research this block code make the response time very long 
+        //authenticationBuilder.AddPolicyScheme("CustomScheme", "CustomScheme", options =>
+        //{
+        //    options.ForwardDefaultSelector = context =>
+        //    {
+        //        // Example logic to select authentication scheme
+        //        if (context.Request.Headers.ContainsKey("Authorization"))
+        //        {
+        //            return "Bearer"; // Use JWT Bearer if there's an Authorization header
+        //        }
 
-                return "Cookie"; // Default to Cookie
-            };
-        });
+        //        return "Cookie"; // Default to Cookie
+        //    };
+        //});
 
         services.AddAuthorization(options =>
         {
-            var authSchemes = $"{JwtBearerDefaults.AuthenticationScheme}_{identitySettings.Issuer}"; options.DefaultPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().AddAuthenticationSchemes(authSchemes).Build();
+            var authSchemes = $"{JwtBearerDefaults.AuthenticationScheme}_{identitySettings.Issuer}"; 
+            
+            options.DefaultPolicy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser()
+                                                                    .AddAuthenticationSchemes(authSchemes)
+                                                                    .Build();
 
             options.AddPolicy("user_read", policy => policy.Requirements.Add(
-                new HasScopeRequirement(
-                identitySettings.ScopeBaseDomain,
-                 identitySettings.ScopeBaseDomain + "/read",
-                 identitySettings.Issuer)));
+                new HasScopeRequirement(identitySettings.ScopeBaseDomain,
+                                        identitySettings.ScopeBaseDomain + "/read",
+                                        identitySettings.Issuer)));
 
             options.AddPolicy("user_write", policy => policy.Requirements.Add(
-                new HasScopeRequirement(
-                    identitySettings.ScopeBaseDomain,
-                    identitySettings.ScopeBaseDomain + "/write",
-                    identitySettings.Issuer)));
+                new HasScopeRequirement(identitySettings.ScopeBaseDomain,
+                                        identitySettings.ScopeBaseDomain + "/write",
+                                        identitySettings.Issuer)));
         });
     }
 }

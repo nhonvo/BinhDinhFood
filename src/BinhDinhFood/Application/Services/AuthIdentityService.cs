@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using BinhDinhFood.Application.Common;
@@ -145,23 +146,30 @@ public class AuthIdentityService(ApplicationDbContext context,
 
     public async Task<UserViewModel> Get(CancellationToken cancellationToken)
     {
-        var users = await _userManager.Users
-                    .Include(u => u.UserRoles)
-                        .ThenInclude(ur => ur.Role)
-                    .Include(u => u.Avatar)
-                    .SingleOrDefaultAsync(x => x.Id == new Guid(_currentUser.GetCurrentStringUserId()), cancellationToken)
-                    ?? throw AuthIdentityException.ThrowAccountDoesNotExist();
+        var userId = _currentUser.GetCurrentStringUserId();
 
-        var result = new UserViewModel
-        {
-            UserId = users.Id,
-            Email = users.Email,
-            UserName = users.UserName,
-            FullName = users.Name,
-            Roles = users.UserRoles.Select(ur => ur.Role.Name).ToList(),
-            Avatar = users?.Avatar?.PathMedia
-        };
-        return result;
+        var user = await _userManager.Users.Where(x => x.Id == new Guid(userId)).Include(u => u.UserRoles)
+                        .ThenInclude(ur => ur.Role)
+                    .Include(u => u.Avatar).Select(users => new UserViewModel
+                    {
+                        UserId = users.Id,
+                        Email = users.Email,
+                        UserName = users.UserName,
+                        FullName = users.Name,
+                        Roles = users.UserRoles.Select(ur => ur.Role.Name).ToList(),
+                        Avatar = users.Avatar.PathMedia
+                    }).SingleOrDefaultAsync(cancellationToken) ?? throw AuthIdentityException.ThrowAccountDoesNotExist(); ;
+        // var user = new UserViewModel
+        // {
+        //     UserId = new Guid(),
+        //     FullName = "FullName",
+        //     UserName = "UserName",
+        //     Email = "Email",
+        //     Status = Status.Active,
+        //     Avatar = "Avatar",
+        //     Roles = ["role", "admin"],
+        // };
+        return user;
     }
 
     public async Task<ForgotPassword> SendPasswordResetCode(SendPasswordResetCodeRequest request, CancellationToken cancellationToken)

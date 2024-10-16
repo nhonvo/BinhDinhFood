@@ -49,6 +49,7 @@ public static class HostingExtensions
         app.AddEndpoints(); // Add custom endpoints (if any)
 
         app.UseAuthentication(); // Authentication before authorization
+        
         app.UseMiddleware<LoggingMiddleware>(); // Logging middleware after authentication to log authenticated requests
 
         app.ConfigureExceptionHandler(loggerFactory.CreateLogger("Exceptions")); // Global exception handler
