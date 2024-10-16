@@ -14,20 +14,20 @@ public static class ModelBuilderExtension
         var userRoleId = new Guid("B4314BE5-4C77-4FB6-82AD-302014682B13");
 
         var roles = new List<RoleIdentity>
-    {
-        new RoleIdentity
         {
-            Id = adminRoleId,
-            Name = Role.Admin.ToString(),
-            NormalizedName = "ADMIN"
-        },
-        new RoleIdentity
-        {
-            Id = userRoleId,
-            Name = Role.Admin.ToString(),
-            NormalizedName = "USER"
-        }
-    };
+            new RoleIdentity
+            {
+                Id = adminRoleId,
+                Name = Role.Admin.ToString(),
+                NormalizedName = "ADMIN"
+            },
+            new RoleIdentity
+            {
+                Id = userRoleId,
+                Name = Role.User.ToString(),
+                NormalizedName = "USER"
+            }
+        };
         modelBuilder.Entity<RoleIdentity>().HasData(roles);
 
         // Step 2: Seeding Media (Avatars)

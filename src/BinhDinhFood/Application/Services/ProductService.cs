@@ -3,6 +3,7 @@ using BinhDinhFood.Application.Common.Interfaces;
 using BinhDinhFood.Application.Common.Models;
 using BinhDinhFood.Application.Common.Models.Product;
 using Microsoft.EntityFrameworkCore;
+using BinhDinhFood.Application.Common.Exceptions;
 
 namespace BinhDinhFood.Application.Services;
 
@@ -89,7 +90,7 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
             {
                 // If Id is provided, find the existing category
                 category = await _unitOfWork.CategoryRepository.FirstOrDefaultAsync(c => c.Id == categoryDto.Id.Value, null)
-                    ?? throw new Exception($"Category with Id {categoryDto.Id.Value} not found.");
+                    ?? throw new UserFriendlyException(ErrorCode.NotFound, $"Category with Id {categoryDto.Id.Value} not found.");
             }
             else if (!string.IsNullOrEmpty(categoryDto.Name))
             {
@@ -110,7 +111,7 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
             }
             else
             {
-                throw new Exception("Either Id or Name must be provided.");
+                throw new UserFriendlyException(ErrorCode.NotFound, "Either Id or Name must be provided.");
             }
 
             // Add the relationship to ProductCategories 
@@ -132,12 +133,8 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
     {
         // Step 1: Fetch the existing product
         var existingProduct = await _unitOfWork.ProductRepository
-                                .FirstOrDefaultAsync(p => p.Id == request.Id, include: p => p.Include(p => p.ProductCategories));
-
-        if (existingProduct == null)
-        {
-            throw new Exception($"Product with Id {request.Id} not found.");
-        }
+                                .FirstOrDefaultAsync(p => p.Id == request.Id, include: p => p.Include(p => p.ProductCategories))
+                                ?? throw new UserFriendlyException(ErrorCode.NotFound, $"Product with Id {request.Id} not found.");
 
         // Step 2: Update the product details
         existingProduct.Name = request.Name;
@@ -159,7 +156,7 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
             {
                 // If CategoryId is provided, find the existing category
                 category = await _unitOfWork.CategoryRepository.FirstOrDefaultAsync(c => c.Id == categoryDto.Id.Value, null)
-                           ?? throw new Exception($"Category with Id {categoryDto.Id.Value} not found.");
+                           ?? throw new UserFriendlyException(ErrorCode.NotFound, $"Category with Id {categoryDto.Id.Value} not found.");
             }
             else if (!string.IsNullOrEmpty(categoryDto.Name))
             {
@@ -178,7 +175,7 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
             }
             else
             {
-                throw new Exception("Either Id or Name must be provided.");
+                throw new UserFriendlyException(ErrorCode.NotFound, "Either Id or Name must be provided.");
             }
 
             // Add the relationship to ProductCategories
