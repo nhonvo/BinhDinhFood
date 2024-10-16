@@ -461,8 +461,8 @@ namespace BinhDinhFood.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "AvatarId", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("aeaf4ec6-43b9-4a55-89ad-42e396bf3a0f"), 0, "Saigon", null, "2da3647e-87d0-4850-9bda-b0b069180644", "nhondeptrai@example.com", false, false, null, "dotnet evil", null, null, "AQAAAAIAAYagAAAAEKTXM48qi2HdiwPTO0uOmBddywcTpcgbvgrcoJnw9dZbLoTyrcllZaESPi+WCHis1g==", "0905726748", false, "b87c19af-b68c-4c7d-8266-9cb4ba0bf591", false, "nhondeptrai" },
-                    { new Guid("f3d8c57c-60fc-470e-9b8c-dc3ba1dd9279"), 0, "Admin City", null, "10a29fef-1ddd-4d50-8099-3235aae3bc63", "admin@example.com", false, false, null, "Admin User", null, null, "AQAAAAIAAYagAAAAEI9YtH0x0rwa2D02HR5YxBe2uIx+Qa1LpW1zoiPUygOsVq58BzUDrpqRXh+DNIJplA==", "123456789", false, "ff5cbfb4-9a0c-4a2e-99ca-3cc9ef3221f0", false, "admin" }
+                    { new Guid("84c2840e-7489-471d-b8f6-c610c0e5c97f"), 0, "Admin City", null, "9540d3fb-a706-444b-9eed-f8e47219ad91", "admin@example.com", false, false, null, "Admin User", null, null, "AQAAAAIAAYagAAAAEOVAU2VijOxIhq+anTHAXHECq3jskPY50BycVRyGITw4/f3mN3NWq5XkhOrSpEediQ==", "123456789", false, "65cce18e-285f-44ea-84c1-4efe432b1c36", false, "admin" },
+                    { new Guid("e73a7108-7012-47f9-99a7-0276eccb5621"), 0, "Saigon", null, "0467173f-79f4-498b-b446-74fc950d3c47", "nhondeptrai@example.com", false, false, null, "dotnet evil", null, null, "AQAAAAIAAYagAAAAEJvn5Bx8HYObJ6QbdO7D8J1NPGZVdI4twnTLCoqtmiStE7j6weJepMEiHvv+STqlYQ==", "0905726748", false, "07716d19-4232-4cfb-8697-7bfada8b3b0d", false, "nhondeptrai" }
                 });
 
             migrationBuilder.InsertData(
@@ -510,13 +510,13 @@ namespace BinhDinhFood.Infrastructure.Migrations
                 columns: new[] { "Id", "Caption", "DateCreated", "FileSize", "PathMedia", "Type" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2024, 10, 16, 22, 35, 22, 62, DateTimeKind.Local).AddTicks(3607), null, "https://example.com/avatar1.png", 1 },
-                    { 2, null, new DateTime(2024, 10, 16, 22, 35, 22, 62, DateTimeKind.Local).AddTicks(3633), null, "https://example.com/avatar2.png", 1 },
-                    { 3, null, new DateTime(2024, 10, 16, 22, 35, 22, 62, DateTimeKind.Local).AddTicks(3634), null, "https://example.com/avatar3.png", 1 },
-                    { 4, null, new DateTime(2024, 10, 16, 22, 35, 22, 334, DateTimeKind.Local).AddTicks(3766), null, "slide_home_1.jpg", 1 },
-                    { 5, null, new DateTime(2024, 10, 16, 22, 35, 22, 334, DateTimeKind.Local).AddTicks(3771), null, "slide_home_1.jpg", 1 },
-                    { 6, null, new DateTime(2024, 10, 16, 22, 35, 22, 334, DateTimeKind.Local).AddTicks(3772), null, "slide_home_1.jpg", 1 },
-                    { 7, null, new DateTime(2024, 10, 16, 22, 35, 22, 334, DateTimeKind.Local).AddTicks(3775), null, "slide_home_1.jpg", 1 }
+                    { 1, null, new DateTime(2024, 10, 16, 22, 45, 27, 673, DateTimeKind.Local).AddTicks(5921), null, "https://example.com/avatar1.png", 1 },
+                    { 2, null, new DateTime(2024, 10, 16, 22, 45, 27, 673, DateTimeKind.Local).AddTicks(5965), null, "https://example.com/avatar2.png", 1 },
+                    { 3, null, new DateTime(2024, 10, 16, 22, 45, 27, 673, DateTimeKind.Local).AddTicks(5966), null, "https://example.com/avatar3.png", 1 },
+                    { 4, null, new DateTime(2024, 10, 16, 22, 45, 27, 953, DateTimeKind.Local).AddTicks(130), null, "slide_home_1.jpg", 1 },
+                    { 5, null, new DateTime(2024, 10, 16, 22, 45, 27, 953, DateTimeKind.Local).AddTicks(134), null, "slide_home_1.jpg", 1 },
+                    { 6, null, new DateTime(2024, 10, 16, 22, 45, 27, 953, DateTimeKind.Local).AddTicks(135), null, "slide_home_1.jpg", 1 },
+                    { 7, null, new DateTime(2024, 10, 16, 22, 45, 27, 953, DateTimeKind.Local).AddTicks(136), null, "slide_home_1.jpg", 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -586,9 +586,9 @@ namespace BinhDinhFood.Infrastructure.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "Address", "AvatarId", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "Name", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { new Guid("82b65b37-197f-4b53-ab2a-e429ab916ede"), 0, "Quy Nhơn, Bình Định", 1, "e9711ad6-9006-424b-bdca-846ecf2a6a5b", "truongnhon@example.com", false, false, null, "Võ Thương Trường Nhơn", null, null, "AQAAAAIAAYagAAAAEJnVR23K2+X+UxzRhVWklqfBMOPjGnD9qNgIgLkB7g7kGl9tZI1GdTdt1iYzyVX6ZA==", "0905726748", false, "d268c3e6-5594-47b2-9f07-1a1dacc3ae24", false, "truongnhon" },
-                    { new Guid("8c4385d0-3a11-44d0-a568-0f5f15f0e8c0"), 0, "Tây Ninh", 2, "9386dc4b-ca75-417d-8dab-57d3326d09b7", "hongthai@example.com", false, false, null, "Nguyễn Hồng Thái", null, null, "AQAAAAIAAYagAAAAEMZsrqzuWI521WchTS7T8obUj1w43kV3eR0WeBstN/zO8Ajsqdfp0qlJhJdMwbPrbw==", "0905726748", false, "2b18e68e-decb-4e44-873a-1f842656dbf6", false, "thai" },
-                    { new Guid("a35d298a-d7c3-4377-9270-111466dab5aa"), 0, "Nam Định", 3, "60d966a8-6772-4c9e-acbe-a013efc731d2", "taiphamduc@example.com", false, false, null, "Phạm Đức Tài", null, null, "AQAAAAIAAYagAAAAEG+HnUjOAOEuPGFwv8pdF01KNFX1+a+4fTbHpwaPd9DTWhFYwKOc5NSLuUpNx4qjUQ==", "0905726748", false, "9a503868-c3fb-43df-9059-95426fb22a14", false, "tai" }
+                    { new Guid("22185f7c-743a-4fb1-bbd7-3775e69a8baa"), 0, "Nam Định", 3, "fe892764-5a06-4bb6-8a74-d318b8b4ffb5", "taiphamduc@example.com", false, false, null, "Phạm Đức Tài", null, null, "AQAAAAIAAYagAAAAENJRCrzzBfP5DGe+nYZ6bUYrWS0JWyBlsbIpQhRwFczJQHpAdKqwEAQKOi/CASwSwQ==", "0905726748", false, "bcb7e7d1-dcfe-4cb0-9ebc-a3f535936f78", false, "tai" },
+                    { new Guid("824ff7da-ffb5-4224-aba6-b2b6826c00c4"), 0, "Quy Nhơn, Bình Định", 1, "9d15c66d-8452-4c02-b284-0b74d8d92526", "truongnhon@example.com", false, false, null, "Võ Thương Trường Nhơn", null, null, "AQAAAAIAAYagAAAAEBoVu0CHZ2f9akbacI3qs4TZk6W8WbV8b/rmlLwsnKVG8wTzJ4PvysSYXZvLLknlDw==", "0905726748", false, "a8ec11b0-0618-4769-9e6f-7d2e3711535a", false, "truongnhon" },
+                    { new Guid("f83f2d71-07df-4da6-a082-e13b1bb25a0a"), 0, "Tây Ninh", 2, "054dbf22-a6d4-4505-a352-04cde138cbf4", "hongthai@example.com", false, false, null, "Nguyễn Hồng Thái", null, null, "AQAAAAIAAYagAAAAEPsR+6ZRwNOhH9z6CgSjROfsXCo6/VcshY5eICTRNqjzhDnPXfo/eSPU+NulgnSsTA==", "0905726748", false, "bb8f021e-7188-486f-9790-7d780db7affc", false, "thai" }
                 });
 
             migrationBuilder.InsertData(
@@ -606,52 +606,52 @@ namespace BinhDinhFood.Infrastructure.Migrations
                 columns: new[] { "CategoryId", "ProductId" },
                 values: new object[,]
                 {
-                    { 2, 1 },
-                    { 3, 1 },
-                    { 2, 2 },
-                    { 1, 3 },
-                    { 2, 3 },
+                    { 1, 1 },
+                    { 1, 2 },
                     { 3, 3 },
+                    { 1, 4 },
                     { 2, 4 },
+                    { 3, 4 },
                     { 1, 5 },
                     { 2, 5 },
                     { 3, 5 },
+                    { 2, 6 },
                     { 3, 6 },
-                    { 1, 7 },
                     { 2, 7 },
-                    { 3, 7 },
                     { 1, 8 },
-                    { 2, 8 },
-                    { 3, 8 },
+                    { 1, 9 },
                     { 2, 9 },
-                    { 3, 9 },
                     { 1, 10 },
                     { 2, 10 },
                     { 3, 10 },
                     { 1, 11 },
-                    { 2, 12 },
-                    { 1, 13 },
-                    { 2, 13 },
+                    { 2, 11 },
+                    { 3, 11 },
+                    { 1, 12 },
+                    { 3, 13 },
                     { 1, 14 },
+                    { 2, 14 },
+                    { 3, 14 },
                     { 1, 15 },
+                    { 3, 15 },
+                    { 1, 16 },
                     { 2, 16 },
                     { 3, 16 },
-                    { 3, 17 },
+                    { 1, 17 },
                     { 1, 18 },
-                    { 2, 18 },
+                    { 3, 18 },
                     { 1, 19 },
                     { 2, 19 },
                     { 3, 19 },
-                    { 3, 20 },
+                    { 1, 20 },
                     { 1, 21 },
                     { 2, 21 },
                     { 3, 21 },
                     { 2, 22 },
-                    { 3, 23 },
+                    { 2, 23 },
                     { 1, 24 },
-                    { 2, 24 },
                     { 1, 25 },
-                    { 2, 25 }
+                    { 3, 25 }
                 });
 
             migrationBuilder.InsertData(
@@ -659,11 +659,11 @@ namespace BinhDinhFood.Infrastructure.Migrations
                 columns: new[] { "RoleId", "UserId" },
                 values: new object[,]
                 {
-                    { new Guid("b4314be5-4c77-4fb6-82ad-302014682b13"), new Guid("aeaf4ec6-43b9-4a55-89ad-42e396bf3a0f") },
-                    { new Guid("a3314be5-4c77-4fb6-82ad-302014682a73"), new Guid("f3d8c57c-60fc-470e-9b8c-dc3ba1dd9279") },
-                    { new Guid("b4314be5-4c77-4fb6-82ad-302014682b13"), new Guid("82b65b37-197f-4b53-ab2a-e429ab916ede") },
-                    { new Guid("b4314be5-4c77-4fb6-82ad-302014682b13"), new Guid("8c4385d0-3a11-44d0-a568-0f5f15f0e8c0") },
-                    { new Guid("b4314be5-4c77-4fb6-82ad-302014682b13"), new Guid("a35d298a-d7c3-4377-9270-111466dab5aa") }
+                    { new Guid("a3314be5-4c77-4fb6-82ad-302014682a73"), new Guid("84c2840e-7489-471d-b8f6-c610c0e5c97f") },
+                    { new Guid("b4314be5-4c77-4fb6-82ad-302014682b13"), new Guid("e73a7108-7012-47f9-99a7-0276eccb5621") },
+                    { new Guid("b4314be5-4c77-4fb6-82ad-302014682b13"), new Guid("22185f7c-743a-4fb1-bbd7-3775e69a8baa") },
+                    { new Guid("b4314be5-4c77-4fb6-82ad-302014682b13"), new Guid("824ff7da-ffb5-4224-aba6-b2b6826c00c4") },
+                    { new Guid("b4314be5-4c77-4fb6-82ad-302014682b13"), new Guid("f83f2d71-07df-4da6-a082-e13b1bb25a0a") }
                 });
 
             migrationBuilder.CreateIndex(

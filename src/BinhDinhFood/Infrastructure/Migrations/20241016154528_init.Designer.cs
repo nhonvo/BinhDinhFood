@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BinhDinhFood.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241016153523_init")]
+    [Migration("20241016154528_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -112,93 +112,93 @@ namespace BinhDinhFood.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("82b65b37-197f-4b53-ab2a-e429ab916ede"),
+                            Id = new Guid("824ff7da-ffb5-4224-aba6-b2b6826c00c4"),
                             AccessFailedCount = 0,
                             Address = "Quy Nhơn, Bình Định",
                             AvatarId = 1,
-                            ConcurrencyStamp = "e9711ad6-9006-424b-bdca-846ecf2a6a5b",
+                            ConcurrencyStamp = "9d15c66d-8452-4c02-b284-0b74d8d92526",
                             Email = "truongnhon@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Võ Thương Trường Nhơn",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJnVR23K2+X+UxzRhVWklqfBMOPjGnD9qNgIgLkB7g7kGl9tZI1GdTdt1iYzyVX6ZA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBoVu0CHZ2f9akbacI3qs4TZk6W8WbV8b/rmlLwsnKVG8wTzJ4PvysSYXZvLLknlDw==",
                             PhoneNumber = "0905726748",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d268c3e6-5594-47b2-9f07-1a1dacc3ae24",
+                            SecurityStamp = "a8ec11b0-0618-4769-9e6f-7d2e3711535a",
                             Status = 0,
                             TwoFactorEnabled = false,
                             UserName = "truongnhon"
                         },
                         new
                         {
-                            Id = new Guid("8c4385d0-3a11-44d0-a568-0f5f15f0e8c0"),
+                            Id = new Guid("f83f2d71-07df-4da6-a082-e13b1bb25a0a"),
                             AccessFailedCount = 0,
                             Address = "Tây Ninh",
                             AvatarId = 2,
-                            ConcurrencyStamp = "9386dc4b-ca75-417d-8dab-57d3326d09b7",
+                            ConcurrencyStamp = "054dbf22-a6d4-4505-a352-04cde138cbf4",
                             Email = "hongthai@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Nguyễn Hồng Thái",
-                            PasswordHash = "AQAAAAIAAYagAAAAEMZsrqzuWI521WchTS7T8obUj1w43kV3eR0WeBstN/zO8Ajsqdfp0qlJhJdMwbPrbw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPsR+6ZRwNOhH9z6CgSjROfsXCo6/VcshY5eICTRNqjzhDnPXfo/eSPU+NulgnSsTA==",
                             PhoneNumber = "0905726748",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2b18e68e-decb-4e44-873a-1f842656dbf6",
+                            SecurityStamp = "bb8f021e-7188-486f-9790-7d780db7affc",
                             Status = 0,
                             TwoFactorEnabled = false,
                             UserName = "thai"
                         },
                         new
                         {
-                            Id = new Guid("a35d298a-d7c3-4377-9270-111466dab5aa"),
+                            Id = new Guid("22185f7c-743a-4fb1-bbd7-3775e69a8baa"),
                             AccessFailedCount = 0,
                             Address = "Nam Định",
                             AvatarId = 3,
-                            ConcurrencyStamp = "60d966a8-6772-4c9e-acbe-a013efc731d2",
+                            ConcurrencyStamp = "fe892764-5a06-4bb6-8a74-d318b8b4ffb5",
                             Email = "taiphamduc@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Phạm Đức Tài",
-                            PasswordHash = "AQAAAAIAAYagAAAAEG+HnUjOAOEuPGFwv8pdF01KNFX1+a+4fTbHpwaPd9DTWhFYwKOc5NSLuUpNx4qjUQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENJRCrzzBfP5DGe+nYZ6bUYrWS0JWyBlsbIpQhRwFczJQHpAdKqwEAQKOi/CASwSwQ==",
                             PhoneNumber = "0905726748",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9a503868-c3fb-43df-9059-95426fb22a14",
+                            SecurityStamp = "bcb7e7d1-dcfe-4cb0-9ebc-a3f535936f78",
                             Status = 0,
                             TwoFactorEnabled = false,
                             UserName = "tai"
                         },
                         new
                         {
-                            Id = new Guid("aeaf4ec6-43b9-4a55-89ad-42e396bf3a0f"),
+                            Id = new Guid("e73a7108-7012-47f9-99a7-0276eccb5621"),
                             AccessFailedCount = 0,
                             Address = "Saigon",
-                            ConcurrencyStamp = "2da3647e-87d0-4850-9bda-b0b069180644",
+                            ConcurrencyStamp = "0467173f-79f4-498b-b446-74fc950d3c47",
                             Email = "nhondeptrai@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "dotnet evil",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKTXM48qi2HdiwPTO0uOmBddywcTpcgbvgrcoJnw9dZbLoTyrcllZaESPi+WCHis1g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJvn5Bx8HYObJ6QbdO7D8J1NPGZVdI4twnTLCoqtmiStE7j6weJepMEiHvv+STqlYQ==",
                             PhoneNumber = "0905726748",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b87c19af-b68c-4c7d-8266-9cb4ba0bf591",
+                            SecurityStamp = "07716d19-4232-4cfb-8697-7bfada8b3b0d",
                             Status = 0,
                             TwoFactorEnabled = false,
                             UserName = "nhondeptrai"
                         },
                         new
                         {
-                            Id = new Guid("f3d8c57c-60fc-470e-9b8c-dc3ba1dd9279"),
+                            Id = new Guid("84c2840e-7489-471d-b8f6-c610c0e5c97f"),
                             AccessFailedCount = 0,
                             Address = "Admin City",
-                            ConcurrencyStamp = "10a29fef-1ddd-4d50-8099-3235aae3bc63",
+                            ConcurrencyStamp = "9540d3fb-a706-444b-9eed-f8e47219ad91",
                             Email = "admin@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Admin User",
-                            PasswordHash = "AQAAAAIAAYagAAAAEI9YtH0x0rwa2D02HR5YxBe2uIx+Qa1LpW1zoiPUygOsVq58BzUDrpqRXh+DNIJplA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOVAU2VijOxIhq+anTHAXHECq3jskPY50BycVRyGITw4/f3mN3NWq5XkhOrSpEediQ==",
                             PhoneNumber = "123456789",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ff5cbfb4-9a0c-4a2e-99ca-3cc9ef3221f0",
+                            SecurityStamp = "65cce18e-285f-44ea-84c1-4efe432b1c36",
                             Status = 0,
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -326,27 +326,27 @@ namespace BinhDinhFood.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("f3d8c57c-60fc-470e-9b8c-dc3ba1dd9279"),
+                            UserId = new Guid("84c2840e-7489-471d-b8f6-c610c0e5c97f"),
                             RoleId = new Guid("a3314be5-4c77-4fb6-82ad-302014682a73")
                         },
                         new
                         {
-                            UserId = new Guid("82b65b37-197f-4b53-ab2a-e429ab916ede"),
+                            UserId = new Guid("824ff7da-ffb5-4224-aba6-b2b6826c00c4"),
                             RoleId = new Guid("b4314be5-4c77-4fb6-82ad-302014682b13")
                         },
                         new
                         {
-                            UserId = new Guid("8c4385d0-3a11-44d0-a568-0f5f15f0e8c0"),
+                            UserId = new Guid("f83f2d71-07df-4da6-a082-e13b1bb25a0a"),
                             RoleId = new Guid("b4314be5-4c77-4fb6-82ad-302014682b13")
                         },
                         new
                         {
-                            UserId = new Guid("a35d298a-d7c3-4377-9270-111466dab5aa"),
+                            UserId = new Guid("22185f7c-743a-4fb1-bbd7-3775e69a8baa"),
                             RoleId = new Guid("b4314be5-4c77-4fb6-82ad-302014682b13")
                         },
                         new
                         {
-                            UserId = new Guid("aeaf4ec6-43b9-4a55-89ad-42e396bf3a0f"),
+                            UserId = new Guid("e73a7108-7012-47f9-99a7-0276eccb5621"),
                             RoleId = new Guid("b4314be5-4c77-4fb6-82ad-302014682b13")
                         });
                 });
@@ -697,49 +697,49 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2024, 10, 16, 22, 35, 22, 62, DateTimeKind.Local).AddTicks(3607),
+                            DateCreated = new DateTime(2024, 10, 16, 22, 45, 27, 673, DateTimeKind.Local).AddTicks(5921),
                             PathMedia = "https://example.com/avatar1.png",
                             Type = 1
                         },
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2024, 10, 16, 22, 35, 22, 62, DateTimeKind.Local).AddTicks(3633),
+                            DateCreated = new DateTime(2024, 10, 16, 22, 45, 27, 673, DateTimeKind.Local).AddTicks(5965),
                             PathMedia = "https://example.com/avatar2.png",
                             Type = 1
                         },
                         new
                         {
                             Id = 3,
-                            DateCreated = new DateTime(2024, 10, 16, 22, 35, 22, 62, DateTimeKind.Local).AddTicks(3634),
+                            DateCreated = new DateTime(2024, 10, 16, 22, 45, 27, 673, DateTimeKind.Local).AddTicks(5966),
                             PathMedia = "https://example.com/avatar3.png",
                             Type = 1
                         },
                         new
                         {
                             Id = 4,
-                            DateCreated = new DateTime(2024, 10, 16, 22, 35, 22, 334, DateTimeKind.Local).AddTicks(3766),
+                            DateCreated = new DateTime(2024, 10, 16, 22, 45, 27, 953, DateTimeKind.Local).AddTicks(130),
                             PathMedia = "slide_home_1.jpg",
                             Type = 1
                         },
                         new
                         {
                             Id = 5,
-                            DateCreated = new DateTime(2024, 10, 16, 22, 35, 22, 334, DateTimeKind.Local).AddTicks(3771),
+                            DateCreated = new DateTime(2024, 10, 16, 22, 45, 27, 953, DateTimeKind.Local).AddTicks(134),
                             PathMedia = "slide_home_1.jpg",
                             Type = 1
                         },
                         new
                         {
                             Id = 6,
-                            DateCreated = new DateTime(2024, 10, 16, 22, 35, 22, 334, DateTimeKind.Local).AddTicks(3772),
+                            DateCreated = new DateTime(2024, 10, 16, 22, 45, 27, 953, DateTimeKind.Local).AddTicks(135),
                             PathMedia = "slide_home_1.jpg",
                             Type = 1
                         },
                         new
                         {
                             Id = 7,
-                            DateCreated = new DateTime(2024, 10, 16, 22, 35, 22, 334, DateTimeKind.Local).AddTicks(3775),
+                            DateCreated = new DateTime(2024, 10, 16, 22, 45, 27, 953, DateTimeKind.Local).AddTicks(136),
                             PathMedia = "slide_home_1.jpg",
                             Type = 1
                         });
@@ -1172,21 +1172,11 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         new
                         {
                             ProductId = 1,
-                            CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 1,
-                            CategoryId = 3
+                            CategoryId = 1
                         },
                         new
                         {
                             ProductId = 2,
-                            CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 3,
                             CategoryId = 1
                         },
                         new
@@ -1196,8 +1186,8 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = 3,
-                            CategoryId = 2
+                            ProductId = 4,
+                            CategoryId = 1
                         },
                         new
                         {
@@ -1206,6 +1196,16 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         },
                         new
                         {
+                            ProductId = 4,
+                            CategoryId = 3
+                        },
+                        new
+                        {
+                            ProductId = 5,
+                            CategoryId = 1
+                        },
+                        new
+                        {
                             ProductId = 5,
                             CategoryId = 2
                         },
@@ -1216,8 +1216,8 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = 5,
-                            CategoryId = 1
+                            ProductId = 6,
+                            CategoryId = 2
                         },
                         new
                         {
@@ -1231,33 +1231,8 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = 7,
-                            CategoryId = 3
-                        },
-                        new
-                        {
-                            ProductId = 7,
-                            CategoryId = 1
-                        },
-                        new
-                        {
                             ProductId = 8,
                             CategoryId = 1
-                        },
-                        new
-                        {
-                            ProductId = 8,
-                            CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 8,
-                            CategoryId = 3
-                        },
-                        new
-                        {
-                            ProductId = 9,
-                            CategoryId = 3
                         },
                         new
                         {
@@ -1266,13 +1241,18 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = 10,
-                            CategoryId = 3
+                            ProductId = 9,
+                            CategoryId = 1
                         },
                         new
                         {
                             ProductId = 10,
                             CategoryId = 2
+                        },
+                        new
+                        {
+                            ProductId = 10,
+                            CategoryId = 3
                         },
                         new
                         {
@@ -1282,22 +1262,27 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         new
                         {
                             ProductId = 11,
+                            CategoryId = 3
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            CategoryId = 2
+                        },
+                        new
+                        {
+                            ProductId = 11,
                             CategoryId = 1
                         },
                         new
                         {
                             ProductId = 12,
-                            CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 13,
-                            CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 13,
                             CategoryId = 1
+                        },
+                        new
+                        {
+                            ProductId = 13,
+                            CategoryId = 3
                         },
                         new
                         {
@@ -1306,11 +1291,26 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         },
                         new
                         {
+                            ProductId = 14,
+                            CategoryId = 2
+                        },
+                        new
+                        {
+                            ProductId = 14,
+                            CategoryId = 3
+                        },
+                        new
+                        {
                             ProductId = 15,
                             CategoryId = 1
                         },
                         new
                         {
+                            ProductId = 15,
+                            CategoryId = 3
+                        },
+                        new
+                        {
                             ProductId = 16,
                             CategoryId = 2
                         },
@@ -1318,11 +1318,16 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         {
                             ProductId = 16,
                             CategoryId = 3
+                        },
+                        new
+                        {
+                            ProductId = 16,
+                            CategoryId = 1
                         },
                         new
                         {
                             ProductId = 17,
-                            CategoryId = 3
+                            CategoryId = 1
                         },
                         new
                         {
@@ -1332,27 +1337,27 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         new
                         {
                             ProductId = 18,
+                            CategoryId = 3
+                        },
+                        new
+                        {
+                            ProductId = 19,
+                            CategoryId = 3
+                        },
+                        new
+                        {
+                            ProductId = 19,
                             CategoryId = 2
                         },
                         new
                         {
                             ProductId = 19,
                             CategoryId = 1
-                        },
-                        new
-                        {
-                            ProductId = 19,
-                            CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 19,
-                            CategoryId = 3
                         },
                         new
                         {
                             ProductId = 20,
-                            CategoryId = 3
+                            CategoryId = 1
                         },
                         new
                         {
@@ -1362,12 +1367,12 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         new
                         {
                             ProductId = 21,
-                            CategoryId = 3
+                            CategoryId = 2
                         },
                         new
                         {
                             ProductId = 21,
-                            CategoryId = 2
+                            CategoryId = 3
                         },
                         new
                         {
@@ -1377,27 +1382,22 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         new
                         {
                             ProductId = 23,
+                            CategoryId = 2
+                        },
+                        new
+                        {
+                            ProductId = 24,
+                            CategoryId = 1
+                        },
+                        new
+                        {
+                            ProductId = 25,
+                            CategoryId = 1
+                        },
+                        new
+                        {
+                            ProductId = 25,
                             CategoryId = 3
-                        },
-                        new
-                        {
-                            ProductId = 24,
-                            CategoryId = 1
-                        },
-                        new
-                        {
-                            ProductId = 24,
-                            CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 25,
-                            CategoryId = 1
-                        },
-                        new
-                        {
-                            ProductId = 25,
-                            CategoryId = 2
                         });
                 });
 
