@@ -12,6 +12,7 @@ public interface IUnitOfWork
     IOrderRepository OrderRepository { get; }
     IOrderDetailRepository OrderDetailRepository { get; }
     IProductRepository ProductRepository { get; }
+    IProductCategoryRepository ProductCategoryRepository { get; }
     ICategoryRepository CategoryRepository { get; }
     IReviewRepository ReviewRepository { get; }
     IBannerRepository BannerRepository { get; }

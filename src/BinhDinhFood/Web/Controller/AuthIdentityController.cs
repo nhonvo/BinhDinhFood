@@ -45,7 +45,6 @@ public class AuthIdentityController(IAuthIdentityService authIdentityService) : 
         => Ok(await _authIdentityService.Get(cancellationToken));
 
     [HttpPost("resetPassword")]
-    [AllowAnonymous]
     public async Task<IActionResult> ResetPassword(ResetPasswordRequest request, CancellationToken cancellationToken)
     {
         await _authIdentityService.ResetPassword(request, cancellationToken);
@@ -53,7 +52,6 @@ public class AuthIdentityController(IAuthIdentityService authIdentityService) : 
     }
 
     [HttpPost("sendPasswordResetCode")]
-    [AllowAnonymous]
     public async Task<IActionResult> SendPasswordResetCode(SendPasswordResetCodeRequest request, CancellationToken cancellationToken)
         => Ok(await _authIdentityService.SendPasswordResetCode(request, cancellationToken));
 

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BinhDinhFood.Application.Repositories;
 
-public class GenericRepository<T>(ApplicationDbContext context) : IGenericRepository<T> where T : BaseModel
+public class GenericRepository<T>(ApplicationDbContext context) : IGenericRepository<T> where T : class
 {
     protected DbSet<T> _dbSet = context.Set<T>();
 
@@ -114,7 +114,7 @@ public class GenericRepository<T>(ApplicationDbContext context) : IGenericReposi
 
         return await query.FirstOrDefaultAsync();
     }
-    
+
     #endregion
     #region Update & delete
 

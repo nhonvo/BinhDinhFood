@@ -14,7 +14,7 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
     {
         var product = await _unitOfWork.ProductRepository.FirstOrDefaultAsync(
             filter: x => x.Id == id,
-            include: x => x.Include(x => x.ProductCategories).ThenInclude(x => x.Category));
+            include: x => x.Include(x => x.ProductCategories).ThenInclude(x => x.Category).Include(x => x.Reviews));
 
         return MapToProductResponse(product);
     }
@@ -38,7 +38,8 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
         var products = await _unitOfWork.ProductRepository.ToPagination(
             pageIndex: pageIndex,
             pageSize: pageSize,
-            filter: x => x.Name.ToLower().Contains(normalizeFilter),
+            filter: x => x.Name.ToLower().Contains(normalizeFilter)
+                || x.ProductCategories.Select(x => x.Category).Select(x => x.Name).Contains(normalizeFilter),
             include: x => x.Include(x => x.ProductCategories).ThenInclude(x => x.Category),
             orderBy: orderByExpression,
             ascending: ascending);
@@ -66,6 +67,146 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
         };
         await _unitOfWork.ReviewRepository.AddAsync(rateProduct);
     }
+    public async Task Create(ProductRequest request, CancellationToken cancellationToken)
+    {
+        // Step1: Initialize a new Product
+        Product product = new()
+        {
+            Name = request.Name,
+            Price = request.Price ?? 0,
+            Description = request.Description,
+            Amount = request.Amount ?? 0,
+            Discount = request.Discount ?? 0,
+            Image = request.Image,
+            DateCreated = DateTime.Now
+        };
+        // Step2: Loop through the provided categories in the request
+        foreach (var categoryDto in request.Categories)
+        {
+            Category category;
+
+            if (categoryDto.Id != null)
+            {
+                // If Id is provided, find the existing category
+                category = await _unitOfWork.CategoryRepository.FirstOrDefaultAsync(c => c.Id == categoryDto.Id.Value, null)
+                    ?? throw new Exception($"Category with Id {categoryDto.Id.Value} not found.");
+            }
+            else if (!string.IsNullOrEmpty(categoryDto.Name))
+            {
+                // If only Name is provided, check if it exists, otherwise create a new one
+                category = await _unitOfWork.CategoryRepository
+                            .FirstOrDefaultAsync(c => c.Name == categoryDto.Name);
+                if (category == null)
+                {
+                    category = new Category
+                    {
+                        Name = categoryDto.Name,
+                        DateCreated = DateTime.Now
+                    };
+
+                    // Add the new category to the context
+                    await _unitOfWork.CategoryRepository.AddAsync(category);
+                }
+            }
+            else
+            {
+                throw new Exception("Either Id or Name must be provided.");
+            }
+
+            // Add the relationship to ProductCategories 
+            // due to create so may be id of product or category not exist so we can new by id
+            await _unitOfWork.ProductCategoryRepository.AddAsync(new ProductCategory
+            {
+                Product = product,
+                Category = category
+            });
+        }
+        // Step3: TODO: Provide list image through media entity
+
+        // Add the new product to the context and save changes
+        await _unitOfWork.ProductRepository.AddAsync(product);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task Update(ProductUpdateRequest request, CancellationToken cancellationToken)
+    {
+        // Step 1: Fetch the existing product
+        var existingProduct = await _unitOfWork.ProductRepository
+                                .FirstOrDefaultAsync(p => p.Id == request.Id, include: p => p.Include(p => p.ProductCategories));
+
+        if (existingProduct == null)
+        {
+            throw new Exception($"Product with Id {request.Id} not found.");
+        }
+
+        // Step 2: Update the product details
+        existingProduct.Name = request.Name;
+        existingProduct.Price = request.Price ?? existingProduct.Price;
+        existingProduct.Description = request.Description;
+        existingProduct.Amount = request.Amount ?? existingProduct.Amount;
+        existingProduct.Discount = request.Discount ?? existingProduct.Discount;
+        existingProduct.Image = request.Image;  // Assuming you have logic to handle multiple images elsewhere
+        existingProduct.DateUpdated = DateTime.Now;
+
+        // Step 3: Handle Categories (Update existing categories and add new ones)
+        var newProductCategories = new List<ProductCategory>();
+
+        foreach (var categoryDto in request.Categories)
+        {
+            Category category;
+
+            if (categoryDto.Id != null)
+            {
+                // If CategoryId is provided, find the existing category
+                category = await _unitOfWork.CategoryRepository.FirstOrDefaultAsync(c => c.Id == categoryDto.Id.Value, null)
+                           ?? throw new Exception($"Category with Id {categoryDto.Id.Value} not found.");
+            }
+            else if (!string.IsNullOrEmpty(categoryDto.Name))
+            {
+                // If CategoryName is provided, check if it exists, or create a new one
+                category = await _unitOfWork.CategoryRepository.FirstOrDefaultAsync(c => c.Name == categoryDto.Name);
+                if (category == null)
+                {
+                    category = new Category
+                    {
+                        Name = categoryDto.Name,
+                        DateCreated = DateTime.Now
+                    };
+
+                    await _unitOfWork.CategoryRepository.AddAsync(category);
+                }
+            }
+            else
+            {
+                throw new Exception("Either Id or Name must be provided.");
+            }
+
+            // Add the relationship to ProductCategories
+            newProductCategories.Add(new ProductCategory
+            {
+                ProductId = request.Id, // Use the existing product ID
+                CategoryId = category.Id // Use the existing or newly created category ID
+            });
+        }
+
+        // Remove old ProductCategories and add the new ones
+        _unitOfWork.ProductCategoryRepository.DeleteRange(existingProduct.ProductCategories);
+        await _unitOfWork.ProductCategoryRepository.AddRangeAsync(newProductCategories);
+
+        // Step 4: TODO: Handle media/images update logic
+
+        // Step 5: Save the updated product and its associations
+        _unitOfWork.ProductRepository.Update(existingProduct);
+        await _unitOfWork.SaveChangesAsync(cancellationToken);
+    }
+
+
+    public async Task Delete(int id, CancellationToken token)
+    {
+
+        var product = await _unitOfWork.ProductRepository.FirstOrDefaultAsync(x => x.Id == id);
+        await _unitOfWork.ExecuteTransactionAsync(() => _unitOfWork.ProductRepository.Delete(product), token);
+    }
 
     private ProductResponse MapToProductResponse(Product product)
     {
@@ -80,27 +221,14 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
             Rating = product.Rating,
             Image = product.Image,
             DateCreated = product.DateCreated,
-            CategoryName = product.ProductCategories.Select(x => x.Category).Select(x => x.Name).ToList()
+            Category = product.ProductCategories?.Select(x => x.Category).Select(x => x.Name).ToList(),
+            Reviews = product.Reviews?.Select(review => new ReviewResponse
+            {
+                Id = review.Id,
+                Rating = review.Stars,
+                Comment = review.Content,
+                DateCreated = review.DateCreated,
+            }).ToList()
         };
-    }
-
-
-    // public async Task Add(BookDTO request, CancellationToken token)
-    // {
-    //     var book = _mapper.Map<Book>(request);
-    //     await _unitOfWork.ExecuteTransactionAsync(async () => await _unitOfWork.ProductRepository.AddAsync(book), token);
-    // }
-
-    // public async Task Update(Book request, CancellationToken token)
-    // {
-    //     var book = await _unitOfWork.ProductRepository.FirstOrDefaultAsync(x => x.Id == request.Id);
-    //     await _unitOfWork.ExecuteTransactionAsync(() => _unitOfWork.ProductRepository.Update(book), token);
-    // }
-
-    public async Task Delete(int id, CancellationToken token)
-    {
-
-        var product = await _unitOfWork.ProductRepository.FirstOrDefaultAsync(x => x.Id == id);
-        await _unitOfWork.ExecuteTransactionAsync(() => _unitOfWork.ProductRepository.Delete(product), token);
     }
 }

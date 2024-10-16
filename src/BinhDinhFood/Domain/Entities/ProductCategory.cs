@@ -1,6 +1,6 @@
 namespace BinhDinhFood.Domain.Entities;
 
-public class ProductCategory
+public class ProductCategory 
 {
     public int CategoryId { get; set; }
     public Category Category { get; set; }

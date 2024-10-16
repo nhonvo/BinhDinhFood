@@ -4,6 +4,7 @@ using BinhDinhFood.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BinhDinhFood.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241016062122_addDateUpdatedProduct")]
+    partial class addDateUpdatedProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -109,93 +112,93 @@ namespace BinhDinhFood.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("893edb85-6ad6-4b51-ab19-abbf36aa48c3"),
+                            Id = new Guid("c43f5add-dda5-4037-90a2-e9f5d6bddb6a"),
                             AccessFailedCount = 0,
                             Address = "Quy Nhơn, Bình Định",
                             AvatarId = 1,
-                            ConcurrencyStamp = "474fec87-a99f-42c0-9ffb-af1b1dec5976",
+                            ConcurrencyStamp = "77b02136-cf4f-4f92-a53c-6c89bbeadefb",
                             Email = "truongnhon@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Võ Thương Trường Nhơn",
-                            PasswordHash = "AQAAAAIAAYagAAAAEGtZycwvDr6JNb5TtuZN2/2ErDJ4fmhue/i1EcEP2Diym/MZYm/i9mmvu6E5QrlzPg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPWeb+FIO1S4IyuRipNrh8noNQ+ZYBAZeYorpxu5odgtoJqstG0TvkBBb02JetC0DQ==",
                             PhoneNumber = "0905726748",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "578f0f62-3675-41b2-b912-1c002c2cb26c",
+                            SecurityStamp = "89d2c6b6-31ea-4c55-9c33-b471a7667b7c",
                             Status = 0,
                             TwoFactorEnabled = false,
                             UserName = "truongnhon"
                         },
                         new
                         {
-                            Id = new Guid("98056de7-7a15-49c1-a2e4-63025b6c2459"),
+                            Id = new Guid("adec3ce5-ae04-4786-8301-f48fbe7c89e9"),
                             AccessFailedCount = 0,
                             Address = "Tây Ninh",
                             AvatarId = 2,
-                            ConcurrencyStamp = "e5e33dd6-4654-4546-96c2-7a9c3b68f107",
+                            ConcurrencyStamp = "ce6709bb-2b0a-4e16-bd8f-0f46963f1b69",
                             Email = "hongthai@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Nguyễn Hồng Thái",
-                            PasswordHash = "AQAAAAIAAYagAAAAEPQmtSQtfaPU1WutVRYgzXPbp5qez2aQuCr+UbsWuY3KXvDkZPVjdOUHSSVeqyWB5g==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEJG3KN9Zet6AmacMbfxAVl51uNpPlh0P/R9dO9kjW4+URkG3r/iODdqHCjTm/1sONg==",
                             PhoneNumber = "0905726748",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e4a3352f-e9f2-4c77-aab6-927ae210fd12",
+                            SecurityStamp = "5eb0ea2c-8fd6-4f39-8388-5fe525d185bd",
                             Status = 0,
                             TwoFactorEnabled = false,
                             UserName = "thai"
                         },
                         new
                         {
-                            Id = new Guid("692f60bb-6f77-4d68-9384-3768aef40288"),
+                            Id = new Guid("cddb5d93-f08d-4814-924e-93da85e40a48"),
                             AccessFailedCount = 0,
                             Address = "Nam Định",
                             AvatarId = 3,
-                            ConcurrencyStamp = "5fc19385-3dff-4590-b371-bbc2d48982c5",
+                            ConcurrencyStamp = "18ca2eb1-fdf6-43b0-bd2a-3c962a3eec49",
                             Email = "taiphamduc@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Phạm Đức Tài",
-                            PasswordHash = "AQAAAAIAAYagAAAAECBDfFNC4miILTUziVdNdv5G6NeV3Nqe6n2lKKnLXax6r0JKRDbuU3z/RxICyGB+kg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAPSkVwCKsuiEcfZre1iNp+Ry4QywGLkpJQUiZcJO5g4rPaOe0fkCvX91Zsb7MkKZw==",
                             PhoneNumber = "0905726748",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "2b82978f-280a-4c1b-a4f4-f3feacc80ddc",
+                            SecurityStamp = "d39c0520-15d1-46ea-8ba5-8a8a4cdceeb7",
                             Status = 0,
                             TwoFactorEnabled = false,
                             UserName = "tai"
                         },
                         new
                         {
-                            Id = new Guid("4a077118-0667-4f28-8cba-aac7279885ac"),
+                            Id = new Guid("474883ea-5f56-49c8-accd-9297d4451eed"),
                             AccessFailedCount = 0,
                             Address = "Saigon",
-                            ConcurrencyStamp = "93cee426-389f-4c6c-8228-e6ae467f51aa",
+                            ConcurrencyStamp = "ead10764-d0aa-404c-9a8c-ae12282f898c",
                             Email = "nhondeptrai@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "dotnet evil",
-                            PasswordHash = "AQAAAAIAAYagAAAAEK1lwj5RCOYbhLnJPIQU9XDoBWphYFqCIIfrXigR6eP74o5+bJzYZUijWBxZT8jIwQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEAKEUVE0gRU8DjT3HIzkfPbSiM9sr60Wx9Kli3JA8tkTkQ53flsf0IDRrxMDF6AKFw==",
                             PhoneNumber = "0905726748",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ff106eba-7080-47b1-9ef6-a8689ade3ba6",
+                            SecurityStamp = "fd1b2201-8110-4bb4-a480-6172c3f1722f",
                             Status = 0,
                             TwoFactorEnabled = false,
                             UserName = "nhondeptrai"
                         },
                         new
                         {
-                            Id = new Guid("97ed5ff5-7269-422e-9af7-777014f42e6c"),
+                            Id = new Guid("60edc3cc-2f7c-44c7-84d0-cd39922c53f1"),
                             AccessFailedCount = 0,
                             Address = "Admin City",
-                            ConcurrencyStamp = "aab287c2-9efd-4a09-bd19-1dcab30836b7",
+                            ConcurrencyStamp = "2c197ce7-3a05-46f6-a26a-420d17522f6a",
                             Email = "admin@example.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             Name = "Admin User",
-                            PasswordHash = "AQAAAAIAAYagAAAAEKPUivJNTzaXc2SrRj/EFfw6UbHkr80vZS1JRVMTIOWle0AcKWFS8PgT/6TUjD9LGw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEN03OBMpNzokSXmeZ0GTinma1Lddqkna8JKH9QyXWZxEQy2Im+HXWNaWk3OT9zV2Kg==",
                             PhoneNumber = "123456789",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "66819a05-b59b-4b96-bfc9-9977ef8fe633",
+                            SecurityStamp = "9122481c-ecd1-43c6-9617-dd8dfd4d7dc7",
                             Status = 0,
                             TwoFactorEnabled = false,
                             UserName = "admin"
@@ -351,27 +354,27 @@ namespace BinhDinhFood.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = new Guid("97ed5ff5-7269-422e-9af7-777014f42e6c"),
+                            UserId = new Guid("60edc3cc-2f7c-44c7-84d0-cd39922c53f1"),
                             RoleId = new Guid("a3314be5-4c77-4fb6-82ad-302014682a73")
                         },
                         new
                         {
-                            UserId = new Guid("893edb85-6ad6-4b51-ab19-abbf36aa48c3"),
+                            UserId = new Guid("c43f5add-dda5-4037-90a2-e9f5d6bddb6a"),
                             RoleId = new Guid("b4314be5-4c77-4fb6-82ad-302014682b13")
                         },
                         new
                         {
-                            UserId = new Guid("98056de7-7a15-49c1-a2e4-63025b6c2459"),
+                            UserId = new Guid("adec3ce5-ae04-4786-8301-f48fbe7c89e9"),
                             RoleId = new Guid("b4314be5-4c77-4fb6-82ad-302014682b13")
                         },
                         new
                         {
-                            UserId = new Guid("692f60bb-6f77-4d68-9384-3768aef40288"),
+                            UserId = new Guid("cddb5d93-f08d-4814-924e-93da85e40a48"),
                             RoleId = new Guid("b4314be5-4c77-4fb6-82ad-302014682b13")
                         },
                         new
                         {
-                            UserId = new Guid("4a077118-0667-4f28-8cba-aac7279885ac"),
+                            UserId = new Guid("474883ea-5f56-49c8-accd-9297d4451eed"),
                             RoleId = new Guid("b4314be5-4c77-4fb6-82ad-302014682b13")
                         });
                 });
@@ -722,49 +725,49 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2024, 10, 16, 13, 21, 37, 32, DateTimeKind.Local).AddTicks(8576),
+                            DateCreated = new DateTime(2024, 10, 16, 13, 21, 20, 921, DateTimeKind.Local).AddTicks(4282),
                             PathMedia = "https://example.com/avatar1.png",
                             Type = 1
                         },
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2024, 10, 16, 13, 21, 37, 32, DateTimeKind.Local).AddTicks(8614),
+                            DateCreated = new DateTime(2024, 10, 16, 13, 21, 20, 921, DateTimeKind.Local).AddTicks(4307),
                             PathMedia = "https://example.com/avatar2.png",
                             Type = 1
                         },
                         new
                         {
                             Id = 3,
-                            DateCreated = new DateTime(2024, 10, 16, 13, 21, 37, 32, DateTimeKind.Local).AddTicks(8615),
+                            DateCreated = new DateTime(2024, 10, 16, 13, 21, 20, 921, DateTimeKind.Local).AddTicks(4308),
                             PathMedia = "https://example.com/avatar3.png",
                             Type = 1
                         },
                         new
                         {
                             Id = 4,
-                            DateCreated = new DateTime(2024, 10, 16, 13, 21, 37, 230, DateTimeKind.Local).AddTicks(8826),
+                            DateCreated = new DateTime(2024, 10, 16, 13, 21, 21, 115, DateTimeKind.Local).AddTicks(4519),
                             PathMedia = "slide_home_1.jpg",
                             Type = 1
                         },
                         new
                         {
                             Id = 5,
-                            DateCreated = new DateTime(2024, 10, 16, 13, 21, 37, 230, DateTimeKind.Local).AddTicks(8830),
+                            DateCreated = new DateTime(2024, 10, 16, 13, 21, 21, 115, DateTimeKind.Local).AddTicks(4530),
                             PathMedia = "slide_home_1.jpg",
                             Type = 1
                         },
                         new
                         {
                             Id = 6,
-                            DateCreated = new DateTime(2024, 10, 16, 13, 21, 37, 230, DateTimeKind.Local).AddTicks(8830),
+                            DateCreated = new DateTime(2024, 10, 16, 13, 21, 21, 115, DateTimeKind.Local).AddTicks(4531),
                             PathMedia = "slide_home_1.jpg",
                             Type = 1
                         },
                         new
                         {
                             Id = 7,
-                            DateCreated = new DateTime(2024, 10, 16, 13, 21, 37, 230, DateTimeKind.Local).AddTicks(8831),
+                            DateCreated = new DateTime(2024, 10, 16, 13, 21, 21, 115, DateTimeKind.Local).AddTicks(4532),
                             PathMedia = "slide_home_1.jpg",
                             Type = 1
                         });
@@ -846,7 +849,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DateUpdated")
+                    b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
@@ -882,6 +885,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 1,
                             Amount = 100,
                             DateCreated = new DateTime(2022, 8, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Mặc dù chả cá có thể là đặc sản và có mặt ở nhiều nơi nhưng không phải hương vị chả cá nào cũng như nhau. Sở dĩ chả cá Quy Nhơn là một trong các đặc sản Bình Định nổi tiếng vì vị ngon và lạ đặc trưng. Với nguyên liệu được tuyển chọn từ những con cá biển tươi ngon nhất và công thức chế biến độc quyền của người dân đã tạo nên sự khác biệt cho chả cá Quy Nhơn.\n Chả cá Quy Nhơn phổ biến có 2 loại là chả hấp và chả chiên. Ngoài việc thưởng thức thực tiếp miếng chả dai, giòn, thơm ngon đặc biệt, các bạn có thể dùng chả cá này để làm “topping” cho các món ăn khác như cơm, bún, phở. Đây cũng là một lựa chọn thích hợp để bạn mua về làm quà cho người thân và bạn bè nữa đó.",
                             Discount = 10,
                             Image = "chaca.png",
@@ -894,6 +898,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 2,
                             Amount = 20,
                             DateCreated = new DateTime(2022, 8, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Tôm khô còn gọi là tôm nõn khô là một trong các loại thực phẩm giàu dinh dưỡng rất tốt cho sức khỏe. Chúng được làm từ tôm tươi tự nhiên và phơi khô dưới ánh nắng mặt trời hoặc sấy khô thủ công. 1kg tôm tươi làm được khoảng 2 lạng tôm khô, thành phẩm tôm có kích thước nhỏ hơn, có vị ngọt thanh đậm đà rất thơm.\nGiá trị dinh dưỡng của tôm vẫn giữ gần như nguyên vẹn, trong 100g tôm khô có: 347 kcal, 75,6g đạm, 235mg canxi, 4,6mg sắt, vitamin B1, B2, PP và 3,8g chất béo chưa bảo hòa.",
                             Discount = 20,
                             Image = "tom-kho-gia-bao-nhieu-1kg.jpg",
@@ -906,6 +911,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 3,
                             Amount = 100,
                             DateCreated = new DateTime(2022, 8, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Nhum có rất nhiều loại khác nhau, nhưng mắm nhum tại Bình Định đặc biệt được làm từ con nhum ta, tạo hương vị ngon đến nỗi “ăn với món gì cũng ngon”. Đồng thời mắm Nhum tại Mỹ An cũng từng là đặc sản Bình Định được tiến vua, và hiện nay là một món ăn mà du khách không thể bỏ lỡ khi đến Bình Định du lịch.\nNhum vốn là động vật với bê ngoài gai góc có thể làm đau người dân nếu đạp phải, và người dân nơi đây đã biến chúng thành một món ngon tuyệt vời. Mắm nhum còn có thể là món quà hảo hạng giúp bạn dùng làm quà tặng sau khi đến Bình Định du lịch, nếu được thì bạn nên đến Mỹ An để mua mắm nhum nhé.",
                             Discount = 5,
                             Image = "mamnhum.png",
@@ -918,6 +924,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 4,
                             Amount = 55,
                             DateCreated = new DateTime(2022, 8, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "cá cơm giàu vitamin A, nhiều axit béo, vitamin E, canxi, Vitamin A, giúp mắt sáng, ngăn ngừa các bệnh về mắt, duy trì làn da khỏe mạnh. Ăn cá cơm giúp giảm lượng cholesterol trong máu, ngăn ngừa các bệnh về tim mạch.\nCá cơm cung cấp một lượng lớn protein và đạm, nên chúng được sử dụng để làm nước mắm nhĩ",
                             Discount = 15,
                             Image = "cach-lam-ca-kho-tam-gia-vi.jpg",
@@ -930,6 +937,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 5,
                             Amount = 100,
                             DateCreated = new DateTime(2022, 8, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Nem chua là một trong các đặc sản Bình Định được chế biến cầu kỳ và công phu. Với công thức hương vị đặc biệt để ướp những miếng thịt heo tươi ngon nhất và gói bên trong những lớp lá khế non và lớp lá chuối cầu kì, hương vị thơm ngon nổi tiếng của nem chợ huyện cũng từ đó mà vang xa.\nĐến Bình Định ngồi cắn một miếng nem và nhâm nhi một ít rượu Bàu Đá cũng đủ để bạn nhớ về hương vị ấy mỗi khi nhắc đến chuyến du lịch này đó. Ngoài ra, nem cũng là lựa chọn thích hợp để làm quà tặng, với hương vị tuyệt vời ấy ai lại lỡ không thích món quà mà bạn tặng.",
                             Discount = 20,
                             Image = "nem.png",
@@ -942,6 +950,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 6,
                             Amount = 100,
                             DateCreated = new DateTime(2022, 8, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "“Muốn ăn bánh ít lá gai Lấy chồng Bình Định sợ dài đường đi\"Bánh ít lá gai là một trong các đặc sản Bình Định nổi tiếng. Để làm nên những chiếc bánh ít thơm ngon nức tiếng, người làm bánh phải lựa chọn và chuẩn bị những chiếc lá gai rất cầu kỳ vì đây là yếu tố quan trong quyết định đến hương vị của bánh. Kế đến là nếp và nhân cũng được lựa chọn và chế biến từ những nguyên liệu ngon nhất.\n Sau một quá trình xay bột, làm nhân, gói và hấp bánh, những chiếc bánh ít lá gai thơm ngon, dẻo dai với vị ngọt của nhân đậu xanh hoặc nhân dừa đã được ra lò. Với đặc sản này bạn nên thử ít nhất một lần, và đây cũng được xem là một món quà mà chắc chắn người thân của bạn sẽ thích.",
                             Discount = 10,
                             Image = "banhit.png",
@@ -954,6 +963,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 7,
                             Amount = 100,
                             DateCreated = new DateTime(2022, 8, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Mực rim là món ăn phổ biến khiến du thích yêu thích có mặt ở hầu hết những vùng biển lớn. Tuy nhiên mực rim hay còn gọi là mực ngào Bình Định có một hương vị thơm ngon rất riêng từ vùng biển duyên hải miền Trung. Mực rim Quy Nhơn được người dân làm từ những con mực tươi nhất và hương vị không nơi nào giống được.\n Với hương thơm ngon đặc biệt cùng vị cay cay kích thích vị giác, mực rim trở thành món ăn vặt siêu ngon và được mọi người vô cùng yêu thích. Đồng thời, với những hũ mực rim được làm sẵn giúp bạn có thể dễ dàng lựa chọn đặc sản Bình Định này để làm quà tặng.",
                             Discount = 5,
                             Image = "mucrim.png",
@@ -966,6 +976,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 8,
                             Amount = 100,
                             DateCreated = new DateTime(2022, 8, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Với tên gọi độc và lạ của món Chả Tré, món đặc sản Bình Định này đã gợi nên sự tò mò với nhiều du khách muốn tìm hiểu và được thử món ăn độc đáo này. Mặc dù đã có mặt phổ biến khắp các tỉnh thành Trung Trung bộ, nhưng hương vị thơm ngon nhất vẫn là chả Tré Bình Định với cách làm và công thức chỉ vùng đất Bình Định mới làm nên được.\n Thành phần nguyên liệu làm chả Tré cũng tương tự với các loại nem, bì của miền bắc. Nhưng Tré Bình Định được người dân nơi đây khéo léo thay thế bằng nhiều loại nguyên liệu khác như tai heo, lỗ mũi heo, da heo, thịt ba chỉ,...Tré cũng thích hợp để trở thành món quà mang về khi bạn đến thăm Bình Định.",
                             Discount = 20,
                             Image = "chatre.png",
@@ -978,6 +989,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 9,
                             Amount = 100,
                             DateCreated = new DateTime(2022, 8, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Nếu như Hà Nội có bánh cốm, Hải Dương có bánh đậu xanh, Vũng Tàu có bánh bông lan trứng muối,...và những loại bánh làm quà đặc trưng của nhiều tỉnh khác thì Quy Nhơn lại bánh thuẫn nổi tiếng để làm quà tặng cho người thân và bạn bè. Đây cũng là loại bánh phổ biến vào ngày Tết của người dân miền Trung.\n Bánh thuẫn có vị thơm ngon từ nguyên liệu như trứng gà, bột năng, bột bình tinh, đường, đâu ăn, vani và đặc biệt là khuôn đúc bánh. Quá trình đúc bánh bằng than đã góp phần tạo nên được mùi thơm đặc trưng của đặc sản Bình Định này.",
                             Discount = 0,
                             Image = "banhthuan.png",
@@ -990,6 +1002,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 10,
                             Amount = 100,
                             DateCreated = new DateTime(2022, 8, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Sở dĩ rượu Bàu đá được biết đến là một trong những đặc sản Bình Định nổi tiếng vì đây là loại rượu không nấu từ gạo thông thường như những loại rượu khác. Rượu Bàu đá Bình Định được nấu từ gạo lứt và chỉ khi sử dụng một nguồn nước trong một làng của tỉnh Bình Định mới đạt được hương vị ngon nhất.\n Từ xưa, rượu Bàu đá đã được tiến cung cho vua nên được xếp vào loại đặc sản thượng hạng của Bình Định. Rượu nổi tiếng dễ say vì có độ cồn rất cao, lên đến 50. Nhưng điều khiến người ta yêu thích hương vị của rượu là vị thanh mát mang lại cảm giác sảng khoái vô cùng. Đây cũng là một món quà thích hợp thể hiện sự kính trọng bạn có thể chọn.",
                             Discount = 0,
                             Image = "ruoubauda.png",
@@ -1002,6 +1015,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 11,
                             Amount = 100,
                             DateCreated = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Một trong những món ăn phải kể đến đầu tiên trong dah sách những món đặc sản Bình Định đó chính là mực ngào. Mực ngào có một hương vị thơm ngon rất riêng thu hút khách du lịch. Để chế biến được món mực ngào người đầu bếp đã phải rất công phu, tài tình tỉ mỉ chăm chút cho món ăn. Mực sau khi đươc thu mua từ những cảng hải sản tươi ngon được đem về sơ chế và chế biến luôn để giữ được độ tươi ngon nguyên vẹn  của mực.\nMực được  ướp cùng tiêu, tỏi, ớt, mắm và một số loại gia vị khác để tạo độ thơm ngon đặc trưng của mực. Món ăn này có vị cay đặc trưng, thơm thơm của các loại gia vị sẽ làm bạn thích thú và muốn ăn ngay từ cái nhìn đầu tiên. Gía của một cân mực ngào giao động từ  200.000 – 400.000 đồng.",
                             Discount = 0,
                             Image = "muc-ngao-ot-dac-san-binh-dinh-lam-qua.jpg",
@@ -1014,6 +1028,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 12,
                             Amount = 100,
                             DateCreated = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Cá chỉ vàng là loài cá nước mặn (còn gọi là cá ngân chỉ) thức ăn của chúng là những sinh vật nổi. Thân cá dẹp hình thoi, hai bên có một sọc vàng chạy thẳng từ sau mắt đến gần vây đuôi, phần lưng màu xanh xám, bụng trắng bạc, trên mang cá có chấm đen, vây đuôi vàng, đầu cá hơi nhọn, miệng chếch, hàm dưới nhô ra.\n Cá chỉ vàng thịt trắng có vị ngọt thơm, giàu vitamin B, Omega 3 giúp ngăn ngừa bệnh tim mạch, tốt cho não bộ, cải thiện giấc ngủ...",
                             Discount = 0,
                             Image = "cach-lua-ca-chi-vang-kho-ngon.jpg",
@@ -1026,6 +1041,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 13,
                             Amount = 50,
                             DateCreated = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Khi đến du lịch Bình Định không thể không nhắc tới  món bánh tráng nước dừa. Đây là một món đặc sản nơi xứ dừa. Công đoạn chế biến bánh không quá cầu kì nhưng đòi hỏi sự tỉ mỉ, có kinh nghiệm của người tráng bánh. Nguyên liệu của bánh chủ yếu là Củ Mì ( củ sắn) được sắt nhỏ, xay lấy nước. Cơm dừa được nạo thành sợi nhỏ,  nước dừa và vừng đen. Tất cả đều được đổ chung vào một nồi lớn, trộn đều cho các gia vị hòa quyện cùng với nhau và được đun nóng. Bên cạnh đó có một chảo đang được đun nóng. Khi chảo nóng lên người tráng bánh sẽ dùng một cái gáo làm bằng sọ dừa có cán dài múc từng gáo nước bánh lên chảo và tráng đều. Tráng bánh phải đều tay để cơm dừa và vừng đen được dàn đều mặt bánh. Bánh phải tròn mỏng và không bị chỗ dày, chỗ mỏng thì mới là bánh đạt chuẩn. cứ tráng được mười chiếc  bánh thì đem ra phơi. khi ăn bạn cần nướng lên để bánh có độ phồng và dậy hết mùi thơm của vừng, của nước cốt dừa và cơm dừa. Có thể ăn bánh thay cơm ăn chỉ thấy no mà không thấy chán.",
                             Discount = 0,
                             Image = "Banh-trang-nuoc-dua-am-thuc-binh-dinh.jpg",
@@ -1038,6 +1054,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 14,
                             Amount = 50,
                             DateCreated = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Nước mắm nhĩ hay nhỉ còn gọi là nước mắm kéo lù hoặc mắm cốt, là loại nước mắm được hứng từ các giọt nước mắm đầu tiên được “nhỉ” ra. Hay nói cách khác là rò rỉ ra từng giọt, từng giọt từ lỗ van đang đóng kín ở đáy của thùng hay lu vại đang muối cá đã đến thời gian chín có thể lấy nước mắm thành phẩm.",
                             Discount = 0,
                             Image = "nuoc-mam-nhi-nguyen-chat-tam-quan-binh-dinh.jpg",
@@ -1050,6 +1067,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 15,
                             Amount = 50,
                             DateCreated = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Con ruốc còn gọi là tép biển, tép moi, ở Việt Nam được coi là đặc sản. Chúng là động vật giáp xác 10 chân sống ở vùng nước mặn ven biển hay nước lợ. Ruốc dạng như tôm nhỏ, chỉ lớn khoảng 10–40 mm Do kích thước của con ruốc biển nhỏ, nên thường được dùng để làm nước mắm ruốc (là một loại mắm đặc sản của miền biển) hoặc phơi khô ruốc để chế biến thành các món ăn dân dã đậm đà hương vị biển.",
                             Discount = 0,
                             Image = "các-món-từ-ruốc-khô.jpg",
@@ -1062,6 +1080,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 16,
                             Amount = 50,
                             DateCreated = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Hải sản Quy Nhơn nổi tiếng khắp cả nước với nhiều loại hải sản phong phú đa dạng, trong đó Cá lao là một loại hải sản khô đặc biệt thơm ngon, chúng là một loại cá biển, sau khi được ngư dân đánh bắt được xẻ thịt, phơi khô tạo nên một loại thực phẩm thơm ngon đúng chất tinh túy từ biển.",
                             Discount = 0,
                             Image = "cá-lao-khô-quy-nhơn.jpg",
@@ -1074,6 +1093,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 17,
                             Amount = 50,
                             DateCreated = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Bánh hồng Tam Quan là một trong những món đặc sản của Bình Định, được xem như biểu trưng cho tin vui, thường xuất hiện trong các dịp cưới hỏi của người dân nơi đây.\n Điều đặc biệt bánh hồng Tam Quan là bánh được làm từ gạo nếp Ngự nổi tiếng dẻo thơm. Do hoàn toàn không có chất bảo quản nên bánh chỉ để được 5 ngày thôi bạn nhé.",
                             Discount = 0,
                             Image = "banhhong.jpg",
@@ -1086,6 +1106,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 18,
                             Amount = 50,
                             DateCreated = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Bánh tráng chả cá là một trong những đặc sản nổi tiếng gần xa của Bình Định. Bánh tráng chả cá được làm từ nguyên liệu chính là cá cùng một ít gia vị và bột năng. Để món ăn đúng vị hơn bạn nên ăn kèm với rau răm nhé.",
                             Discount = 0,
                             Image = "banhtrangchaca.jpg",
@@ -1098,6 +1119,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 19,
                             Amount = 100,
                             DateCreated = new DateTime(2022, 9, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Nếu đã đến với đất Bình Định thì bạn nhất định phải thử qua món mực ngào vị tỏi nhé. Món ăn là sự hòa quyện giữa vị mực vừa tươi vừa giòn cùng vị cay đặc trưng của ớt và tỏi. Bạn nhớ bảo quản món này ở nhiệt độ thoáng mát nha.",
                             Discount = 0,
                             Image = "muc-ngao-ot-dac-san-binh-dinh-lam-qua.jpg",
@@ -1110,6 +1132,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 20,
                             Amount = 45,
                             DateCreated = new DateTime(2022, 9, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Chả ram tôm đất là một trong những món ngon đặc sản nổi tiếng của miền đất võ Bình Định, món ăn này phù hợp với mọi lứa tuổi, từ già đến trẻ đều yêu thích và thường xuyên xuất hiện trong các bữa cơm gia đình.\n Miếng chả ram tôm đất Bình Định giòn tan của lớp bánh tráng chiên bên ngoài, bên trong có thịt tôm ngọt tự nhiên, một chút ngầy ngậy của thịt mỡ, tất cả tạo nên hương vị đặc biệt hấp dẫn, gây nghiện cho thực khách khi dùng thử món ăn độc đáo này.",
                             Discount = 0,
                             Image = "chả-ram-tôm-đất-quy-nhơn-ngon-loại-1.jpg",
@@ -1122,6 +1145,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 21,
                             Amount = 44,
                             DateCreated = new DateTime(2022, 9, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Ghẹ sữa là ghẹ còn non có kích thước nhỏ, cỡ ngón chân cái người lớn, nhiều nhất vào tháng 5 đến tháng 11, thời điểm ghẹ sinh sản nhiều.\nGhẹ sữa có hàm lượng dinh dưỡng cao, nhiều canxi, đạm, sắt, các vitamin A, B1, B2, C và đặc biệt là magnesium, calcium và axit béo omega 3, có lợi cho sức khỏe và rất tốt cho người có vấn đề tim mạch và hỗ trợ tăng trưởng chiều cao cho trẻ.",
                             Discount = 15,
                             Image = "ghe-sua-chien-gion.jpg",
@@ -1134,6 +1158,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 22,
                             Amount = 50,
                             DateCreated = new DateTime(2022, 9, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Mực một nắng là loại hải sản đặc biệt, để làm mực 1 nắng được ngon, sau khi xẻ phải rửa mực tươi bằng nước biển, rồi phơi dưới trời nắng gắt. Chỉ được phơi qua một nắng để mực vẫn giữ được độ tươi ngon, bên ngoài ráo nước, bên trong dẻo và giòn. \nNhững vùng biển có nước biển càng mặn thì mực 1 nắng sẽ càng ngon, đặc biệt là các khu vực miền Trung. Mực một nắng có nhiều loại, nhưng mực ngon nhất vẫn là làm từ những con mực ống và mực lá.\nĐây là một trong các đặc sản nổi tiếng của Bình Định được du khách tìm mua làm quà.",
                             Discount = 20,
                             Image = "muc-mot-nang-gia-bao-nhieu-1kg.jpg",
@@ -1146,6 +1171,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 23,
                             Amount = 12,
                             DateCreated = new DateTime(2022, 9, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Cá đù hay Cá lù đù là một họ cá thuộc bộ Cá vược (Perciformes) có kích thước lớn, chúng sống ở vùng biển nhiệt đới, cận nhiệt đới. Tại vùng biển Việt Nam, có khoảng 270 loài trong 70 chi, đáng kể nhất là cá lù đù bạc chiếm số lượng lớn trong 20 loài như cá lù đù măng đen, cá lù đù lỗ tai đen, cá lù đù kẽm, cá lù đù sóc, cá lù đù đỏ dạ...\nChúng sống thành từng đàn lớn ở gần bờ, thường núp trong những rạn, hốc đá. Thức ăn của chúng là các loại động vật thủy sinh, côn trùng hay cá nhỏ, giáp xác.\n Vì muốn dự trữ được lâu nên sau khi được đánh bắt, ngư dân chọn cá tươi làm sạch, xẻ lóc bỏ xương, bỏ đầu để ráo. Sau đó, đem phơi khô dưới 1 nắng gắt để cá se lại để thịt dẻo dẻo. Hoặc có thể phơi cho thật khô để dự trữ ăn dần.\n Cá đù 1 nắng phần thân sau của cá có nhiều mỡ, rất béo. Loại cá này có vị ngọt dịu deo dẻo và đặc biệt thịt mềm, hậu bùi, có thể chế biến thành nhiều món ngon hấp dẫn. \nHiện nay, đây là đặc sản được rất nhiều người săn lùng, kể cả người nước ngoài cũng rất thích thú với vị ngon ngọt của nó “đặc biệt là giá cả phải chăng”.",
                             Discount = 0,
                             Image = "cá-đù-một-nắng.jpg",
@@ -1158,6 +1184,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 24,
                             Amount = 15,
                             DateCreated = new DateTime(2022, 9, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Chả Bò (Giò Bò) Bình Định Chính Gốc – Cây 500G",
                             Discount = 0,
                             Image = "cha-bo-binh-dinh-nha-lam.jpg",
@@ -1170,6 +1197,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                             Id = 25,
                             Amount = 20,
                             DateCreated = new DateTime(2022, 9, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateUpdated = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Đến với Bình Định, du khách sẽ được thưởng thức những món được làm từ các loại bánh tráng. Nào là bánh tráng mè nướng, bánh tráng nước cốt dừa Tam Quan hay bánh tráng bột mì nhứt nướng, bánh tráng gạo nhúng, … loại bánh nào cũng ngon nhứt nách. Hôm nay, Đặc Sản Bình Định Online xin được giới thiệu đến quý khách một loại bánh tráng độc đáo hơn cả đó là bánh tráng nhúng giòn Phù Mỹ. Hãy cùng khám phá bạn nhé. Nếu có cơ hội đến Bình Định hãy thử một lần thưởng thức loại bánh tráng đặc sản Phù Mỹ để tự cảm nhận hương vị thơm ngon đặc trưng của nó nhé.",
                             Discount = 0,
                             Image = "banh-trang-nhung-binh-dinh.jpg",
@@ -1197,7 +1225,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         new
                         {
                             ProductId = 1,
-                            CategoryId = 2
+                            CategoryId = 3
                         },
                         new
                         {
@@ -1217,11 +1245,6 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         new
                         {
                             ProductId = 3,
-                            CategoryId = 3
-                        },
-                        new
-                        {
-                            ProductId = 3,
                             CategoryId = 2
                         },
                         new
@@ -1232,7 +1255,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         new
                         {
                             ProductId = 4,
-                            CategoryId = 1
+                            CategoryId = 2
                         },
                         new
                         {
@@ -1241,23 +1264,23 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         },
                         new
                         {
+                            ProductId = 4,
+                            CategoryId = 1
+                        },
+                        new
+                        {
+                            ProductId = 5,
+                            CategoryId = 1
+                        },
+                        new
+                        {
                             ProductId = 5,
                             CategoryId = 2
                         },
                         new
                         {
-                            ProductId = 5,
-                            CategoryId = 1
-                        },
-                        new
-                        {
                             ProductId = 6,
                             CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 6,
-                            CategoryId = 1
                         },
                         new
                         {
@@ -1266,23 +1289,13 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         },
                         new
                         {
+                            ProductId = 6,
+                            CategoryId = 1
+                        },
+                        new
+                        {
                             ProductId = 7,
                             CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 7,
-                            CategoryId = 3
-                        },
-                        new
-                        {
-                            ProductId = 7,
-                            CategoryId = 1
-                        },
-                        new
-                        {
-                            ProductId = 8,
-                            CategoryId = 1
                         },
                         new
                         {
@@ -1293,6 +1306,11 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         {
                             ProductId = 8,
                             CategoryId = 3
+                        },
+                        new
+                        {
+                            ProductId = 8,
+                            CategoryId = 1
                         },
                         new
                         {
@@ -1301,16 +1319,6 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = 9,
-                            CategoryId = 1
-                        },
-                        new
-                        {
-                            ProductId = 10,
-                            CategoryId = 1
-                        },
-                        new
-                        {
                             ProductId = 10,
                             CategoryId = 3
                         },
@@ -1318,6 +1326,21 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         {
                             ProductId = 10,
                             CategoryId = 2
+                        },
+                        new
+                        {
+                            ProductId = 10,
+                            CategoryId = 1
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            CategoryId = 3
+                        },
+                        new
+                        {
+                            ProductId = 11,
+                            CategoryId = 1
                         },
                         new
                         {
@@ -1327,12 +1350,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         new
                         {
                             ProductId = 12,
-                            CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 12,
-                            CategoryId = 3
+                            CategoryId = 1
                         },
                         new
                         {
@@ -1347,6 +1365,16 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         new
                         {
                             ProductId = 14,
+                            CategoryId = 1
+                        },
+                        new
+                        {
+                            ProductId = 15,
+                            CategoryId = 1
+                        },
+                        new
+                        {
+                            ProductId = 15,
                             CategoryId = 3
                         },
                         new
@@ -1356,12 +1384,12 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = 15,
+                            ProductId = 16,
                             CategoryId = 3
                         },
                         new
                         {
-                            ProductId = 15,
+                            ProductId = 16,
                             CategoryId = 1
                         },
                         new
@@ -1371,18 +1399,8 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         },
                         new
                         {
-                            ProductId = 16,
-                            CategoryId = 3
-                        },
-                        new
-                        {
                             ProductId = 17,
                             CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 17,
-                            CategoryId = 3
                         },
                         new
                         {
@@ -1392,12 +1410,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         new
                         {
                             ProductId = 18,
-                            CategoryId = 1
-                        },
-                        new
-                        {
-                            ProductId = 19,
-                            CategoryId = 1
+                            CategoryId = 3
                         },
                         new
                         {
@@ -1417,11 +1430,6 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         new
                         {
                             ProductId = 20,
-                            CategoryId = 3
-                        },
-                        new
-                        {
-                            ProductId = 21,
                             CategoryId = 3
                         },
                         new
@@ -1432,27 +1440,22 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         new
                         {
                             ProductId = 22,
-                            CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 23,
                             CategoryId = 3
                         },
                         new
                         {
+                            ProductId = 22,
+                            CategoryId = 2
+                        },
+                        new
+                        {
+                            ProductId = 22,
+                            CategoryId = 1
+                        },
+                        new
+                        {
                             ProductId = 23,
                             CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 24,
-                            CategoryId = 2
-                        },
-                        new
-                        {
-                            ProductId = 24,
-                            CategoryId = 3
                         },
                         new
                         {
@@ -1462,12 +1465,7 @@ namespace BinhDinhFood.Infrastructure.Migrations
                         new
                         {
                             ProductId = 25,
-                            CategoryId = 1
-                        },
-                        new
-                        {
-                            ProductId = 25,
-                            CategoryId = 3
+                            CategoryId = 2
                         });
                 });
 

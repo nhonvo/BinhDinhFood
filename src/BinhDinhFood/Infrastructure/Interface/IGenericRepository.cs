@@ -3,7 +3,7 @@ using BinhDinhFood.Application.Common.Models;
 
 namespace BinhDinhFood.Infrastructure.Interface;
 
-public interface IGenericRepository<T> where T : BaseModel
+public interface IGenericRepository<T> where T : class
 {
     Task AddAsync(T entity);
     Task AddRangeAsync(IEnumerable<T> entities);

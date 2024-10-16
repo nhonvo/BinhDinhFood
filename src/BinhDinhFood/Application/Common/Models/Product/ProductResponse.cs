@@ -10,6 +10,15 @@ public class ProductResponse
     public int? Discount { get; set; }
     public int? Rating { get; set; }
     public string? Image { get; set; }
-    public DateTime? DateCreated { get; set; } = DateTime.Now;
-    public List<string>? CategoryName { get; set; }
+    public DateTime? DateCreated { get; set; }
+    public List<string>? Category { get; set; }
+    public List<ReviewResponse> Reviews { get; set; }
+}
+
+public class ReviewResponse
+{
+    public int? Id { get; set; }
+    public int? Rating { get; set; }
+    public string? Comment { get; set; }
+    public DateTime? DateCreated { get; set; }
 }

@@ -1,5 +1,6 @@
 using BinhDinhFood.Application.Common.Interfaces;
 using BinhDinhFood.Application.Common.Models.Product;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BinhDinhFood.Web.Controller;
@@ -21,10 +22,30 @@ public class ProductController(IProductService productService) : BaseController
     public async Task<IActionResult> Get(int pageIndex = 0, int pageSize = 10, bool ascending = false, string orderBy = "", string filter = "")
         => Ok(await _productService.Get(pageIndex, pageSize, ascending, orderBy, filter));
 
-    [HttpPost]
+    [HttpPost("review")]
+    [Authorize(Policy = "user_write")]
     public async Task<IActionResult> Review(ReviewRequest request)
     {
         await _productService.ReviewProduct(request);
+        return NoContent();
+    }
+
+    [HttpPost]
+    [Authorize(Roles = "Admin")]
+    [Authorize(Policy = "user_write")]
+    [Authorize(Policy = "user_read")]
+    public async Task<IActionResult> Create(ProductRequest request, CancellationToken cancellationToken)
+    {
+        await _productService.Create(request, cancellationToken);
+        return NoContent();
+    }
+    [HttpPut]
+    [Authorize(Roles = "Admin")]
+    [Authorize(Policy = "user_write")]
+    [Authorize(Policy = "user_read")]
+    public async Task<IActionResult> Update(ProductUpdateRequest request, CancellationToken cancellationToken)
+    {
+        await _productService.Update(request, cancellationToken);
         return NoContent();
     }
 }

@@ -11,7 +11,8 @@ public class Product : BaseModel
     public int Discount { get; set; }
     public int Rating { get; set; }
     public string? Image { get; set; }// change to list use media entity
-    public DateTime DateCreated { get; set; } = DateTime.Now;
+    public DateTime DateCreated { get; set; }
+    public DateTime? DateUpdated { get; set; }
     public virtual ICollection<ProductCategory>? ProductCategories { get; set; }
     public virtual ICollection<OrderDetail>? OrderDetails { get; set; }
     public virtual ICollection<Review>? Reviews { get; set; }

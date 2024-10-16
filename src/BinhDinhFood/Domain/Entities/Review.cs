@@ -5,8 +5,8 @@ namespace BinhDinhFood.Domain.Entities;
 
 public class Review : BaseModel
 {
-    public int Stars { get; set; }
-    public string? Content { get; set; }
+    public int Stars { get; set; } // => rating
+    public string? Content { get; set; } // => comment
     public DateTime DateCreated { get; set; } = DateTime.Now;
 
     public int ProductId { get; set; }

@@ -18,6 +18,7 @@ public class UnitOfWork : IUnitOfWork
     public IOrderRepository OrderRepository { get; }
     public IOrderDetailRepository OrderDetailRepository { get; }
     public IProductRepository ProductRepository { get; }
+    public IProductCategoryRepository ProductCategoryRepository { get; }
     public ICategoryRepository CategoryRepository { get; }
     public IReviewRepository ReviewRepository { get; }
     public IBannerRepository BannerRepository { get; }
@@ -36,6 +37,7 @@ public class UnitOfWork : IUnitOfWork
         OrderRepository = new OrderRepository(_context);
         OrderDetailRepository = new OrderDetailRepository(_context);
         ProductRepository = new ProductRepository(_context);
+        ProductCategoryRepository = new ProductCategoryRepository(_context);
         CategoryRepository = new CategoryRepository(_context);
         ReviewRepository = new ReviewRepository(_context);
         BannerRepository = new BannerRepository(_context);
