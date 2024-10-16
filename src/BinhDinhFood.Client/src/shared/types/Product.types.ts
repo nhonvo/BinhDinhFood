@@ -2,10 +2,8 @@ import { TReview } from './Review.types'
 
 export interface IProduct {
   _id: string
-  name: string
   brand: TBrand
   type: TType
-  price: number
   offPrice: number
   gender: TGender
   color: string[]
@@ -14,6 +12,24 @@ export interface IProduct {
   gallery: string[]
   poster?: string
   detail_product?: TDetailProduct[]
+  // new
+  name: string | null;
+  price: number | null;
+  description: string | null;
+  amount: number | null;
+  discount: number | null;
+  rating: number | null;
+  image: string | null;
+  dateCreated: string | null;
+  category: string[] | null;
+  reviews: ReviewResponse[];
+}
+
+export interface ReviewResponse {
+  id: number | null;
+  rating: number | null;
+  comment: string | null;
+  dateCreated: string | null;
 }
 
 export type TBrand = 'nike' | 'adidas' | 'jordan' | 'puma'

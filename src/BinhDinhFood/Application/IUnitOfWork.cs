@@ -4,7 +4,6 @@ namespace BinhDinhFood.Application;
 
 public interface IUnitOfWork
 {
-    IUserRepository UserRepository { get; }
     IBookRepository BookRepository { get; }
     IRefreshTokenRepository RefreshTokenRepository { get; }
     IMediaRepository MediaRepository { get; }

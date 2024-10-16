@@ -29,7 +29,6 @@ public static class ConfigureServices
                 .AddDefaultTokenProviders();
 
         // register services
-        services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IBookRepository, BookRepository>();
         services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
         services.AddScoped<IMediaRepository, MediaRepository>();

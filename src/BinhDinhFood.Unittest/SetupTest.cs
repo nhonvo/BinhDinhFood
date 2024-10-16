@@ -22,7 +22,6 @@ public class SetupTest : IDisposable
     protected readonly Mock<IBookService> _bookServiceMock;
     protected readonly Mock<ICurrentTime> _currentTimeMock;
     protected readonly Mock<IBookRepository> _bookRepositoryMock;
-    protected readonly Mock<IUserRepository> _userRepository;
 
     public SetupTest()
     {
@@ -33,7 +32,6 @@ public class SetupTest : IDisposable
         _bookServiceMock = new Mock<IBookService>();
         _currentTimeMock = new Mock<ICurrentTime>();
         _bookRepositoryMock = new Mock<IBookRepository>();
-        _userRepository = new Mock<IUserRepository>();
 
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())

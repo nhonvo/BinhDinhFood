@@ -10,7 +10,6 @@ public class UnitOfWork : IUnitOfWork
 {
     private readonly ApplicationDbContext _context;
 
-    public IUserRepository UserRepository { get; }
     public IBookRepository BookRepository { get; }
     public IRefreshTokenRepository RefreshTokenRepository { get; }
     public IMediaRepository MediaRepository { get; }
@@ -29,7 +28,6 @@ public class UnitOfWork : IUnitOfWork
     public UnitOfWork(ApplicationDbContext dbContext)
     {
         _context = dbContext;
-        UserRepository = new UserRepository(_context);
         BookRepository = new BookRepository(_context);
         RefreshTokenRepository = new RefreshTokenRepository(_context);
         MediaRepository = new MediaRepository(_context);

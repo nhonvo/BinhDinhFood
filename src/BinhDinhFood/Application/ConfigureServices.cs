@@ -10,7 +10,6 @@ public static class ConfigureServices
 {
     public static IServiceCollection AddApplicationService(this IServiceCollection services, AppSettings appsettings)
     {
-        services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IBookService, BookService>();
         services.AddScoped<IMailService, MailService>();
         services.AddScoped<IFacebookAuthService, FacebookAuthService>();
@@ -27,8 +26,6 @@ public static class ConfigureServices
             services.AddScoped<IFileStorageService, CloudinaryFileStorageService>();
         }
 
-
-        services.AddScoped<IUserService, UserService>();
 
         services.AddScoped<ICurrentTime, CurrentTime>();
         services.AddScoped<ICurrentUser, CurrentUser>();

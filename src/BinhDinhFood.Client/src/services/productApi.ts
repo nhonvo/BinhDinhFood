@@ -34,7 +34,7 @@ const productApi = createApi({
     getProducts: build.query<TProductsResponse, TGetProductsRequest>({
       query(args) {
         return {
-          url: '/products',
+          url: '/product',
           method: 'GET',
           params: {
             ...args
