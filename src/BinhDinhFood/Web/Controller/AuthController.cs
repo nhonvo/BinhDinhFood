@@ -24,7 +24,7 @@ public class AuthController(IAuthService authService) : BaseController
         return NoContent();
     }
 
-    [HttpGet("logout")]
+    [HttpDelete("logout")]
     public async Task<IActionResult> Logout()
     {
 

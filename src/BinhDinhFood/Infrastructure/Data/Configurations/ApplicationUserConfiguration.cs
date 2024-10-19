@@ -10,8 +10,6 @@ public class ApplicationUserConfiguration : IEntityTypeConfiguration<Application
     {
         builder.ToTable("ApplicationUser");
 
-        builder.Property(x => x.Status).HasDefaultValue(Status.Active);
-
         builder.HasOne(x => x.Avatar).WithOne(x => x.User).HasForeignKey<ApplicationUser>(x => x.AvatarId);
 
 
