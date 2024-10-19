@@ -4,7 +4,6 @@ import { baseQueryWithAuth } from './api'
 import {
   TAuthErrorResponse,
   TAuthResponse,
-  TAuthResponseError,
   TSignInRequest,
   TSignUpRequest
 } from '../shared/types/Auth.types'
@@ -16,17 +15,20 @@ export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: baseQueryWithAuth,
   endpoints: (build) => ({
-    SignUp: build.mutation<TAuthResponse, TSignUpRequest>({
-      query({ email, password, fullName }) {
-        return {
-          url: '/auth/sign-up',
-          method: 'POST',
-          body: { email, password, fullName }
+    SignUp: build.mutation<
+      TAuthErrorResponse,
+      TSignUpRequest>({
+        query({ userName, name, email, password }) {
+          return {
+            url: '/auth/register',
+            method: 'POST',
+            body: { userName, name, email, password },
+          };
         }
-      }
-    }),
+      }),
+
     SignIn: build.mutation<
-      TAuthResponse & { profile: IProfile },
+      TAuthResponse & { profile: IProfile } | TAuthErrorResponse,
       TSignInRequest
     >({
       query({ username, password }) {
@@ -51,12 +53,7 @@ export const authApi = createApi({
           dispatch(clearProfile())
           toast.success('You have successfully signed out')
         } catch (error: unknown) {
-          const typedError = error as TAuthResponseError
-          if (typedError?.status === 'FETCH_ERROR') {
-            toast.error("Can't login, try again later or refresh the page")
-          } else {
-            toast.error('Sign out failed. Please try again later')
-          }
+          toast.error('Sign out failed. Please try again later')
         }
       }
     })

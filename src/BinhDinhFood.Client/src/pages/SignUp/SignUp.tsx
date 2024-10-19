@@ -8,13 +8,13 @@ import { toast } from 'react-hot-toast'
 import { useSignUpMutation } from '../../services'
 import { useEffect } from 'react'
 import { ErrorMessage } from '@hookform/error-message'
-import { TAuthResponseError } from '../../shared/types/Auth.types'
+import { TAuthErrorResponse } from '../../shared/types/Auth.types'
 import { Button, FormError, FormInput, FormLabel } from '../../components'
 
 function SignUp() {
   const navigate = useNavigate()
-  window.document.title = 'Jerskits - Sign Up'
-  const [signUp, { isLoading, error, isSuccess, data }] = useSignUpMutation()
+  window.document.title = 'BinhDinhFood - Sign Up'
+  const [signUp, { isLoading, isSuccess, error, isError, data }] = useSignUpMutation()
   const {
     register,
     handleSubmit,
@@ -28,35 +28,46 @@ function SignUp() {
   const signUpHandler = async (data: ISignUpForm) => {
     await signUp({
       email: data.email,
-      fullName: data.fullName,
+      name: data.name,
+      userName: data.userName,
       password: data.password
     })
   }
 
   useEffect(() => {
-    if (isSuccess && data) {
-      toast.success("Register successfully!")
-      navigate('/sign-in')
+    if (isSuccess) {
+      toast.success("Register successfully!");
+      navigate('/sign-in');
     }
-  }, [isSuccess])
+  }, [isSuccess, navigate]);
 
   useEffect(() => {
-    if (error) {
-      console.log(error)
-      const SignUpError = error as TAuthResponseError
-      if (
-        SignUpError.status === 409 &&
-        SignUpError.data.field.includes('email')
-      ) {
-        setError('email', { message: SignUpError.data.message })
-        setFocus('email')
-      } else if (SignUpError.status !== 409) {
-        toast.error('Something bad happened, try again later!', {
-          position: 'bottom-center'
-        })
+    if (isError) {
+      let errorMessage = "An unknown error occurred.";
+
+      // Check if error has the expected structure
+      if (error && 'data' in error) {
+        const errorData = error.data as TAuthErrorResponse;
+
+        if (errorData.errorCode) {
+          errorMessage = errorData.message;
+        }
+
+        // Handle specific error messages for email and username
+        if (errorMessage === 'The email address is available.') {
+          setError('email', { message: errorMessage });
+          setFocus('email');
+        } else if (errorMessage === 'The username is available.') {
+          setError('userName', { message: errorMessage });
+          setFocus('userName');
+        }
+      } else {
+        toast.error("Registration failed. Please try again.", { position: 'bottom-center' });
+        return;
       }
+      toast.error(errorMessage, { position: 'bottom-center' });
     }
-  }, [error])
+  }, [isError, error, setError, setFocus]);
 
   return (
     <div className='max-w-[400px] w-full'>
@@ -80,7 +91,7 @@ function SignUp() {
           Register Account
         </h2>
         <p className='text-lg text-neutral-dark-grey leading-[150%]'>
-          Let’s create your account
+          Let's create your account
         </p>
       </div>
 
@@ -106,11 +117,25 @@ function SignUp() {
               type='text'
               id='full-name'
               autoComplete='off'
-              {...register('fullName', { required: true })}
+              {...register('name', { required: true })}
             />
             <ErrorMessage
               errors={errors}
-              name='fullName'
+              name='name'
+              render={({ message }) => <FormError>{message}</FormError>}
+            />
+          </div>
+          <div className='space-y-[8px]'>
+            <FormLabel htmlFor='user-name'>User Name</FormLabel>
+            <FormInput
+              type='text'
+              id='user-name'
+              autoComplete='off'
+              {...register('userName', { required: true })}
+            />
+            <ErrorMessage
+              errors={errors}
+              name='userName'
               render={({ message }) => <FormError>{message}</FormError>}
             />
           </div>

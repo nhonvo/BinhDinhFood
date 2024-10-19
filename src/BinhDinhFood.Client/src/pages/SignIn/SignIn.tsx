@@ -12,6 +12,7 @@ import { setAuthStatus } from '../../App/feature/auth/authSlice'
 import { setProfile } from '../../App/feature/profile/profileSlice'
 import { Button, FormError, FormInput, FormLabel } from '../../components'
 import { ErrorMessage } from '@hookform/error-message'
+import { TAuthErrorResponse } from '../../shared/types/Auth.types'
 
 function SignIn() {
   const navigate = useNavigate()
@@ -29,7 +30,7 @@ function SignIn() {
     useSignInMutation()
 
   useEffect(() => {
-    if (isSuccess && data) {
+    if (isSuccess && data && 'token' in data) {
       toast.success("Login successful. You're now signed in.", { position: 'bottom-center' })
       dispatch(setAuthStatus(true))
       dispatch(setProfile(data.profile))
@@ -38,16 +39,20 @@ function SignIn() {
   }, [isSuccess])
 
   useEffect(() => {
-    if (error && data) {
-      toast.error("Login failed.", { position: 'bottom-center' })
+    if (isError) {
+      if (error && 'data' in error) {
+        const errorData = error.data as TAuthErrorResponse;
+        if (errorData && errorData.message) {
+          toast.error(errorData.message, { position: 'bottom-center' });
+        }
+      }
     }
-  }, [isError])
+  }, [isError, error]);
 
   const signInHandler = async (data: ISignInForm) => {
     await signIn({
       username: data.username,
-      password: data.password, 
-      rememberMe: true
+      password: data.password
     })
   }
 
@@ -124,7 +129,7 @@ function SignIn() {
         </form>
 
         <p className='text-neutral-dark-grey text-text-sm mt-7'>
-          Don’t have an account?{' '}
+          Don't have an account?{' '}
           <Link
             to='/sign-up'
             className='text-sm font-medium text-primary-black'

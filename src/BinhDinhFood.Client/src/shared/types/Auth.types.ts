@@ -6,27 +6,19 @@ export interface IAuthSlice {
 
 export type TSignUpRequest = {
   email: string
-  fullName: string
+  name: string
+  userName: string
   password: string
-}
-
-export type TAuthResponseError = {
-  status: number | string
-  data: {
-    error: boolean
-    message: string
-    field: [string]
-  }
 }
 
 export type TSignInRequest = {
   username: string
   password: string
-  rememberMe: boolean
 }
 
+// new
 export type TAuthErrorResponse = {
-  errorCode: boolean
+  errorCode: string
   message: string
 }
 
@@ -35,6 +27,5 @@ export interface TAuthResponse {
   token: string
   expires: string
 }
-
 
 export type TDecodedJWT = IProfile
