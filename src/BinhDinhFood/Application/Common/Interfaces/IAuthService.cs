@@ -5,7 +5,7 @@ namespace BinhDinhFood.Application.Common.Interfaces;
 public interface IAuthService
 {
     Task<TokenResult> RefreshTokenAsync(string token, CancellationToken cancellationToken);
-    Task<TokenResult> Authenticate(LoginRequest request, CancellationToken cancellationToken);
+    Task<AuthenticateResponse> Authenticate(LoginRequest request, CancellationToken cancellationToken);
     Task Register(RegisterRequest request, CancellationToken cancellationToken);
     Task LogOut();
     Task<UserViewModel> GetProfile(CancellationToken cancellationToken);

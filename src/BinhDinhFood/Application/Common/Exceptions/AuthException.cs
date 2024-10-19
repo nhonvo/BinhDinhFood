@@ -14,8 +14,8 @@ public static class AuthException
     public static UserFriendlyException ThrowAccountDoesNotExist()
         => throw new UserFriendlyException(ErrorCode.NotFound, AuthErrorMessage.AccountDoesNotExistMessage, AuthErrorMessage.AccountDoesNotExistMessage);
 
-    public static UserFriendlyException ThrowLoginUnsuccessful(string result)
-        => throw new UserFriendlyException(ErrorCode.BadRequest, AuthErrorMessage.LoginUnsuccessfulMessage, result);
+    public static UserFriendlyException ThrowLoginUnsuccessful()
+        => throw new UserFriendlyException(ErrorCode.BadRequest, AuthErrorMessage.LoginUnsuccessfulMessage, AuthErrorMessage.LoginUnsuccessfulMessage);
 
     public static UserFriendlyException ThrowRefreshTokenUnsuccessful()
         => throw new UserFriendlyException(ErrorCode.BadRequest, AuthErrorMessage.RefreshTokenUnsuccessfulMessage, AuthErrorMessage.RefreshTokenUnsuccessfulMessage);

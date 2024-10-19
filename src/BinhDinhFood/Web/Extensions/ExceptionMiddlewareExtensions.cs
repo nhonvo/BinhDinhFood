@@ -86,11 +86,9 @@ public static class ExceptionMiddlewareExtensions
                     }
                     await context.Response.WriteAsync($@"
                                 {{
-                                    ""errors"": {{
-                                            ""code"":""{errorCode}"",
-                                            ""message"":""{errorMessage}"",
-                                            ""ErrorId"":""{errorId}""
-                                      }}
+                                    ""errorCode"":""{errorCode}"",
+                                    ""message"":""{errorMessage}"",
+                                    ""errorId"":""{errorId}""
                                 }}");
 
                     logger.LogError($"ErrorId:{errorId} Exception:{contextFeature.Error}");

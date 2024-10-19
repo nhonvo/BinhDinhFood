@@ -1,9 +1,11 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using AutoMapper;
 using BinhDinhFood.Application.Common;
 using BinhDinhFood.Application.Common.Exceptions;
 using BinhDinhFood.Application.Common.Interfaces;
 using BinhDinhFood.Application.Common.Models.Auth.UsersIdentity;
+using BinhDinhFood.Application.Common.Models.User;
 using BinhDinhFood.Application.Common.Utilities;
 using BinhDinhFood.Domain.Entities.Auth;
 using BinhDinhFood.Infrastructure.Data;
@@ -40,31 +42,49 @@ public class AuthService(ApplicationDbContext context,
         await _signInManager.SignOutAsync();
     }
 
-    public async Task<TokenResult> Authenticate(LoginRequest request, CancellationToken cancellationToken)
+    public async Task<AuthenticateResponse> Authenticate(LoginRequest request, CancellationToken cancellationToken)
     {
-
+        // Step 1: Retrieve the user with all needed data (roles, avatar) in a single query.
         var user = await _userManager.Users
-            .Include(x => x.Avatar)
-            .FirstOrDefaultAsync(x => x.UserName == request.UserName, cancellationToken)
+            .Include(u => u.UserRoles).ThenInclude(ur => ur.Role)  // Load user roles in a single query
+            .Include(u => u.Avatar)                               // Load avatar
+            .FirstOrDefaultAsync(u => u.UserName == request.UserName, cancellationToken) 
             ?? throw AuthException.ThrowAccountDoesNotExist();
 
-        var result = await _signInManager.PasswordSignInAsync(user, request.Password, request.RememberMe, true);
+        // Step 2: Check the password first to avoid unnecessary database queries if invalid.
+        var passwordCheckResult = await _signInManager.CheckPasswordSignInAsync(user, request.Password, lockoutOnFailure: true);
 
-        if (!result.Succeeded)
+        if (!passwordCheckResult.Succeeded)
         {
-            throw AuthException.ThrowLoginUnsuccessful(result.ToString());
+            throw AuthException.ThrowLoginUnsuccessful();
         }
 
-        // Retrieve user's claims, including scope claim
+        // Step 3: Retrieve user's claims in bulk to avoid multiple individual queries.
         var userClaims = await _userManager.GetClaimsAsync(user);
-        var scopeClaim = userClaims.FirstOrDefault(c => c.Type == "scope");
+        var scopes = userClaims.FirstOrDefault(c => c.Type == "scope")?.Value.Split(' ') ?? Array.Empty<string>();
 
-        // Extract scopes from the claim, if it exists
-        var scopes = scopeClaim?.Value.Split(' ') ?? [];
-
+        // Step 4: Generate authentication token.
         var token = await _tokenService.GenerateToken(user, scopes, cancellationToken);
 
-        return token;
+        // Step 5: Prepare the user profile with roles and avatar (already included in the user object).
+        var userProfile = new UserViewModel
+        {
+            UserId = user.Id,
+            Email = user.Email,
+            UserName = user.UserName,
+            FullName = user.Name,
+            Roles = user.UserRoles.Select(ur => ur.Role.Name).ToList(),
+            Avatar = user.Avatar?.PathMedia
+        };
+
+        // Step 6: Return the response with the token and profile information.
+        return new AuthenticateResponse
+        {
+            Token = token.Token,
+            UserId = token.UserId,
+            Expires = token.Expires,
+            Profile = userProfile
+        };
     }
 
     public async Task Register(RegisterRequest request, CancellationToken cancellationToken)
