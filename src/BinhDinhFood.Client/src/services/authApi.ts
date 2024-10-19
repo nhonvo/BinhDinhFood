@@ -2,6 +2,7 @@ import { createApi } from '@reduxjs/toolkit/query/react'
 import { toast } from 'react-hot-toast'
 import { baseQueryWithAuth } from './api'
 import {
+  TAuthErrorResponse,
   TAuthResponse,
   TAuthResponseError,
   TSignInRequest,
@@ -28,11 +29,11 @@ export const authApi = createApi({
       TAuthResponse & { profile: IProfile },
       TSignInRequest
     >({
-      query({ email, password }) {
+      query({ username, password }) {
         return {
-          url: '/auth/sign-in',
+          url: 'auth/login',
           method: 'POST',
-          body: { email, password }
+          body: { username, password }
         }
       }
     }),

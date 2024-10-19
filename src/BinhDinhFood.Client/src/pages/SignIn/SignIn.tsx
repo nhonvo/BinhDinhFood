@@ -15,7 +15,7 @@ import { ErrorMessage } from '@hookform/error-message'
 
 function SignIn() {
   const navigate = useNavigate()
-  window.document.title = 'Jerskits - Sign In'
+  window.document.title = 'BinhDinhFood - Sign In'
   const {
     register,
     handleSubmit,
@@ -30,7 +30,7 @@ function SignIn() {
 
   useEffect(() => {
     if (isSuccess && data) {
-      toast.success(data.message, { position: 'bottom-center' })
+      toast.success("Login successful. You're now signed in.", { position: 'bottom-center' })
       dispatch(setAuthStatus(true))
       dispatch(setProfile(data.profile))
       navigate('/')
@@ -39,14 +39,15 @@ function SignIn() {
 
   useEffect(() => {
     if (error && data) {
-      toast.error(data?.message, { position: 'bottom-center' })
+      toast.error("Login failed.", { position: 'bottom-center' })
     }
   }, [isError])
 
   const signInHandler = async (data: ISignInForm) => {
     await signIn({
-      email: data.email,
-      password: data.password
+      username: data.username,
+      password: data.password, 
+      rememberMe: true
     })
   }
 
@@ -79,16 +80,16 @@ function SignIn() {
       <div>
         <form className='space-y-7' onSubmit={handleSubmit(signInHandler)}>
           <div className='space-y-[8px]'>
-            <FormLabel htmlFor='email'>Email</FormLabel>
+            <FormLabel htmlFor='text'>UserName</FormLabel>
             <FormInput
               type='text'
-              id='email'
+              id='username'
               autoComplete='off'
-              {...register('email', { required: true })}
+              {...register('username', { required: true })}
             />
             <ErrorMessage
               errors={errors}
-              name='email'
+              name='username'
               render={({ message }) => <FormError>{message}</FormError>}
             />
           </div>

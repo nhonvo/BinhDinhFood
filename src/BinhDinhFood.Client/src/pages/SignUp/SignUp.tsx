@@ -35,7 +35,7 @@ function SignUp() {
 
   useEffect(() => {
     if (isSuccess && data) {
-      toast.success(data.message)
+      toast.success("Register successfully!")
       navigate('/sign-in')
     }
   }, [isSuccess])

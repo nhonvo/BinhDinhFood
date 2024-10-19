@@ -20,13 +20,21 @@ export type TAuthResponseError = {
 }
 
 export type TSignInRequest = {
-  email: string
+  username: string
   password: string
+  rememberMe: boolean
 }
 
-export type TAuthResponse = {
-  error: boolean
+export type TAuthErrorResponse = {
+  errorCode: boolean
   message: string
 }
+
+export interface TAuthResponse {
+  userId: string
+  token: string
+  expires: string
+}
+
 
 export type TDecodedJWT = IProfile

@@ -1,7 +1,4 @@
 export interface IProfile {
-  avatar?: string
-  fullName?: string
-  email?: string
   firstName?: string
   lastName?: string
   contactEmail?: string
@@ -13,6 +10,14 @@ export interface IProfile {
   state?: string
   city?: string
   postalCode?: string
+
+  // new 
+  userId: string
+  fullName: string
+  userName: string
+  email: string
+  avatar?: any
+  roles: string[]
 }
 
 export interface IProfileForm {
