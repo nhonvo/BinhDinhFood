@@ -11,17 +11,23 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
 {
     private readonly ICurrentUser _currentUser = currentUser;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
-    public async Task<ProductResponse> Get(int id)
+    public async Task<ProductDetailResponse> Get(int id)
     {
         var product = await _unitOfWork.ProductRepository.FirstOrDefaultAsync(
             filter: x => x.Id == id,
             include: x => x.Include(x => x.ProductCategories).ThenInclude(x => x.Category).Include(x => x.Reviews));
 
-        return MapToProductResponse(product);
+        return MapToProductDetailResponse(product);
     }
 
     public async Task<Pagination<ProductResponse>> Get(int pageIndex, int pageSize, bool ascending, string orderBy = "", string filter = "")
     {
+        // TODO: calculate the min and max price in paging
+        // change the name paging
+        // update the filter match with fe && sort 'relevance' | 'new arrivals' | 'price:low' | 'price:high' 
+
+        // public decimal MinPrice { get; set; }
+        // public decimal MaxPrice { get; set; }
         Expression<Func<Product, object>>? orderByExpression = null;
         if (!string.IsNullOrEmpty(orderBy))
         {
@@ -68,7 +74,7 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
         };
         await _unitOfWork.ReviewRepository.AddAsync(rateProduct);
     }
-    public async Task Create(ProductRequest request, CancellationToken cancellationToken)
+    public async Task Create(ProductCreateRequest request, CancellationToken cancellationToken)
     {
         // Step1: Initialize a new Product
         Product product = new()
@@ -133,7 +139,7 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
     }
 
 
-// TODO: BUG update product with category
+    // TODO: BUG update product with category
     public async Task Update(ProductUpdateRequest request, CancellationToken cancellationToken)
     {
         // Step 1: Fetch the existing product
@@ -201,18 +207,35 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
         await _unitOfWork.ExecuteTransactionAsync(() => _unitOfWork.ProductRepository.Delete(product), token);
     }
 
+
     private ProductResponse MapToProductResponse(Product product)
     {
         return new ProductResponse
         {
-            Id = product.Id,
+            _id = product.Id,
+            Name = product.Name,
+            Price = product.Price,
+            Quality = product.Amount,
+            Discount = product.Discount,
+            Rating = product.Rating,
+            Poster = product.Image,
+            DateCreated = product.DateCreated,
+            Category = product.ProductCategories?.Select(x => x.Category).Select(x => x.Name).ToList(),
+        };
+    }
+
+    private ProductDetailResponse MapToProductDetailResponse(Product product)
+    {
+        return new ProductDetailResponse
+        {
+            _id = product.Id,
             Name = product.Name,
             Price = product.Price,
             Description = product.Description,
-            Amount = product.Amount,
+            Quality = product.Amount,
             Discount = product.Discount,
             Rating = product.Rating,
-            Image = product.Image,
+            Poster = product.Image,
             DateCreated = product.DateCreated,
             Category = product.ProductCategories?.Select(x => x.Category).Select(x => x.Name).ToList(),
             Reviews = product.Reviews?.Select(review => new ReviewResponse

@@ -34,7 +34,7 @@ public class ProductController(IProductService productService) : BaseController
     [Authorize]
     [Authorize(Roles = "Admin")]
     // [Authorize(Policy = "user_write")]
-    public async Task<IActionResult> Create(ProductRequest request, CancellationToken cancellationToken)
+    public async Task<IActionResult> Create(ProductCreateRequest request, CancellationToken cancellationToken)
     {
         await _productService.Create(request, cancellationToken);
         return NoContent();

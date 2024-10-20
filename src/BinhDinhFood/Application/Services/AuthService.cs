@@ -1,11 +1,9 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using AutoMapper;
 using BinhDinhFood.Application.Common;
 using BinhDinhFood.Application.Common.Exceptions;
 using BinhDinhFood.Application.Common.Interfaces;
 using BinhDinhFood.Application.Common.Models.Auth.UsersIdentity;
-using BinhDinhFood.Application.Common.Models.User;
 using BinhDinhFood.Application.Common.Utilities;
 using BinhDinhFood.Domain.Entities.Auth;
 using BinhDinhFood.Infrastructure.Data;
@@ -19,7 +17,6 @@ public class AuthService(ApplicationDbContext context,
     UserManager<ApplicationUser> userManager,
     SignInManager<ApplicationUser> signInManager,
     IFacebookAuthService facebookAuthService,
-    ILogger<AuthService> logger,
     ITokenService tokenService,
     IUnitOfWork unitOfWork,
     IMailService emailSender,
@@ -30,7 +27,6 @@ public class AuthService(ApplicationDbContext context,
     private readonly UserManager<ApplicationUser> _userManager = userManager;
     private readonly SignInManager<ApplicationUser> _signInManager = signInManager;
     private readonly IFacebookAuthService _facebookAuthService = facebookAuthService;
-    private readonly ILogger<AuthService> _logger = logger;
     private readonly IMailService _emailSender = emailSender;
     private readonly ITokenService _tokenService = tokenService;
     private readonly IUnitOfWork _unitOfWork = unitOfWork;

@@ -1,11 +1,6 @@
 namespace BinhDinhFood.Application.Common.Models.Product;
 
-public class ProductUpdateRequest : ProductRequest
-{
-    public int Id { get; set; }
-}
-
-public class ProductRequest
+public class ProductCreateRequest
 {
     public string? Name { get; set; }
     public decimal? Price { get; set; }

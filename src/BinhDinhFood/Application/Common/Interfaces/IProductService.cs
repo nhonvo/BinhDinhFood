@@ -5,9 +5,9 @@ namespace BinhDinhFood.Application.Common.Interfaces;
 
 public interface IProductService
 {
-    Task<ProductResponse> Get(int id);
+    Task<ProductDetailResponse> Get(int id);
     Task<Pagination<ProductResponse>> Get(int pageIndex, int pageSize, bool ascending, string orderBy = "", string filter = "");
-    Task Create(ProductRequest request, CancellationToken cancellationToken);
+    Task Create(ProductCreateRequest request, CancellationToken cancellationToken);
     Task Update(ProductUpdateRequest request, CancellationToken cancellationToken);
     Task Delete(int id, CancellationToken token);
     Task ReviewProduct(ReviewRequest request);
