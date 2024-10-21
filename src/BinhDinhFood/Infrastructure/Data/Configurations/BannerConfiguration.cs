@@ -19,5 +19,7 @@ public class BannerConfiguration : IEntityTypeConfiguration<Banner>
         builder.Property(b => b.Discount)
             .HasDefaultValue(0) // Default value for discount
             .HasMaxLength(1);   // You can enforce the range programmatically elsewhere if needed.
+
+        builder.HasOne(b => b.Image).WithOne(i => i.Banner).HasForeignKey<Media>(i => i.BannerId);
     }
 }

@@ -43,8 +43,8 @@ public class AuthService(ApplicationDbContext context,
         // Step 1: Retrieve the user with all needed data (roles, avatar) in a single query.
         var user = await _userManager.Users
             .Include(u => u.UserRoles).ThenInclude(ur => ur.Role)  // Load user roles in a single query
-            .Include(u => u.Avatar)                               // Load avatar
-            .FirstOrDefaultAsync(u => u.UserName == request.UserName, cancellationToken) 
+            .Include(u => u.Image)                               // Load avatar
+            .FirstOrDefaultAsync(u => u.UserName == request.UserName, cancellationToken)
             ?? throw AuthException.ThrowAccountDoesNotExist();
 
         // Step 2: Check the password first to avoid unnecessary database queries if invalid.
@@ -70,7 +70,7 @@ public class AuthService(ApplicationDbContext context,
             UserName = user.UserName,
             FullName = user.Name,
             Roles = user.UserRoles.Select(ur => ur.Role.Name).ToList(),
-            Avatar = user.Avatar?.PathMedia
+            Avatar = user.Image?.PathMedia
         };
 
         // Step 6: Return the response with the token and profile information.
@@ -170,14 +170,14 @@ public class AuthService(ApplicationDbContext context,
 
         var user = await _userManager.Users.Where(x => x.Id == new Guid(userId)).Include(u => u.UserRoles)
                         .ThenInclude(ur => ur.Role)
-                    .Include(u => u.Avatar).Select(users => new UserViewModel
+                    .Include(u => u.Image).Select(users => new UserViewModel
                     {
                         UserId = users.Id,
                         Email = users.Email,
                         UserName = users.UserName,
                         FullName = users.Name,
                         Roles = users.UserRoles.Select(ur => ur.Role.Name).ToList(),
-                        Avatar = users.Avatar.PathMedia
+                        Avatar = users.Image.PathMedia
                     }).SingleOrDefaultAsync(cancellationToken) ?? throw AuthException.ThrowAccountDoesNotExist(); ;
 
         return user;
@@ -270,7 +270,7 @@ public class AuthService(ApplicationDbContext context,
         {
             var exist_user = await _userManager.FindByEmailAsync(userInfo.Email);
 
-            var avatar = _context.Media.Where(m => m.Id == exist_user.AvatarId).Select(m => m.PathMedia)
+            var avatar = _context.Media.Where(m => m.Id == exist_user.ImageId).Select(m => m.PathMedia)
                 .FirstOrDefault();
 
 
@@ -298,7 +298,7 @@ public class AuthService(ApplicationDbContext context,
                 var result = await _userManager.AddLoginAsync(exist_user, info);
                 if (result.Succeeded)
                 {
-                    var avatar = _context.Media.Where(m => m.Id == exist_user.AvatarId)
+                    var avatar = _context.Media.Where(m => m.Id == exist_user.ImageId)
                         .Select(m => m.PathMedia).FirstOrDefault();
 
                     // Retrieve user's claims, including scope claim
@@ -381,7 +381,7 @@ public class AuthService(ApplicationDbContext context,
         {
             var exist_user = await _userManager.FindByEmailAsync(payload.Email);
 
-            var avatar = _context.Media.Where(m => m.Id == exist_user.AvatarId).Select(m => m.PathMedia)
+            var avatar = _context.Media.Where(m => m.Id == exist_user.ImageId).Select(m => m.PathMedia)
                 .FirstOrDefault();
 
             // Retrieve user's claims, including scope claim
@@ -408,7 +408,7 @@ public class AuthService(ApplicationDbContext context,
 
                 if (result.Succeeded)
                 {
-                    var avatar = _context.Media.Where(m => m.Id == exist_user.AvatarId)
+                    var avatar = _context.Media.Where(m => m.Id == exist_user.ImageId)
                         .Select(m => m.PathMedia).FirstOrDefault();
 
                     // Retrieve user's claims, including scope claim
@@ -491,7 +491,7 @@ public class AuthService(ApplicationDbContext context,
         {
             var exist_user = await _userManager.FindByEmailAsync(email);
 
-            var avatar = _context.Media.Where(m => m.Id == exist_user.AvatarId).Select(m => m.PathMedia)
+            var avatar = _context.Media.Where(m => m.Id == exist_user.ImageId).Select(m => m.PathMedia)
                 .FirstOrDefault();
 
             // Retrieve user's claims, including scope claim
@@ -519,7 +519,7 @@ public class AuthService(ApplicationDbContext context,
 
                 if (result.Succeeded)
                 {
-                    var avatar = _context.Media.Where(m => m.Id == exist_user.AvatarId)
+                    var avatar = _context.Media.Where(m => m.Id == exist_user.ImageId)
                         .Select(m => m.PathMedia).FirstOrDefault();
 
                     // Retrieve user's claims, including scope claim

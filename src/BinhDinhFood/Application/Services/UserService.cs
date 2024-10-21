@@ -23,7 +23,7 @@ public class UserService(
         var users = await _userManager.Users
             .Include(u => u.UserRoles)
                 .ThenInclude(ur => ur.Role)
-            .Include(u => u.Avatar)
+            .Include(u => u.Image)
             .ToListAsync(cancellationToken: cancellationToken);
 
         List<UserViewModel> result = users.Select(x => new UserViewModel
@@ -33,7 +33,7 @@ public class UserService(
             UserName = x.UserName,
             FullName = x.Name,
             Roles = x.UserRoles.Select(ur => ur.Role.Name).ToList(),
-            Avatar = x.Avatar != null ? x.Avatar.PathMedia : null
+            Avatar = x.Image != null ? x.Image.PathMedia : null
         }).ToList();
         return result;
     }
@@ -50,7 +50,7 @@ public class UserService(
         //Lưu Avatar vào Host
         if (request.MediaFile != null)
         {
-            var thumb = await _unitOfWork.MediaRepository.FirstOrDefaultAsync(i => i.Id == user.AvatarId);
+            var thumb = await _unitOfWork.MediaRepository.FirstOrDefaultAsync(i => i.Id == user.ImageId);
 
             //Cập nhật Avatar
             if (thumb.PathMedia != null)
@@ -80,7 +80,7 @@ public class UserService(
             ?? throw AuthException.ThrowAccountDoesNotExist();
 
         //Xoá Avatar ra khỏi Source
-        var avatar = await _unitOfWork.MediaRepository.FirstOrDefaultAsync(x => x.Id == user.AvatarId);
+        var avatar = await _unitOfWork.MediaRepository.FirstOrDefaultAsync(x => x.Id == user.ImageId);
 
         if (avatar != null)
         {

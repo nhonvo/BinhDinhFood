@@ -82,9 +82,9 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
             Name = request.Name,
             Price = request.Price ?? 0,
             Description = request.Description,
-            Amount = request.Amount ?? 0,
-            Discount = request.Discount ?? 0,
-            Image = request.Image,
+            Quality = request.Amount ?? 0,
+            OffPrice = request.Discount ?? 0,
+            Images = [new Media { PathMedia = request.Image }],
             DateCreated = DateTime.Now
         };
         // Step2: Loop through the provided categories in the request
@@ -151,9 +151,9 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
         existingProduct.Name = request.Name;
         existingProduct.Price = request.Price ?? existingProduct.Price;
         existingProduct.Description = request.Description;
-        existingProduct.Amount = request.Amount ?? existingProduct.Amount;
-        existingProduct.Discount = request.Discount ?? existingProduct.Discount;
-        existingProduct.Image = request.Image;  // Assuming you have logic to handle multiple images elsewhere
+        existingProduct.Quality = request.Amount ?? existingProduct.Quality;
+        existingProduct.OffPrice = request.Discount ?? existingProduct.OffPrice;
+        existingProduct.Images = [new Media { PathMedia = request.Image }];
         existingProduct.DateUpdated = DateTime.Now;
 
         // Step 3: Handle Categories (Update existing categories and add new ones)
@@ -215,10 +215,10 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
             _id = product.Id,
             Name = product.Name,
             Price = product.Price,
-            Quality = product.Amount,
-            Discount = product.Discount,
+            Quality = product.Quality,
+            Discount = product.OffPrice,
             Rating = product.Rating,
-            Poster = product.Image,
+            Poster = product.Images[0].PathMedia,
             DateCreated = product.DateCreated,
             Category = product.ProductCategories?.Select(x => x.Category).Select(x => x.Name).ToList(),
         };
@@ -232,10 +232,10 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
             Name = product.Name,
             Price = product.Price,
             Description = product.Description,
-            Quality = product.Amount,
-            Discount = product.Discount,
+            Quality = product.Quality,
+            Discount = product.OffPrice,
             Rating = product.Rating,
-            Poster = product.Image,
+            Poster = product.Images[0].PathMedia,
             DateCreated = product.DateCreated,
             Category = product.ProductCategories?.Select(x => x.Category).Select(x => x.Name).ToList(),
             Reviews = product.Reviews?.Select(review => new ReviewResponse

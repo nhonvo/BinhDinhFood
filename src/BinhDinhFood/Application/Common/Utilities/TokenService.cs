@@ -52,7 +52,7 @@ public class TokenService(AppSettings appSettings,
             new Claim(ClaimTypes.GivenName, user.Name),
             new Claim(ClaimTypes.Name, user.UserName),
             new Claim(ClaimTypes.Email, user.Email),
-            new Claim(ClaimTypes.Uri, user?.Avatar?.PathMedia ?? "default.png"),
+            new Claim(ClaimTypes.Uri, user?.Image?.PathMedia ?? "default.png"),
             new Claim(ClaimTypes.Role, roles == null ? Role.User.ToString() : string.Join(";", roles)),
             new Claim("scope", string.Join(" ", scopes)) // Adding scope claim
         };

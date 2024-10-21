@@ -9,5 +9,7 @@ public class BlogConfiguration : IEntityTypeConfiguration<Blog>
     {
         builder.ToTable("Blog");
         builder.HasKey(b => b.Id);
+
+        builder.HasMany(b => b.Images).WithOne(i => i.Blog).HasForeignKey(i => i.BlogId);
     }
 }

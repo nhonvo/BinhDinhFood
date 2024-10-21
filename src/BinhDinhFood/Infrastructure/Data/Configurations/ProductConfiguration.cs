@@ -18,26 +18,19 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
             .HasMaxLength(100);
 
         // Discount
-        builder.Property(p => p.Discount)
+        builder.Property(p => p.OffPrice)
             .HasDefaultValue(0)
             .HasMaxLength(1); // Programmatic range can be enforced elsewhere if needed
 
-        // Category Relationship
-        builder.HasMany(p => p.ProductCategories)
-            .WithOne(c => c.Product)
-            .HasForeignKey(x => x.ProductId);
+        // Relationships: Category, OrderDetails, Favorites, Reviews, Media
+        builder.HasMany(p => p.ProductCategories).WithOne(c => c.Product).HasForeignKey(x => x.ProductId);
 
-        // Relationships: OrderDetails, Favorites, Reviews
-        builder.HasMany(p => p.OrderDetails)
-            .WithOne()
-            .HasForeignKey(od => od.ProductId);
+        builder.HasMany(p => p.OrderDetails).WithOne().HasForeignKey(od => od.ProductId);
 
-        builder.HasMany(p => p.Favorites)
-            .WithOne()
-            .HasForeignKey(f => f.ProductId);
+        builder.HasMany(p => p.Favorites).WithOne().HasForeignKey(f => f.ProductId);
 
-        builder.HasMany(p => p.Reviews)
-            .WithOne()
-            .HasForeignKey(pr => pr.ProductId);
+        builder.HasMany(p => p.Reviews).WithOne().HasForeignKey(pr => pr.ProductId);
+
+        builder.HasMany(p => p.Images).WithOne(i => i.Product).HasForeignKey(i => i.ProductId);
     }
 }

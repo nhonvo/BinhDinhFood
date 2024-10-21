@@ -10,7 +10,7 @@ public class ApplicationUserConfiguration : IEntityTypeConfiguration<Application
     {
         builder.ToTable("ApplicationUser");
 
-        builder.HasOne(x => x.Avatar).WithOne(x => x.User).HasForeignKey<ApplicationUser>(x => x.AvatarId);
+        builder.HasOne(x => x.Image).WithOne(x => x.Customer).HasForeignKey<ApplicationUser>(x => x.ImageId);
 
 
         // Table name
