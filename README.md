@@ -79,3 +79,17 @@ dotnet new install ./ --force
 dotnet new install ./nupkg/BinhDinhFood.1.0.0.nupkg
 dotnet new cleanarch -n MyFirstProject
 ```
+
+TODO: CHANGE THE PAGE IN NAME export type TProductsResponse = {
+  error: boolean
+  products: IProduct[]
+  totalPages: number
+  currentPage: number
+  highestPrice: number
+}
+
+UPDATE THE PRODUCT RESPONSE
+  - THEM KHUYEN MAI offPrice
+  - UPDATE THE GALLERY OF PRODUCT 1 MAIN IMAGE AND LIST IMAGE 
+
+UDPATE 

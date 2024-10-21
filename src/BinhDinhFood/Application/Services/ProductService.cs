@@ -55,9 +55,9 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
         var result = new Pagination<ProductResponse>
         {
             Items = products.Items.Select(MapToProductResponse).ToList(),
-            TotalItemsCount = products.TotalItemsCount,
+            TotalPages = products.TotalPages,
             PageSize = pageSize,
-            PageIndex = pageIndex
+            CurrentPage = pageIndex
         };
 
         return result;

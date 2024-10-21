@@ -80,9 +80,9 @@ public class GenericRepository<T>(ApplicationDbContext context) : IGenericReposi
 
         var result = new Pagination<T>()
         {
-            PageIndex = pageIndex,
+            CurrentPage = pageIndex,
             PageSize = pageSize,
-            TotalItemsCount = itemCount,
+            TotalPages = itemCount,
             Items = items,
         };
 

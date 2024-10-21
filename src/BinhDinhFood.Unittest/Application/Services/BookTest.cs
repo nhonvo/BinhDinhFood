@@ -67,9 +67,9 @@ public class BookTest
 
         var expectedResult = new Pagination<Book>
         {
-            TotalItemsCount = expectedBooks.Count,
+            TotalPages = expectedBooks.Count,
             PageSize = 2,
-            PageIndex = 0,
+            CurrentPage = 0,
             Items = expectedBooks
         };
 
@@ -85,8 +85,8 @@ public class BookTest
 
         // Assert
         Assert.NotNull(actualResult);
+        Assert.Equal(expectedResult.TotalPages, actualResult.TotalPages);
         Assert.Equal(expectedResult.TotalItemsCount, actualResult.TotalItemsCount);
-        Assert.Equal(expectedResult.TotalPagesCount, actualResult.TotalPagesCount);
         Assert.Equal(expectedResult.Items.Count, actualResult.Items.Count);
 
 
