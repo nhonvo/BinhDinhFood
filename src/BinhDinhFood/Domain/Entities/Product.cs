@@ -12,7 +12,6 @@ public class Product : BaseModel
     public int Rating { get; set; }
     public List<Media> Images { get; set; }
     public DateTime DateCreated { get; set; }
-    public DateTime? DateUpdated { get; set; }
     public virtual ICollection<ProductCategory>? ProductCategories { get; set; }
     public virtual ICollection<OrderDetail>? OrderDetails { get; set; }
     public virtual ICollection<Review>? Reviews { get; set; }

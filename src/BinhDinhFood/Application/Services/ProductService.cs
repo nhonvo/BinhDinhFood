@@ -85,7 +85,7 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
             Quality = request.Amount ?? 0,
             OffPrice = request.Discount ?? 0,
             Images = [new Media { PathMedia = request.Image }],
-            DateCreated = DateTime.Now
+            DateCreated = DateTime.Now,
         };
         // Step2: Loop through the provided categories in the request
         foreach (var categoryDto in request.Categories)
@@ -113,7 +113,7 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
                     category = new Category
                     {
                         Name = categoryDto.Name,
-                        DateCreated = DateTime.Now
+                        DateCreated = DateTime.Now,
                     };
 
                     // Add the new category to the context
@@ -154,7 +154,6 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
         existingProduct.Quality = request.Amount ?? existingProduct.Quality;
         existingProduct.OffPrice = request.Discount ?? existingProduct.OffPrice;
         existingProduct.Images = [new Media { PathMedia = request.Image }];
-        existingProduct.DateUpdated = DateTime.Now;
 
         // Step 3: Handle Categories (Update existing categories and add new ones)
         var newProductCategories = new List<ProductCategory>();
@@ -216,7 +215,7 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
             Name = product.Name,
             Price = product.Price,
             Quality = product.Quality,
-            Discount = product.OffPrice,
+            OffPrice = product.OffPrice,
             Rating = product.Rating,
             Poster = product.Images[0].PathMedia,
             DateCreated = product.DateCreated,
@@ -233,7 +232,7 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
             Price = product.Price,
             Description = product.Description,
             Quality = product.Quality,
-            Discount = product.OffPrice,
+            OffPrice = product.OffPrice,
             Rating = product.Rating,
             Poster = product.Images[0].PathMedia,
             DateCreated = product.DateCreated,
@@ -244,7 +243,8 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
                 Rating = review.Stars,
                 Comment = review.Content,
                 DateCreated = review.DateCreated,
-            }).ToList()
+            }).ToList(),
+            Images = product.Images
         };
     }
 }
