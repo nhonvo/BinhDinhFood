@@ -9,7 +9,7 @@ type Props = {
   product: IProduct
   key?: string | number
   testId?: string
-  size?: string
+  // size?: string
   quantity?: number
   isLikeable?: boolean
   isLikeLoading?: boolean
@@ -23,7 +23,7 @@ type Props = {
 const ProductCard = ({
   product,
   testId,
-  size,
+  // size,
   quantity,
   isLikeable,
   isLikeLoading,
@@ -69,8 +69,8 @@ const ProductCard = ({
           'absolute w-10 h-10 duration-150 left-7 top-7 opacity-30 group-hover:opacity-70',
           { hidden: isMini }
         )}
-        src={provideBrandLogo(product.brand)}
-        alt={`${product.brand} logo`}
+        src={provideBrandLogo('adidas')}
+        alt={'adidas logo'}
       />
       {isLikeable && (
         <button
@@ -91,7 +91,7 @@ const ProductCard = ({
         })}
       >
         <Link
-          to={`/${product.slug}`}
+          to={`/${product._id}`}
           className={cn('text-primary-black font-bold text-2xl line-clamp-2 ', {
             'lg:text-2xl text-lg md:h-16 !leading-7 md:!leading-9': !isMini,
             'text-base h-12 !leading-6': isMini
@@ -105,19 +105,22 @@ const ProductCard = ({
               'text-neutral-dark-grey text-base lg:text-lg leading-7 capitalize',
               {
                 '!leading-6': isMini,
-                'text-sm lg:text-sm': !!size || !!quantity
+                'text-sm lg:text-sm':  !!quantity
+                // 'text-sm lg:text-sm': !!size || !!quantity
               }
             )}
           >
-            {product.type} {!!size && `. Size ${size}`}{' '}
+            {product.type} {' '}
             {!!quantity && `. QTY ${quantity}`}
+            {/* {product.type} {!!size && `. Size ${size}`}{' '} */}
           </p>
         </div>
         <div className='flex items-center justify-between w-full'>
           <ProductPrice
             className={cn({
               '!leading-7 text-lg font-semibold': isMini,
-              hidden: isOffPrice && (!!size || !!quantity),
+              hidden: isOffPrice && (!!quantity),
+              // hidden: isOffPrice && (!!size || !!quantity),
               'hidden md:block': isOffPrice
             })}
             isDiscount={isOffPrice}

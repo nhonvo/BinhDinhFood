@@ -21,7 +21,8 @@ public class AuthService(ApplicationDbContext context,
     IUnitOfWork unitOfWork,
     IMailService emailSender,
     ICurrentUser currentUser,
-    AppSettings appSettings) : IAuthService
+    AppSettings appSettings,
+    ICookieService cookieService) : IAuthService
 {
     private readonly ApplicationDbContext _context = context;
     private readonly UserManager<ApplicationUser> _userManager = userManager;
@@ -32,9 +33,11 @@ public class AuthService(ApplicationDbContext context,
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
     private readonly ICurrentUser _currentUser = currentUser;
     private readonly AppSettings _appSettings = appSettings;
+    private readonly ICookieService _cookieService = cookieService;
 
     public async Task LogOut()
     {
+        _cookieService.Delete();
         await _signInManager.SignOutAsync();
     }
 
@@ -60,7 +63,9 @@ public class AuthService(ApplicationDbContext context,
         var scopes = userClaims.FirstOrDefault(c => c.Type == "scope")?.Value.Split(' ') ?? Array.Empty<string>();
 
         // Step 4: Generate authentication token.
-        var token = await _tokenService.GenerateToken(user, scopes, cancellationToken);
+        var result = await _tokenService.GenerateToken(user, scopes, cancellationToken);
+        _cookieService.Delete();
+        _cookieService.Set(result.Token);
 
         // Step 5: Prepare the user profile with roles and avatar (already included in the user object).
         var userProfile = new UserViewModel
@@ -76,56 +81,47 @@ public class AuthService(ApplicationDbContext context,
         // Step 6: Return the response with the token and profile information.
         return new AuthenticateResponse
         {
-            Token = token.Token,
-            UserId = token.UserId,
-            Expires = token.Expires,
+            Token = result.Token,
+            UserId = result.UserId,
+            Expires = result.Expires,
             Profile = userProfile
         };
     }
 
     public async Task Register(RegisterRequest request, CancellationToken cancellationToken)
     {
-        var user = await _userManager.FindByNameAsync(request.UserName);
-
-        if (user != null)
-        {
+        if (await _userManager.FindByNameAsync(request.UserName) != null)
             throw AuthException.ThrowUsernameAvailable();
-        }
 
-        user = await _userManager.FindByEmailAsync(request.Email);
-
-        if (user != null)
-        {
+        if (await _userManager.FindByEmailAsync(request.Email) != null)
             throw AuthException.ThrowEmailAvailable();
-        }
 
-        user = new ApplicationUser()
+        var user = new ApplicationUser()
         {
             Email = request.Email,
             UserName = request.UserName,
             Name = request.Name
         };
+
         var result = await _userManager.CreateAsync(user, request.Password);
 
-        if (result.Succeeded)
-        {
-            await _userManager.AddToRoleAsync(user, Role.User.ToString());
-            // Add custom scope claim to the user
-            string readScope = _appSettings.Jwt.ScopeBaseDomain + "/read";
-            string writeScope = _appSettings.Jwt.ScopeBaseDomain + "/write";
-            string[] scopes = [readScope, writeScope];
-
-            // Add custom scope claim to the user
-            var scopeClaim = new Claim("scope", string.Join(" ", scopes)); // Space-separated scopes
-
-            await _userManager.AddClaimAsync(user, scopeClaim);
-        }
-        else
+        if (!result.Succeeded)
         {
             List<IdentityError> errorList = result.Errors.ToList();
             var errors = string.Join(", ", errorList.Select(e => e.Description));
             throw AuthException.ThrowRegisterUnsuccessful(errors);
+
         }
+        await _userManager.AddToRoleAsync(user, Role.User.ToString());
+        // Add custom scope claim to the user
+        string readScope = _appSettings.Jwt.ScopeBaseDomain + "/read";
+        string writeScope = _appSettings.Jwt.ScopeBaseDomain + "/write";
+        string[] scopes = [readScope, writeScope];
+
+        // Add custom scope claim to the user
+        var scopeClaim = new Claim("scope", string.Join(" ", scopes)); // Space-separated scopes
+
+        await _userManager.AddClaimAsync(user, scopeClaim);
     }
 
     //Refresh Token
@@ -153,14 +149,10 @@ public class AuthService(ApplicationDbContext context,
         // Extract scopes from the claim, if it exists
         var scopes = scopeClaim?.Value.Split(' ') ?? [];
 
-        var res = await _tokenService.GenerateToken(user, scopes, cancellationToken);
+        var result = await _tokenService.GenerateToken(user, scopes, cancellationToken);
+        _cookieService.Delete();
+        _cookieService.Set(result.Token);
 
-        var result = new TokenResult
-        {
-            UserId = res.UserId,
-            Expires = res.Expires,
-            Token = res.Token,
-        };
         return result;
     }
 

@@ -10,7 +10,7 @@ type Props = {
   products?: IProduct[]
   cardWidth?: number
 }
-
+// note: cardWidth not use
 const ProductCardContainer = ({ products, cardWidth }: Props) => {
   const userFavoriteProductsId = useAppSelector(
     (state) => state.user.favorites
@@ -34,6 +34,7 @@ const ProductCardContainer = ({ products, cardWidth }: Props) => {
       isCurrentLiked={userFavoriteProductsId.includes(product._id)}
       isLikeLoading={likeLoading}
       isMini={false}
+      quantity={product.amount ?? 0}
       addFavorite={() => addProductToFavorites(product._id)}
       removeFavorite={() => removeProductFromFavorites(product._id)}
       width={cardWidth}

@@ -87,7 +87,7 @@ export const getProducts = rest.get(
       ctx.json<TProductsResponse>({
         error: false,
         products: mockData,
-        currentPage: 1,
+        pageIndex: 1,
         totalPages: 3,
         highestPrice: 100
       })

@@ -1,5 +1,4 @@
 using BinhDinhFood.Domain.Constants;
-using BinhDinhFood.Domain.Entities.Auth;
 
 namespace BinhDinhFood.Application.Common.Exceptions;
 
@@ -16,9 +15,6 @@ public static class AuthException
 
     public static UserFriendlyException ThrowLoginUnsuccessful()
         => throw new UserFriendlyException(ErrorCode.BadRequest, AuthErrorMessage.LoginUnsuccessfulMessage, AuthErrorMessage.LoginUnsuccessfulMessage);
-
-    public static UserFriendlyException ThrowRefreshTokenUnsuccessful()
-        => throw new UserFriendlyException(ErrorCode.BadRequest, AuthErrorMessage.RefreshTokenUnsuccessfulMessage, AuthErrorMessage.RefreshTokenUnsuccessfulMessage);
 
     public static UserFriendlyException ThrowUsernameAvailable()
         => throw new UserFriendlyException(ErrorCode.NotFound, AuthErrorMessage.UsernameAvailableMessage, AuthErrorMessage.UsernameAvailableMessage);
@@ -47,9 +43,6 @@ public static class AuthException
     public static UserFriendlyException ThrowRegisterFacebookUnsuccessful(string errors)
         => throw new UserFriendlyException(ErrorCode.BadRequest, AuthErrorMessage.RegisterFacebookUnsuccessfulMessage, errors);
 
-    public static UserFriendlyException ThrowInvalidGoogleToken()
-        => throw new UserFriendlyException(ErrorCode.NotFound, AuthErrorMessage.InvalidGoogleTokenMessage, AuthErrorMessage.InvalidGoogleTokenMessage);
-
     public static UserFriendlyException ThrowErrorLinkedGoogle()
         => throw new UserFriendlyException(ErrorCode.BadRequest, AuthErrorMessage.ErrorLinkedGoogleMessage, AuthErrorMessage.ErrorLinkedGoogleMessage);
 
@@ -71,21 +64,10 @@ public static class AuthException
     public static UserFriendlyException ThrowUserNotFound()
         => throw new UserFriendlyException(ErrorCode.NotFound, AuthErrorMessage.UserNotFoundMessage, AuthErrorMessage.UserNotFoundMessage);
 
-    public static UserFriendlyException ThrowEmailAndPasswordNotNull()
-        => throw new UserFriendlyException(ErrorCode.BadRequest, AuthErrorMessage.EmailAndPasswordNotNullMessage, AuthErrorMessage.EmailAndPasswordNotNullMessage);
-
     public static UserFriendlyException ThrowGenerateTheNewOTP()
         => throw new UserFriendlyException(ErrorCode.BadRequest, AuthErrorMessage.GenerateTheNewOTPMessage, AuthErrorMessage.GenerateTheNewOTPMessage);
 
     public static UserFriendlyException ThrowOTPWrong()
         => throw new UserFriendlyException(ErrorCode.BadRequest, AuthErrorMessage.OTPWrongMessage, AuthErrorMessage.OTPWrongMessage);
 
-    public static ForgotPassword ThrowOrReturnForgotPassword(bool resSucceeded)
-    {
-        if (!resSucceeded)
-        {
-            ThrowOTPWrong();
-        }
-        return new ForgotPassword();
-    }
 }

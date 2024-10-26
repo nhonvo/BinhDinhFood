@@ -14,6 +14,7 @@ type Props = {
 
 type Return = { generateQuery: ({ ...props }: Props) => Props }
 
+// TODO: MODIFY IT
 export function useProductFilterQuery(): Return {
   const generateQuery = ({
     minPrice,

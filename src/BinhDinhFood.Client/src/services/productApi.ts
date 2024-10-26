@@ -1,4 +1,5 @@
 import {
+  TProductErrorResponse,
   TProductRequest,
   TProductResponse,
   TSearchRequest,
@@ -25,19 +26,29 @@ type TGetProductsRequest = {
   sort?: TSort
   page?: number
   perPage?: number
+  // new
+  pageIndex?: number
+  pageSize?: number
+  ascending?: boolean
+  orderBy?: string // sort
+  filter?: string
 }
 
 const productApi = createApi({
   reducerPath: 'productApi',
   baseQuery: baseQueryWithAuth,
   endpoints: (build) => ({
-    getProducts: build.query<TProductsResponse, TGetProductsRequest>({
-      query(args) {
+    getProducts: build.query<TProductsResponse | TProductErrorResponse, TGetProductsRequest>({
+      query: ({ pageIndex = 0, pageSize = 10, ascending = false, orderBy = '', filter = '' }) => {
         return {
           url: '/product',
           method: 'GET',
           params: {
-            ...args
+            pageIndex,
+            pageSize,
+            ascending,
+            orderBy,
+            filter
           }
         }
       }

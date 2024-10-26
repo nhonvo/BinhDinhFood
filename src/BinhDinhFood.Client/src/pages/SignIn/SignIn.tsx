@@ -75,7 +75,7 @@ function SignIn() {
           </svg>
         </Link>
         <h2 className='text-3xl font-bold text-text-3xl leading-[150%]'>
-          Welcome to Jerskits
+          Welcome to BinhDinhFood
         </h2>
         <p className='text-lg text-neutral-dark-grey leading-[150%]'>
           Login to your account

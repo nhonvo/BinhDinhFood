@@ -17,6 +17,72 @@ type Props = {
   title?: string
   gender?: TGender
 }
+const sampleProducts: IProduct[] = [
+  {
+    _id: '1',
+    name: 'Sample Product 1',
+    price: 100,
+    description: 'A great product 1',
+    amount: 10,
+    discount: 10,
+    rating: 4.5,
+    image: 'https://via.placeholder.com/450',
+    dateCreated: '2023-09-10',
+    category: ['Category1'],
+    reviews: [],
+    brand: 'nike', // Set a value for brand
+    slug: 'sample-product-1',
+    gallery: ['https://via.placeholder.com/450', 'https://via.placeholder.com/450'],
+    offPrice: 90,
+    type: 'football', // Set a value for type
+    gender: 'men', // Added missing gender
+    color: ['black'], // Added missing color
+    size: ['M'], // Added missing size
+  },
+  {
+    _id: '2',
+    name: 'Sample Product 2',
+    price: 200,
+    description: 'A great product 2',
+    amount: 15,
+    discount: 15,
+    rating: 4.8,
+    image: 'https://via.placeholder.com/450',
+    dateCreated: '2023-08-20',
+    category: ['Category2'],
+    reviews: [],
+    brand: 'nike', // Set a value for brand
+    slug: 'sample-product-2',
+    gallery: ['https://via.placeholder.com/450', 'https://via.placeholder.com/200'],
+    offPrice: 170,
+    type: 'football', // Set a value for type
+    gender: 'men', // Added missing gender
+    color: ['white'], // Added missing color
+    size: ['L', 'M', 'XL'], // Added missing size
+  },
+  {
+    _id: '3',
+    name: 'Sample Product 3',
+    price: 100,
+    description: 'A great product 1',
+    amount: 10,
+    discount: 10,
+    rating: 4.5,
+    image: 'https://via.placeholder.com/450',
+    dateCreated: '2023-09-10',
+    category: ['Category1'],
+    reviews: [],
+    brand: 'adidas', // Set a value for brand
+    slug: 'sample-product-1',
+    gallery: ['https://via.placeholder.com/450', 'https://via.placeholder.com/450'],
+    offPrice: 90,
+    type: 'football', // Set a value for type
+    gender: 'men', // Added missing gender
+    color: ['black'], // Added missing color
+    size: ['M'], // Added missing size
+  }
+]
+
 
 const Products = ({ title, gender }: Props) => {
   const [products, setProducts] = useState<IProduct[]>([])
@@ -34,23 +100,23 @@ const Products = ({ title, gender }: Props) => {
   const { generateQuery } = useProductFilterQuery()
 
   useEffect(() => {
-    getProducts(generateQuery({ gender })).then((result) =>
-      setHighestPrice(result.data?.highestPrice)
+    getProducts(generateQuery({})).then((result) =>
+      setHighestPrice(1000)
     )
-  }, [gender])
+  }, [])
 
   useEffect(() => {
-    if (isSuccess && data) {
-      if (data.currentPage <= 1) setProducts(data.products)
+    if (isSuccess && data && 'items' in data) {
+      if (data.currentPage <= 1) setProducts(sampleProducts)
       if (data.currentPage > 1)
-        setProducts((prevProducts) => [...prevProducts, ...data.products])
+        setProducts((prevProducts) => [...prevProducts, ...sampleProducts])
       if (
         data.currentPage <= 1 &&
         !price?.minPrice &&
         !price?.maxPrice &&
         (brand || color || size || type)
       ) {
-        setHighestPrice(data?.highestPrice)
+        setHighestPrice(1000)
       }
     }
   }, [data, isSuccess])
@@ -114,25 +180,35 @@ const Products = ({ title, gender }: Props) => {
           <ProductCardContainer products={products} />
         )}
       </div>
-      <button
-        className='self-center px-20 py-4 mt-24 text-base font-bold leading-6 transition-all border border-neutral-soft-grey text-primary-black w-80 disabled:opacity-70'
-        aria-label='Load more products'
-        onClick={loadNextPage}
-        disabled={data?.currentPage === data?.totalPages || isFetching}
-      >
-        {isFetching ? (
-          <SpinnerCircular
-            size={36}
-            thickness={100}
-            speed={100}
-            color='rgba(38, 45, 51, 1)'
-            secondaryColor='rgba(231, 231, 231, 1)'
-            className='mx-auto'
-          />
-        ) : (
-          'SEE MORE PRODUCT'
-        )}
-      </button>
+
+      {isSuccess && data && 'items' in data ? (
+        <>
+          {/* Render your product list or other components here */}
+
+          <button
+            className='self-center px-20 py-4 mt-24 text-base font-bold leading-6 transition-all border border-neutral-soft-grey text-primary-black w-80 disabled:opacity-70'
+            aria-label='Load more products'
+            onClick={loadNextPage}
+            disabled={data.currentPage === data.totalPages || isFetching}
+          >
+            {isFetching ? (
+              <SpinnerCircular
+                size={36}
+                thickness={100}
+                speed={100}
+                color='rgba(38, 45, 51, 1)'
+                secondaryColor='rgba(231, 231, 231, 1)'
+                className='mx-auto'
+              />
+            ) : (
+              'SEE MORE PRODUCTS'
+            )}
+          </button>
+        </>
+      ) : (
+        <></>
+      )}
+
     </div>
   )
 }

@@ -92,18 +92,7 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
         {
             Category category;
 
-            if (categoryDto.Id != null)
-            {
-                // If Id is provided, find the existing category
-                category = await _unitOfWork.CategoryRepository.FirstOrDefaultAsync(c => c.Id == categoryDto.Id.Value, null)
-                    ?? throw new UserFriendlyException(ErrorCode.NotFound, $"Category with Id {categoryDto.Id.Value} not found.");
-                await _unitOfWork.ProductCategoryRepository.AddAsync(new ProductCategory
-                {
-                    Product = product,
-                    CategoryId = category.Id
-                });
-            }
-            else if (!string.IsNullOrEmpty(categoryDto.Name))
+            if (!string.IsNullOrEmpty(categoryDto.Name))
             {
                 // If only Name is provided, check if it exists, otherwise create a new one
                 category = await _unitOfWork.CategoryRepository
@@ -126,12 +115,9 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
                     Category = category
                 });
             }
-            else
-            {
-                throw new UserFriendlyException(ErrorCode.NotFound, "Either Id or Name must be provided.");
-            }
         }
         // Step3: TODO: Provide list image through media entity
+        await _unitOfWork.MediaRepository.AddRangeAsync(MapToMedia(request.Images));
 
         // Add the new product to the context and save changes
         await _unitOfWork.ProductRepository.AddAsync(product);
@@ -193,7 +179,6 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
         await _unitOfWork.ProductCategoryRepository.AddRangeAsync(newProductCategories);
 
         // Step 4: TODO: Handle media/images update logic
-
         // Step 5: Save the updated product and its associations
         _unitOfWork.ProductRepository.Update(existingProduct);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
@@ -221,6 +206,17 @@ public class ProductService(IUnitOfWork unitOfWork, ICurrentUser currentUser) : 
             DateCreated = product.DateCreated,
             Category = product.ProductCategories?.Select(x => x.Category).Select(x => x.Name).ToList(),
         };
+    }
+
+    private List<Media> MapToMedia(List<MediaProductRequest> request)
+    {
+        return request.Select(image => new Media
+        {
+            Type = MediaType.Image,
+            PathMedia = image.PathMedia,
+            Caption = image.Caption,
+            FileSize = image.FileSize
+        }).ToList();
     }
 
     private ProductDetailResponse MapToProductDetailResponse(Product product)
