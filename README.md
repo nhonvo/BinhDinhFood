@@ -1,18 +1,19 @@
-# Binh Dinh FoodWeb API Project
+# Clean Architecture Web API Project
 
 ## About the Project
 
-This project serves as a template for building a Binh Dinh FoodWeb API in ASP.NET Core. It focuses on separation of concerns by dividing the application into distinct layers: Domain, Application, Web API, and Infrastructure.
+This project serves as a template for building a Clean Architecture Web API in ASP.NET Core. It focuses on separation of concerns by dividing the application into distinct layers: Domain, Application, Web API, and Infrastructure.
 
 ## Main Features
 
-- Binh Dinh Foodstructure (Domain, Application, Web API, Infrastructure)
-- ASP.NET Core 8.0 with Entity Framework Core
-- Docker support with SQL Server integration
-- JWT Token Authentication
-- Health Check and Logging
-- Unit testing with Xunit
-- Middleware for Exception Handling and Validation
+- [x] Clean Architecture structure (Domain, Application, Web API, Infrastructure)
+- [x] ASP.NET Core 8.0 with Entity Framework Core
+- [x] Docker support with SQL Server integration
+- [x] JWT Token & Authentication by identity
+- [x] Health Check and Logging
+- [x] Unit testing
+- [x] Middleware for Exception Handling and Validation
+- [ ] fix: scope assign
 
 ## Getting Started
 
@@ -27,7 +28,7 @@ This project serves as a template for building a Binh Dinh FoodWeb API in ASP.NE
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/nhonvo/binhdinhfood
+   git clone https://github.com/nhonvo/clean-architecture-net-8.0
    ```
 
 2. Build and run:
@@ -40,22 +41,33 @@ This project serves as a template for building a Binh Dinh FoodWeb API in ASP.NE
 
    - Local: Update the connection string in `appsettings.Development.json`
 
-      and run:
+     and run:
 
      ```bash
-     dotnet run ./src/BinhDinhFood/BinhDinhFood.csproj
+     dotnet run ./src/CleanArchitecture/CleanArchitecture.csproj
      ```
+
+3. Package project (Optional):
+
+```bash
+dotnet pack -o nupkg
+dotnet new install ./ --force
+# dotnet new install ./nupkg/CleanArchitecture.1.0.0.nupkg
+dotnet new cleanarch -n template-project
+```
 
 ### Usage
 
 Access the API via:
 
 - Docker: `http://localhost:3001/swagger/index.html`
+  - Health check: `http://localhost:3001/health` & `http://localhost:3001/healthcheck-ui`
 - Local: `http://localhost:5240/swagger/index.html`
+  - Health check: `http://localhost:5240/health` & `http://localhost:5240/healthcheck-ui`
 
 ## Roadmap
 
-- Issue tracking and planned features can be found [here](https://github.com/nhonvo/binhdinhfood/issues).
+- Issue tracking and planned features can be found [here](https://github.com/nhonvo/clean-architecture-net-8.0/issues).
 
 ## Contributing
 
@@ -68,26 +80,3 @@ This project is licensed under the MIT License.
 ## Contact
 
 For any inquiries, contact the repository owner [here](https://github.com/nhonvo).
-
-Note: For development
-
-pack a project command
-
-```bash
-dotnet pack -o nupkg
-dotnet new install ./ --force
-dotnet new install ./nupkg/BinhDinhFood.1.0.0.nupkg
-dotnet new cleanarch -n MyFirstProject
-```
-
-TODO:  UPDATE THE PRODUCT RESPONSE AND CHANGE THE PAGE IN NAME export type TProductsResponse = {
-  error: boolean
-  products: IProduct[]
-  totalPages: number
-  currentPage: number
-  highestPrice: number
-}
-
-TODO: UDPATE customer avatar relationship
-
-TODO: show again the main blog, product in list image
